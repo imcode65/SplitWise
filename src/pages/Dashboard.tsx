@@ -3,7 +3,7 @@ import LeftSideBar from 'components/layouts/LeftSdieBar';
 const Dashboard = () => {
   return (
     <div>
-      <LeftSideBar />
+      <h1>DASHBOARD</h1>
     </div>
   );
 };

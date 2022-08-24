@@ -5,7 +5,7 @@ const Navbar = () => {
     <nav className="flex items-center justify-between px-8 py-5 mx-auto w-full">
       <div className="flex items-center text-white mr-6">
         <LogoIcon />
-        <span className="font-semibold text-xl tracking-tight">Splitwise</span>
+        <span className="text-gray-700 text-xl font-bold">Splitwise</span>
       </div>
       <div className="w-full block lg:flex lg:items-center lg:w-auto">
         <a
