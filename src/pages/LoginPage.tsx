@@ -1,5 +1,5 @@
 import LoginForm from 'components/forms/LoginForm';
-import Footer from 'components/layouts/Footer';
+import FooterBar from 'components/layouts/FooterBar';
 import Navbar from 'components/layouts/Navbar';
 
 const LoginPage = () => {
@@ -9,7 +9,7 @@ const LoginPage = () => {
       <div className="lg:flex align-center justify-center items-center mt-16 mb-20">
         <LoginForm></LoginForm>
       </div>
-      <Footer></Footer>
+      <FooterBar></FooterBar>
     </div>
   );
 };
