@@ -5,7 +5,7 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 function AppRoutes() {
   const location = useLocation();
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col h-screen">
       <Routes location={location}>
         <Route path="" element={<LoginPage />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
