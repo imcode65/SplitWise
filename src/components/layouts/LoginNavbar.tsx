@@ -4,7 +4,7 @@ const LoginNavbar = () => {
   return (
     <nav className="flex items-center justify-between px-16 py-5 mx-auto w-full">
       <div className="flex items-center text-white mr-6">
-        <LogoIcon />
+        <LogoIcon width={48} height={48} className="mr-2" />
         <span className="text-gray-700 text-xl font-bold">Splitwise</span>
       </div>
       <div className="w-full block lg:flex lg:items-center lg:w-auto">
