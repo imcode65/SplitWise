@@ -6,7 +6,7 @@ const DashboardBar = () => {
 
   return (
     <div>
-      <div className="bg-[#eee] flex py-2 px-4 justify-between border-t-1 border-b-1 border-gray-600 flex-wrap">
+      <div className="bg-[#eee] flex py-2 px-4 justify-between border-b-1 border-gray-600 flex-wrap">
         <span className="md:text-3xl sm:text-xl font-semibold">Dashboard</span>
         <div>
           <button
