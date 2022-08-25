@@ -1,6 +1,18 @@
-const LogoIcon = () => {
+export interface IIcon {
+  width?: number;
+  height?: number;
+  className?: string;
+}
+
+const LogoIcon: React.FC<IIcon> = (props) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={props.className}
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 48 48"
+    >
       <path
         fill="#1CC29F"
         d="M16.543 28.966l5.232-3.073L0 13.103v12.631c1.632-.895 3.688-1.36 6.042-1.36 5.125 0 8.37 2.214 10.5 4.592M6.935 46.595c2.181 0 3.826-.654 3.826-2.327 0-1.71-2.11-2.364-4.72-3.02-1.942-.505-4.172-1.013-6.04-1.971v3.245c1.572 2.582 4.182 4.073 6.934 4.073"
