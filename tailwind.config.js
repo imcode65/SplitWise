@@ -7,6 +7,10 @@ module.exports = {
         '3': '3px',
         '6': '6px',
       },
+      colors: {
+        'teal-color': '#5bc5a7',
+        'teal-border': '#39a385'
+      }
     },
   },
   plugins: [],

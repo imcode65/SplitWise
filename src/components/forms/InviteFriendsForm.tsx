@@ -1,7 +1,7 @@
 const InviteFriendsForm = () => {
   return (
     <div className="">
-      <div className="bg-teal-400 text-white font-semibold px-2 py-1 border-1 border-teal-600">
+      <div className="bg-teal-color text-white font-semibold px-2 py-1 border-1 border-teal-border">
         <span>Invite friends</span>
       </div>
       <div className="p-2 border-l-1 border-b-1 border-r-1 border-gray-500">

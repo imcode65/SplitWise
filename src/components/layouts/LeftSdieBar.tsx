@@ -21,7 +21,7 @@ const LeftSideBar = () => {
         id="dashboard_link"
         className={`flex items-center px-2 hover:bg-gray-200 mb-2 ${
           pageState === 'dashboard'
-            ? 'text-teal-400 font-bold border-l-4 border-teal-500'
+            ? 'text-teal-color font-bold border-l-4 border-teal-500'
             : 'text-gray-500 ml-1'
         }`}
       >
@@ -34,7 +34,7 @@ const LeftSideBar = () => {
         id="dashboard_link"
         className={`flex items-center px-2 hover:bg-gray-200 mb-2 ${
           pageState === 'activity'
-            ? 'text-teal-400 font-bold border-l-4 border-teal-500'
+            ? 'text-teal-color font-bold border-l-4 border-teal-500'
             : 'text-gray-500 ml-1'
         }`}
       >
@@ -47,7 +47,7 @@ const LeftSideBar = () => {
         id="dashboard_link"
         className={`flex items-center px-2 hover:bg-gray-200 mb-2 ${
           pageState === 'all'
-            ? 'text-teal-400 font-bold border-l-4 border-teal-500'
+            ? 'text-teal-color font-bold border-l-4 border-teal-500'
             : 'text-gray-500 ml-1'
         }`}
       >
@@ -70,7 +70,7 @@ const LeftSideBar = () => {
       </div>
       <button
         type="button"
-        className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
+        className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-md text-sm px-4 py-2 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
       >
         <svg
           className="mr-2 -ml-1 w-4 h-4"
@@ -91,7 +91,7 @@ const LeftSideBar = () => {
       </button>
       <button
         type="button"
-        className="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2"
+        className="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-md text-sm px-4 py-2 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2"
       >
         <svg
           className="mr-2 -ml-1 w-4 h-4"
