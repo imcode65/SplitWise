@@ -10,7 +10,7 @@ function AppRoutes() {
       <Routes location={location}>
         <Route path="" element={<LoginPage />}></Route>
         <Route path="/dashboard" element={<Dashboard />}>
-          <Navbar />
+          {/* <Navbar /> */}
         </Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="*" element={<Navigate to="" />} />
