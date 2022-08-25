@@ -14,7 +14,7 @@ const LeftSideBar = () => {
   };
 
   return (
-    <div className="p-2">
+    <div className="p-2 overflow-auto">
       <NavLink
         to="/dashboard"
         onClick={() => onChangePageState('dashboard')}

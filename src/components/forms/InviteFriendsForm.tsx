@@ -1,6 +1,6 @@
 const InviteFriendsForm = () => {
   return (
-    <div className="">
+    <div className="overflow-auto">
       <div className="bg-teal-color text-white font-semibold px-2 py-1 border-1 border-teal-border">
         <span>Invite friends</span>
       </div>
@@ -13,7 +13,7 @@ const InviteFriendsForm = () => {
         />
         <button
           type="button"
-          className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-2 py-1 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+          className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-2 py-1 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-full overflow-hidden"
         >
           Send Invite
         </button>
