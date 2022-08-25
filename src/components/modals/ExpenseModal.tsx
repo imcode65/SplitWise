@@ -1,23 +1,31 @@
+import { useState, useEffect } from 'react';
 export interface IID {
   show: boolean;
+  onClose: () => void;
+  onSave: () => void;
 }
 
 const ExpenseModal: React.FC<IID> = (props) => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setShow(props.show);
+  });
   return (
     <div
       aria-hidden="true"
       className={`${
-        props.show ? '' : 'hidden'
-      } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
+        show ? '' : 'hidden'
+      } overflow-y-auto overflow-x-hidden fixed z-50 w-full md:inset-0 h-modal md:h-full`}
     >
-      <div className="relative p-4 w-full max-w-2xl h-full md:h-auto">
+      <div className="relative p-4 w-full max-w-sm h-full md:h-auto left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-          <div className="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Add an expense</h3>
+          <div className="flex justify-between items-start p-2 rounded-t border-b dark:border-gray-600 bg-teal-color">
+            <h3 className="text-lg font-semibold text-white dark:text-white">Add an expense</h3>
             <button
               type="button"
-              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-toggle="defaultModal"
+              className="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              onClick={props.onClose}
             >
               <svg
                 aria-hidden="true"
@@ -35,19 +43,26 @@ const ExpenseModal: React.FC<IID> = (props) => {
               <span className="sr-only">Close modal</span>
             </button>
           </div>
-          <div className="p-6 space-y-6">
+          <div className="flex p-2 items-center">
             <span>With you and: </span>
+            <input
+              className="bg-gray-200 border-2 ml-2 text-sm border-gray-200 rounded px-2 py-1 text-gray-700 focus:outline-none focus:bg-white focus:border-blue-500"
+              type="email"
+              placeholder="Enter a email address"
+            />
           </div>
-          <div className="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600 justify-end">
+          <div className="flex items-center p-4 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600 justify-end">
             <button
               type="button"
               className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+              onClick={props.onClose}
             >
               Cancel
             </button>
             <button
               type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-teal-color hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={props.onSave}
             >
               Save
             </button>

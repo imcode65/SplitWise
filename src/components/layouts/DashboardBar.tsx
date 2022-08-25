@@ -20,7 +20,11 @@ const DashboardBar = () => {
           </button>
         </div>
       </div>
-      <ExpenseModal show={showExpenseModal} />
+      <ExpenseModal
+        show={showExpenseModal}
+        onClose={() => setShowExpenseModal(false)}
+        onSave={() => console.log('onSave')}
+      />
     </div>
   );
 };
