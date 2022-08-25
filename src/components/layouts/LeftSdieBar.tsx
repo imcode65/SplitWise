@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import InviteFriendsForm from 'components/forms/InviteFriendsForm';
 import LogoIcon from 'components/icons/LogoIcon';
 import FlagIcon from 'components/icons/FlagIcon';
 import ListIcon from 'components/icons/ListIcon';
@@ -109,6 +110,7 @@ const LeftSideBar = () => {
         </svg>
         Tweet
       </button>
+      <InviteFriendsForm />
     </div>
   );
 };
