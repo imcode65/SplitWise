@@ -1,7 +1,8 @@
+import { Outlet } from 'react-router-dom';
 import LeftSideBar from 'components/layouts/LeftSdieBar';
 import RightSideBar from 'components/layouts/RightSideBar';
 import Navbar from 'components/layouts/Navbar';
-import DashboardBar from 'components/layouts/DashboardBar';
+// import DashboardBar from 'components/layouts/DashboardBar';
 
 const Dashboard = () => {
   return (
@@ -12,7 +13,8 @@ const Dashboard = () => {
           <LeftSideBar />
         </div>
         <div className="col-start-2 col-span-4 border-l-1 border-r-1 border-gray-600">
-          <DashboardBar />
+          <Outlet />
+          {/* <DashboardBar /> */}
         </div>
         <div className="col-span-1">
           <RightSideBar />

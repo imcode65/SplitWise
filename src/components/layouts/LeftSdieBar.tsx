@@ -18,7 +18,6 @@ const LeftSideBar = () => {
       <NavLink
         to="/dashboard"
         onClick={() => onChangePageState('dashboard')}
-        id="dashboard_link"
         className={`flex items-center px-2 hover:bg-gray-200 mb-2 ${
           pageState === 'dashboard'
             ? 'text-teal-color font-bold border-l-4 border-teal-500'
@@ -29,9 +28,8 @@ const LeftSideBar = () => {
         <span className="ml-1">Dashboard</span>
       </NavLink>
       <NavLink
-        to="/dashboard"
+        to="/activity"
         onClick={() => onChangePageState('activity')}
-        id="dashboard_link"
         className={`flex items-center px-2 hover:bg-gray-200 mb-2 ${
           pageState === 'activity'
             ? 'text-teal-color font-bold border-l-4 border-teal-500'
@@ -42,9 +40,8 @@ const LeftSideBar = () => {
         <span className="ml-1">Recent Activity</span>
       </NavLink>
       <NavLink
-        to="/dashboard"
+        to="/all"
         onClick={() => onChangePageState('all')}
-        id="dashboard_link"
         className={`flex items-center px-2 hover:bg-gray-200 mb-2 ${
           pageState === 'all'
             ? 'text-teal-color font-bold border-l-4 border-teal-500'
