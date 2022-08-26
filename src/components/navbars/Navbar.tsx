@@ -18,7 +18,7 @@ const Navbar: React.FC<IIcon> = ({ showHome = false }) => {
           to="/dashboard"
           className={`${
             showHome ? '' : 'hidden'
-          } flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-white rounded hover:bg-teal-500`}
+          } flex justify-between items-center py-1 px-2 w-full font-medium text-white rounded hover:bg-teal-500`}
         >
           Home
         </NavLink>
@@ -26,8 +26,9 @@ const Navbar: React.FC<IIcon> = ({ showHome = false }) => {
           <button
             id="dropdownNavbarLink"
             data-dropdown-toggle="dropdownNavbar"
-            className="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-white rounded hover:bg-teal-500"
+            className="flex justify-between items-center py-1 px-2 w-full font-medium text-white rounded hover:bg-teal-500"
           >
+            <img className="mr-2 rounded-full" src="/avatar.jpg" height="20px" width="20px" />
             Username{' '}
             <svg
               className="ml-1 w-5 h-5"
