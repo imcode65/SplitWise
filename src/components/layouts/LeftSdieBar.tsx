@@ -24,7 +24,7 @@ const LeftSideBar = () => {
             : 'text-gray-500 ml-1'
         }`}
       >
-        <LogoIcon width={20} height={20} className="text-gray-500" />
+        <LogoIcon width={20} height={20} className="grow-0 shrink-0" />
         <span className="ml-1">Dashboard</span>
       </NavLink>
       <NavLink
@@ -36,7 +36,7 @@ const LeftSideBar = () => {
             : 'text-gray-500 ml-1'
         }`}
       >
-        <FlagIcon width={20} height={20} />
+        <FlagIcon width={20} height={20} className="grow-0 shrink-0" />
         <span className="ml-1">Recent Activity</span>
       </NavLink>
       <NavLink
@@ -48,7 +48,7 @@ const LeftSideBar = () => {
             : 'text-gray-500 ml-1'
         }`}
       >
-        <ListIcon width={20} height={20} />
+        <ListIcon width={20} height={20} className="grow-0 shrink-0" />
         <span className="ml-1">All expenses</span>
       </NavLink>
       <div className="flex mb-2 px-2 justify-between text-gray-400 hover:bg-gray-200 hover:text-gray-600">
