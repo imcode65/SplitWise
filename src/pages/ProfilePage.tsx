@@ -136,6 +136,7 @@ const ProfilePage = () => {
         <NotificationBar />
         <hr className="my-4" />
         <PrivacyBar />
+        <hr className="my-4" />
       </div>
     </div>
   );
