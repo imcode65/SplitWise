@@ -8,7 +8,7 @@ export interface IIcon {
 
 const Navbar: React.FC<IIcon> = ({ showHome = false }) => {
   return (
-    <nav className="flex items-center justify-between px-16 py-1 mx-auto w-full bg-teal-color">
+    <nav className="flex items-center justify-between sm:px-16 px-4 py-1 mx-auto w-full bg-teal-color">
       <div className="flex items-center text-white mr-6">
         <LogoIcon height={20} width={20} className="mr-2" />
         <span className="text-white text-xl font-bold">Splitwise</span>
