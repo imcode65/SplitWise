@@ -3,6 +3,7 @@ import Navbar from 'components/navbars/Navbar';
 import PencilIcon from 'components/icons/PencilIcon';
 import NotificationBar from 'components/layouts/bars/NotificationsBar';
 import PrivacyBar from 'components/layouts/bars/PrivacyBar';
+import ProfileFooter from 'components/footers/ProfileFooter';
 
 const ProfilePage = () => {
   const [image, setImage] = useState('');
@@ -138,6 +139,7 @@ const ProfilePage = () => {
         <PrivacyBar />
         <hr className="my-4" />
       </div>
+      <ProfileFooter />
     </div>
   );
 };

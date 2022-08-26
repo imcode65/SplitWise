@@ -11,6 +11,7 @@ const PrivacyBar = () => {
         <NormalButton text="Manage your blocklist"></NormalButton>
       </div>
       <div className="flex mb-8">
+        <input className="mr-2" type="checkbox" id="" name="" value="yes" />
         <span>
           Allow other Splitwise users who have my email address or phone number in their contact
           book to see that I use Splitwise
