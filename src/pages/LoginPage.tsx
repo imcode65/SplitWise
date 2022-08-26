@@ -1,6 +1,6 @@
 import LoginForm from 'components/forms/LoginForm';
 import LoginNavbar from 'components/navbars/LoginNavbar';
-import FooterBar from 'components/layouts/FooterBar';
+import FooterBar from 'components/footers/FooterBar';
 
 const LoginPage = () => {
   return (

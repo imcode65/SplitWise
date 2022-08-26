@@ -105,7 +105,7 @@ const ProfilePage = () => {
               </div>
             </div>
             <div className="p-2">
-              <div className="bg-gray-200 rounded-sm p-4 text-center">
+              <div className="bg-[#eee] rounded-sm p-4 text-center">
                 <div className="flex justify-center items-center">
                   <img
                     className="mr-1 max-h-6"
