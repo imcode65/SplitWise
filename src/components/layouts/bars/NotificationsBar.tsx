@@ -4,7 +4,7 @@ const NotificationBar = () => {
   return (
     <div>
       <span className="text-3xl font-semibold">Notifications</span>
-      <div className="grid grid-cols-3">
+      <div className="grid sm:grid-cols-3 text-sm">
         <div className="p-2">
           <p className="font-semibold text-gray-400 mb-2">GROUPS AND FRIENDS</p>
           <div className="flex justify-between items-center">
