@@ -9,7 +9,8 @@ module.exports = {
       },
       colors: {
         'teal-color': '#5bc5a7',
-        'teal-border': '#39a385'
+        'teal-border': '#39a385',
+        'pink-color': '#8656cd',
       }
     },
   },

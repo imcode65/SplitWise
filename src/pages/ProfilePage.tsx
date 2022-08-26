@@ -102,15 +102,38 @@ const ProfilePage = () => {
             </div>
             <div className="p-2">
               <div className="bg-gray-200 rounded-sm p-4 text-center">
-                <p className="font-semibold text-gray-500">GET SPLITWISE PRO!</p>
-                <span className="font-semibold">
+                <div className="flex">
+                  <img
+                    className="mr-1"
+                    height="20"
+                    width="16"
+                    src="https://assets.splitwise.com/assets/pro/pro-feature-bb96212d04fed0e69b87f36c5c09128055727ae37824697ad64d49cb25f339ff.svg"
+                  />
+                  <p className="font-semibold text-gray-500">GET SPLITWISE PRO!</p>
+                </div>
+                <p className="font-semibold text-sm">
                   Subscribe to Splitwise Pro for charts, search, an ad-free experience, and more!
-                </span>
+                </p>
+                <button
+                  type="button"
+                  className="text-white bg-purple-500 hover:bg-purple-600 rounded-md text-sm px-5 py-2.5 mt-2"
+                >
+                  Get Splitwise Pro!
+                </button>
               </div>
             </div>
           </div>
         </div>
+        <div className="flex justify-end">
+          <button
+            type="button"
+            className="text-white bg-[#ff652f] hover:bg-[#f8561b] rounded-md text-sm px-5 py-2.5 mr-2"
+          >
+            Save
+          </button>
+        </div>
       </div>
+      <hr />
     </div>
   );
 };
