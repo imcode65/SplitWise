@@ -11,9 +11,6 @@ const MailIcon: React.FC<IIcon> = (props) => {
       className={props.className}
       width={props.width}
       height={props.height}
-      id="Layer_1"
-      x="0"
-      y="0"
       version="1.1"
       viewBox="0 0 29 29"
     >

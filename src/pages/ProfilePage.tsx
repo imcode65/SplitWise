@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import Navbar from 'components/navbars/Navbar';
 import PencilIcon from 'components/icons/PencilIcon';
-import MailIcon from 'components/icons/MailIcon';
+import NotificationBar from 'components/layouts/bars/NotificationsBar';
+import PrivacyBar from 'components/layouts/bars/PrivacyBar';
 
 const ProfilePage = () => {
   const [image, setImage] = useState('');
@@ -103,11 +104,9 @@ const ProfilePage = () => {
             </div>
             <div className="p-2">
               <div className="bg-gray-200 rounded-sm p-4 text-center">
-                <div className="flex">
+                <div className="flex justify-center items-center">
                   <img
-                    className="mr-1"
-                    height="20"
-                    width="16"
+                    className="mr-1 max-h-6"
                     src="https://assets.splitwise.com/assets/pro/pro-feature-bb96212d04fed0e69b87f36c5c09128055727ae37824697ad64d49cb25f339ff.svg"
                   />
                   <p className="font-semibold text-gray-500">GET SPLITWISE PRO!</p>
@@ -134,54 +133,9 @@ const ProfilePage = () => {
           </button>
         </div>
         <hr className="my-4" />
-        <span className="text-3xl font-semibold">Notifications</span>
-        <div className="grid grid-cols-3">
-          <div className="p-2">
-            <p className="font-semibold text-gray-400 mb-2">GROUPS AND FRIENDS</p>
-            <div className="flex justify-between items-center">
-              <p>When someone adds me to a group</p>
-              <MailIcon height={24} width={24}></MailIcon>
-            </div>
-            <div className="flex justify-between items-center">
-              <p>When someone adds me as a friend</p>
-              <MailIcon height={24} width={24}></MailIcon>
-            </div>
-          </div>
-          <div className="p-2">
-            <p className="font-semibold text-gray-400 mb-2">EXPENSES</p>
-            <div className="flex justify-between items-center">
-              <p>When an expense is added</p>
-              <MailIcon height={24} width={24}></MailIcon>
-            </div>
-            <div className="flex justify-between items-center">
-              <p>When an expense is edited/deleted</p>
-              <MailIcon height={24} width={24}></MailIcon>
-            </div>
-            <div className="flex justify-between items-center">
-              <p>When someone comments on an expense</p>
-              <MailIcon height={24} width={24}></MailIcon>
-            </div>
-            <div className="flex justify-between items-center">
-              <p>When an expense is due</p>
-              <MailIcon height={24} width={24}></MailIcon>
-            </div>
-            <div className="flex justify-between items-center">
-              <p>When someone pays me</p>
-              <MailIcon height={24} width={24}></MailIcon>
-            </div>
-          </div>
-          <div className="p-2">
-            <p className="font-semibold text-gray-400 mb-2">NEWS AND UPDATES</p>
-            <div className="flex justify-between items-center">
-              <p>Monthly summary of my activity</p>
-              <MailIcon height={24} width={24}></MailIcon>
-            </div>
-            <div className="flex justify-between items-center">
-              <p>Major Splitwise news and updates</p>
-              <MailIcon height={24} width={24}></MailIcon>
-            </div>
-          </div>
-        </div>
+        <NotificationBar />
+        <hr className="my-4" />
+        <PrivacyBar />
       </div>
     </div>
   );
