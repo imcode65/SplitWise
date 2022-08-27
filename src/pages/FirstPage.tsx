@@ -1,8 +1,9 @@
 import LoginForm from 'components/forms/LoginForm';
+import SignUpForm from 'components/forms/SignUpForm';
 import LoginNavbar from 'components/navbars/LoginNavbar';
 import FooterBar from 'components/footers/FooterBar';
 
-const LoginPage = () => {
+const FirstPage = () => {
   return (
     <div className="">
       <LoginNavbar />
@@ -11,8 +12,7 @@ const LoginPage = () => {
           className="lg:flex align-center justify-center items-center mt-4 mb-20 p-4"
           style={{ backgroundImage: `url("background.png")` }}
         >
-          {/* <img src="/background.png" /> */}
-          <LoginForm />
+          <SignUpForm />
         </div>
       </div>
       <FooterBar />
@@ -20,4 +20,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default FirstPage;

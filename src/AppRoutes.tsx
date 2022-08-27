@@ -1,4 +1,4 @@
-import LoginPage from 'pages/LoginPage';
+import LoginPage from 'pages/FirstPage';
 import Dashboard from 'pages/Dashboard';
 import ActivityBar from 'components/layouts/bars/ActivityBar';
 import DashboardBar from 'components/layouts/bars/DashboardBar';
