@@ -3,6 +3,8 @@ import { USERACTION } from '../types';
 export interface IUser {
   name?: string;
   email?: string;
+  password?: string;
+  confirmPassword?: string;
 }
 
 export interface IUserAction {

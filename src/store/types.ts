@@ -1,4 +1,5 @@
 export enum USERACTION {
   SIGNIN,
-  SIGNUP
+  SIGNUP,
+  GET_ERRORS
 }

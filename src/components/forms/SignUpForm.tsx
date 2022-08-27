@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { registerUser } from 'store/actions';
 
 const SignUpForm = () => {
   const [email, setEmail] = useState<string>('');
@@ -13,7 +14,7 @@ const SignUpForm = () => {
       password: password,
       confirmPassword: confirmPassword
     };
-    console.log(data);
+    registerUser(data, history);
   };
 
   return (
