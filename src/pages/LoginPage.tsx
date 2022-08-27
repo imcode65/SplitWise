@@ -7,7 +7,11 @@ const LoginPage = () => {
     <div className="">
       <LoginNavbar />
       <div className="container mx-auto">
-        <div className="lg:flex align-center justify-center items-center mt-16 mb-20">
+        <div
+          className="lg:flex align-center justify-center items-center mt-4 mb-20 p-4"
+          style={{ backgroundImage: `url("background.png")` }}
+        >
+          {/* <img src="/background.png" /> */}
           <LoginForm />
         </div>
       </div>
