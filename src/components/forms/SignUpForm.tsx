@@ -2,20 +2,37 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { registerUser } from 'store/actions';
+import { hooks } from 'components/web3/connectors/metaMask';
+import toast from 'react-hot-toast';
+
+const {
+  //  useChainId,
+  useAccounts,
+  useIsActivating
+  // useIsActive,
+  // useProvider,
+  // useENSNames
+} = hooks;
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [name, setName] = useState<string>('');
+  const accounts = useAccounts();
 
   const onSignUp = () => {
     const data = {
       email: email,
       name: name,
-      walletaddress: 'ABCDEF'
+      walletaddress: accounts && accounts.length > 0 ? accounts[0] : ''
     };
-    registerUser(data, navigate)(dispatch);
+    console.log(data);
+    if (data.walletaddress === '') {
+      toast.error('Please Connect Wallet');
+    } else {
+      registerUser(data, navigate)(dispatch);
+    }
   };
 
   return (
@@ -48,7 +65,7 @@ const SignUpForm = () => {
             required
           />
         </div>
-        <div className="py-4">
+        <div className="py-4 mb-8">
           <button
             onClick={onSignUp}
             value="Log in"

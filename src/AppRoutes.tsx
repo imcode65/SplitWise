@@ -10,6 +10,7 @@ import SignUpPage from 'pages/SignUpPage';
 import NotFound from 'pages/NotFound';
 import Type1NavbarLayout from 'components/layouts/Type1NavbarLayout';
 import Type2NavbarLayout from 'components/layouts/Type2NavbarLayout';
+import { Toaster } from 'react-hot-toast';
 
 function AppRoutes() {
   const location = useLocation();
@@ -31,6 +32,13 @@ function AppRoutes() {
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+          toastOptions={{
+            duration: 1500
+          }}
+        />
       </div>
     </Providers>
   );

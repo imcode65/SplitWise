@@ -7,6 +7,7 @@ import MetaMaskIcon from 'components/icons/MetaMaskIcon';
 import { hooks, metaMask } from 'components/web3/connectors/metaMask';
 import { isSignUp } from 'store/actions';
 import { WalletAddressFormat } from 'methods/WalletAddressFormat';
+import toast from 'react-hot-toast';
 
 const {
   //  useChainId,
@@ -33,10 +34,10 @@ const LoginNavbar = () => {
       .activate()
       .then((res) => {
         setIsConnected(true);
-        console.log('success');
+        toast.success('wallet connected');
       })
       .catch((err) => {
-        console.log(err.message);
+        toast.success(err.message);
       });
   };
 

@@ -3,6 +3,7 @@ import { USERACTION } from '../types';
 import { AppDispatch } from 'store';
 import { IAuthInfo } from 'store/reducers/authReducer';
 import { API_SERVER_URL } from 'config';
+import toast from 'react-hot-toast';
 
 export const setAuthUser = (authInfo: IAuthInfo) => async (dispatch: AppDispatch) => {
   dispatch({
@@ -18,6 +19,7 @@ export const registerUser =
     axios
       .post(`${API_SERVER_URL}api/users/register`, userData)
       .then((res) => {
+        toast.success('Successfully Registered');
         navigate('/dashboard');
         dispatch({
           type: USERACTION.SET_AUTH_USER,
@@ -26,10 +28,7 @@ export const registerUser =
       })
       .catch((err) => {
         console.log(err.response);
-        // dispatch({
-        //   type: USERACTION.GET_ERRORS,
-        //   payload: err.response.data
-        // })
+        toast.success(err.response);
       });
   };
 
@@ -44,11 +43,13 @@ export const isSignUp =
           payload: { authInfo: res.data.user }
         });
         if (res.data.status === 'success') {
+          toast.success('Successfully Connected');
           navigate('/dashboard');
         }
       })
       .catch((err) => {
         if (err.response.data.msg === 'wallet not found') {
+          // toast.error(err.response.data.msg);
           navigate('/signup');
         }
       });
