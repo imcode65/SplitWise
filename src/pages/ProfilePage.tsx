@@ -14,8 +14,7 @@ const ProfilePage = () => {
     setImageURL(URL.createObjectURL(e.target.files[0]));
   };
   return (
-    <div className="w-full">
-      <Navbar showHome={true}></Navbar>
+    <div className="container mx-auto">
       <div className="sm:px-16 sm:py-4 p-4">
         <span className="text-3xl font-bold">Your account</span>
         <div className="grid md:grid-cols-2">

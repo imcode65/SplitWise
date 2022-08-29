@@ -1,12 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import Navbar from 'components/navbars/Navbar';
 import LeftSideBar from 'components/layouts/LeftSdieBar';
 import RightSideBar from 'components/layouts/RightSideBar';
 
 const Dashboard = () => {
   return (
-    <div className="w-full">
-      <Navbar></Navbar>
+    <div className="container mx-auto">
       <div className="grid sm:grid-cols-5 gap-4 sm:px-16 px-4">
         <div className="col-span-1">
           <LeftSideBar />

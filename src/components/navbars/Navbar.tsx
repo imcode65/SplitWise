@@ -45,9 +45,7 @@ const Navbar: React.FC<IIcon> = ({ showHome = false }) => {
                       <div className="flex">
                         <NavLink
                           to="/dashboard"
-                          className={`${
-                            showHome ? '' : 'hidden'
-                          } items-center py-1 px-2 mr-2 font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
+                          className={`items-center py-1 px-2 mr-2 font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
                         >
                           Home
                         </NavLink>
