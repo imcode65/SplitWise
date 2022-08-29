@@ -15,7 +15,6 @@ export const setAuthUser = (authInfo: IUser) => async (dispatch: AppDispatch) =>
 
 export const registerUser =
   (userData: any, navigate: (path: string) => void) => async (dispatch: AppDispatch) => {
-    console.log(userData);
     axios
       .post(`${API_SERVER_URL}api/users/register`, userData)
       .then((res) => navigate('/login'))
@@ -25,4 +24,18 @@ export const registerUser =
           payload: err.response.data
         })
       );
+  };
+
+export const isSignUp =
+  (data: { walletaddress: string }, navigate: (path: string) => void) =>
+  async (dispatch: AppDispatch) => {
+    axios
+      .post(`${API_SERVER_URL}api/users/issignup`, data)
+      .then((res) => {
+        if (res.data.status === 'success') {
+          navigate('/dashboard');
+        }
+      })
+      .catch((err) => console.log('error'));
+    console.log(data);
   };
