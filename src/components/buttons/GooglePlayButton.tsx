@@ -12,29 +12,29 @@ const GooglePlayButton: React.FC<IButton> = (props) => {
         <svg xmlns="http://www.w3.org/2000/svg" width="141" height="42">
           <defs>
             <linearGradient id="a" x1="60.944%" x2="26.763%" y1="4.777%" y2="71.867%">
-              <stop offset="0%" stop-color="#439FF7"></stop>
-              <stop offset=".66%" stop-color="#43A0F7"></stop>
-              <stop offset="26.01%" stop-color="#52BCF8"></stop>
-              <stop offset="51.22%" stop-color="#5CCFF9"></stop>
-              <stop offset="76.04%" stop-color="#63DBFA"></stop>
-              <stop offset="100%" stop-color="#65DFFA"></stop>
+              <stop offset="0%" stopColor="#439FF7"></stop>
+              <stop offset=".66%" stopColor="#43A0F7"></stop>
+              <stop offset="26.01%" stopColor="#52BCF8"></stop>
+              <stop offset="51.22%" stopColor="#5CCFF9"></stop>
+              <stop offset="76.04%" stopColor="#63DBFA"></stop>
+              <stop offset="100%" stopColor="#65DFFA"></stop>
             </linearGradient>
             <linearGradient id="b" x1="107.557%" x2="-130.583%" y1="49.976%" y2="49.976%">
-              <stop offset="0%" stop-color="#FADE4B"></stop>
-              <stop offset="40.87%" stop-color="#F5BD42"></stop>
-              <stop offset="77.54%" stop-color="#F2A73B"></stop>
-              <stop offset="100%" stop-color="#F19E39"></stop>
+              <stop offset="0%" stopColor="#FADE4B"></stop>
+              <stop offset="40.87%" stopColor="#F5BD42"></stop>
+              <stop offset="77.54%" stopColor="#F2A73B"></stop>
+              <stop offset="100%" stopColor="#F19E39"></stop>
             </linearGradient>
             <linearGradient id="c" x1="86.075%" x2="-49.955%" y1="31.204%" y2="137.68%">
-              <stop offset="0%" stop-color="#EB4D4C"></stop>
-              <stop offset="100%" stop-color="#B22C62"></stop>
+              <stop offset="0%" stopColor="#EB4D4C"></stop>
+              <stop offset="100%" stopColor="#B22C62"></stop>
             </linearGradient>
             <linearGradient id="d" x1="-18.851%" x2="42.089%" y1="-12.377%" y2="35.229%">
-              <stop offset="0%" stop-color="#549C75"></stop>
-              <stop offset="6.85%" stop-color="#54A375"></stop>
-              <stop offset="47.62%" stop-color="#60CA7D"></stop>
-              <stop offset="80.09%" stop-color="#6AE180"></stop>
-              <stop offset="100%" stop-color="#6DEA82"></stop>
+              <stop offset="0%" stopColor="#549C75"></stop>
+              <stop offset="6.85%" stopColor="#54A375"></stop>
+              <stop offset="47.62%" stopColor="#60CA7D"></stop>
+              <stop offset="80.09%" stopColor="#6AE180"></stop>
+              <stop offset="100%" stopColor="#6DEA82"></stop>
             </linearGradient>
           </defs>
           <g fill="none">
@@ -49,7 +49,7 @@ const GooglePlayButton: React.FC<IButton> = (props) => {
             <path
               fill="#FFF"
               stroke="#FFF"
-              stroke-width=".5"
+              strokeWidth=".5"
               d="M49.776 10.728c0 .86-.25 1.568-.752 2.125-.602.607-1.355.91-2.308.91-.904 0-1.656-.303-2.309-.96-.652-.608-.953-1.418-.953-2.328 0-.911.301-1.72.953-2.328.653-.607 1.405-.962 2.309-.962.451 0 .853.102 1.304.253.402.152.753.405.954.709l-.552.557c-.402-.507-1.004-.76-1.706-.76-.653 0-1.205.253-1.706.709-.502.455-.703 1.063-.703 1.822 0 .759.25 1.366.703 1.821.501.456 1.053.709 1.706.709.702 0 1.254-.253 1.756-.709.3-.303.451-.708.502-1.265h-2.258v-.759h3.01c.05.152.05.304.05.456zm4.817-2.632h-2.86v2.024h2.56v.76h-2.56v1.973h2.86v.81h-3.662V7.337h3.662v.76zm3.413 5.567h-.803V8.096h-1.756v-.759h4.315v.76h-1.756v5.566zm4.817 0V7.337h.803v6.326h-.803zm4.365 0h-.803V8.096H64.63v-.759h4.315v.76h-1.756v5.566zm9.885-.81c-.602.658-1.355.961-2.308.961-.903 0-1.656-.303-2.308-.961a3.305 3.305 0 0 1-.903-2.328c0-.91.3-1.72.903-2.328.602-.657 1.355-.961 2.308-.961.903 0 1.656.304 2.308.961.602.658.903 1.417.903 2.328 0 .911-.3 1.67-.903 2.328zm-4.014-.557a2.297 2.297 0 0 0 1.706.709 2.38 2.38 0 0 0 1.706-.709c.452-.455.703-1.062.703-1.821 0-.709-.251-1.316-.703-1.822a2.297 2.297 0 0 0-1.706-.709 2.38 2.38 0 0 0-1.706.709c-.452.455-.703 1.063-.703 1.822 0 .759.251 1.366.703 1.821zm6.021 1.367V7.337h.954l3.01 4.909h.05l-.05-1.215V7.337h.803v6.326h-.853l-3.161-5.111h-.05l.05 1.214v3.897h-.753z"
             ></path>
             <path
