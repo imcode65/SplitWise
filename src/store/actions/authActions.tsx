@@ -27,7 +27,6 @@ export const registerUser =
         });
       })
       .catch((err) => {
-        console.log(err.response);
         toast.success(err.response);
       });
   };

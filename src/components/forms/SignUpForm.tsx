@@ -27,7 +27,6 @@ const SignUpForm = () => {
       name: name,
       walletaddress: accounts && accounts.length > 0 ? accounts[0] : ''
     };
-    console.log(data);
     if (data.walletaddress === '') {
       toast.error('Please Connect Wallet');
     } else {
