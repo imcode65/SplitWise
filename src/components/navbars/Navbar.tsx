@@ -3,26 +3,35 @@ import { NavLink } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import LogoIcon from 'components/icons/LogoIcon';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
   imageUrl:
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
 };
-const userNavigation = [
-  { name: 'Your account', href: '/profile' },
-  { name: 'Create a group', href: '#' },
-  { name: 'Fairness calculators', href: '#' },
-  { name: 'Contact support', href: '#' },
-  { name: 'Log out', href: '#' }
-];
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
 }
 
 const Navbar = () => {
+  const { authInfo, isLogged } = useAppSelector((state) => state.auth);
+  const userNavigation = [
+    { name: 'Your account', href: '/profile', onClick: () => {} },
+    { name: 'Create a group', href: '#', onClick: () => {} },
+    { name: 'Fairness calculators', href: '#', onClick: () => {} },
+    { name: 'Contact support', href: '#', onClick: () => {} },
+    {
+      name: 'Disconnect',
+      href: '#',
+      onClick: () => onDisconnect()
+    }
+  ];
+
+  const onDisconnect = () => {
+    console.log('onDisconnect');
+  };
+
   return (
     <div>
       <Disclosure as="nav" className="bg-teal-color">
@@ -48,7 +57,7 @@ const Navbar = () => {
                         </NavLink>
                         <Menu.Button className="max-w-xs bg-teal-color rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-white">
                           <img className="h-8 w-8 rounded-full mr-2" src={user.imageUrl} alt="" />
-                          <span className="text-white font-semibold">UserName</span>
+                          <span className="text-white font-semibold">{authInfo?.name}</span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -80,6 +89,7 @@ const Navbar = () => {
                                     active ? 'bg-gray-100' : '',
                                     'block px-4 py-2 text-sm text-gray-700  hover:bg-teal-color'
                                   )}
+                                  onClick={item.onClick}
                                 >
                                   {item.name}
                                 </a>
@@ -112,6 +122,7 @@ const Navbar = () => {
                       key={item.name}
                       as="a"
                       href={item.href}
+                      onClick={item.onClick}
                       className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-gray-700"
                     >
                       {item.name}

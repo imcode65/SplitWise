@@ -27,11 +27,11 @@ const initialAuthState: IAuthState = {
 
 const userReducer = (state = initialAuthState, action?: IUserAction) => {
   switch (action?.type) {
-    // console.log(action.payload);
     case USERACTION.SET_AUTH_USER:
       return {
         ...state,
-        authInfo: action.payload.authInfo
+        authInfo: action.payload.authInfo,
+        isLogged: true
       };
     default:
       return state;

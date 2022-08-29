@@ -19,10 +19,9 @@ export const registerUser =
       .post(`${API_SERVER_URL}api/users/register`, userData)
       .then((res) => {
         navigate('/dashboard');
-        console.log(res.data);
         dispatch({
           type: USERACTION.SET_AUTH_USER,
-          payload: res.data
+          payload: { authInfo: res.data }
         });
       })
       .catch((err) => {
@@ -40,6 +39,10 @@ export const isSignUp =
     axios
       .post(`${API_SERVER_URL}api/users/issignup`, data)
       .then((res) => {
+        dispatch({
+          type: USERACTION.SET_AUTH_USER,
+          payload: { authInfo: res.data.user }
+        });
         if (res.data.status === 'success') {
           navigate('/dashboard');
         }
