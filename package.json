@@ -172,5 +172,6 @@
     "hooks": {
       "pre-commit": "npm run lint && npm run test"
     }
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

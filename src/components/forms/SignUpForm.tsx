@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { registerUser } from 'store/actions';
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-  const onSignUP = () => {
+  const onSignUp = () => {
     const data = {
       email: email,
       name: name,
       password: password,
       confirmPassword: confirmPassword
     };
-    registerUser(data, history);
+    registerUser(data, navigate)(dispatch);
   };
 
   return (
@@ -75,7 +79,7 @@ const SignUpForm = () => {
         </div>
         <div className="py-4">
           <button
-            onClick={onSignUP}
+            onClick={onSignUp}
             value="Log in"
             className="w-full cursor-pointer text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
           >
