@@ -41,7 +41,6 @@ const LoginNavbar = () => {
   };
 
   useEffect(() => {
-    console.log('===');
     if (navigate !== undefined && dispatch !== undefined && accounts && accounts.length > 0) {
       const data = {
         walletaddress: accounts[0]
