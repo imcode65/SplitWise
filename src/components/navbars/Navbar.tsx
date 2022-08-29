@@ -21,11 +21,8 @@ const userNavigation = [
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
 }
-export interface IIcon {
-  showHome?: boolean;
-}
 
-const Navbar: React.FC<IIcon> = ({ showHome = false }) => {
+const Navbar = () => {
   return (
     <div>
       <Disclosure as="nav" className="bg-teal-color">
