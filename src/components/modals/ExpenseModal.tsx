@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-export interface IID {
+export interface IModal {
   show: boolean;
   onClose: () => void;
   onSave: () => void;
 }
 
-const ExpenseModal: React.FC<IID> = (props) => {
-  const [show, setShow] = useState(false);
+const ExpenseModal: React.FC<IModal> = (props) => {
+  const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
     setShow(props.show);

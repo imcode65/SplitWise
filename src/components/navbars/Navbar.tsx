@@ -35,7 +35,7 @@ const Navbar = () => {
     { name: 'Contact support', href: '#', onClick: () => {} },
     {
       name: 'Disconnect',
-      href: '/',
+      href: '#',
       onClick: () => onDisconnect()
     }
   ];
@@ -49,7 +49,6 @@ const Navbar = () => {
   const onDisconnect = () => {
     if (metaMask?.deactivate) {
       metaMask.deactivate();
-      console.log(metaMask.deactivate);
     }
     console.log('Disconnect');
   };
@@ -105,7 +104,9 @@ const Navbar = () => {
                           {userNavigation.map((item) => (
                             <Menu.Item key={item.name}>
                               {({ active }) => (
-                                <div
+                                <NavLink
+                                  key={item.name}
+                                  to={item.href}
                                   className={classNames(
                                     active ? 'bg-gray-100' : '',
                                     'block px-4 py-2 text-sm text-gray-700  hover:bg-teal-color'
@@ -113,7 +114,7 @@ const Navbar = () => {
                                   onClick={item.onClick}
                                 >
                                   {item.name}
-                                </div>
+                                </NavLink>
                               )}
                             </Menu.Item>
                           ))}
@@ -139,15 +140,14 @@ const Navbar = () => {
               <div className="pb-3 border-t border-gray-700">
                 <div className="mt-3 px-2 space-y-1">
                   {userNavigation.map((item) => (
-                    <Disclosure.Button
+                    <NavLink
                       key={item.name}
-                      as="a"
-                      href={item.href}
+                      to={item.href}
                       onClick={item.onClick}
                       className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-gray-700"
                     >
                       {item.name}
-                    </Disclosure.Button>
+                    </NavLink>
                   ))}
                 </div>
               </div>

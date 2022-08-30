@@ -1,17 +1,28 @@
-import { useState, useEffect } from 'react';
-import Navbar from 'components/navbars/Navbar';
+import { useState, useEffect, Fragment } from 'react';
 import PencilIcon from 'components/icons/PencilIcon';
 import NotificationBar from 'components/layouts/bars/NotificationsBar';
 import PrivacyBar from 'components/layouts/bars/PrivacyBar';
 import ProfileFooter from 'components/footers/ProfileFooter';
 import FeaturesBar from 'components/layouts/bars/FeaturesBar';
+import NormalButton from 'components/buttons/NormalButton';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import EditProfileModal from 'components/modals/EditProfileModal';
 
 const ProfilePage = () => {
-  const [image, setImage] = useState('');
-  const [imageURL, setImageURL] = useState('');
+  const { authInfo, isLogged } = useAppSelector((state) => state.auth);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [image, setImage] = useState<string>('');
+  const [imageURL, setImageURL] = useState<string>('');
 
   const onImageChange = (e: any) => {
     setImageURL(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const onClose = () => {
+    console.log('onClose');
+  };
+  const onSave = () => {
+    console.log('onSave');
   };
   return (
     <div className="container mx-auto">
@@ -32,21 +43,22 @@ const ProfilePage = () => {
             <div className="p-1">
               <div className="m-1">
                 <p>Your name</p>
-                <span className="font-semibold">star dev</span>
+                <span className="font-semibold">{authInfo.name}</span>
               </div>
               <div className="m-1">
                 <p>Your email address</p>
-                <span className="font-semibold">1@1.com</span>
+                <span className="font-semibold">{authInfo.email}</span>
               </div>
               <div className="m-1">
                 <p>Your phone number</p>
-                <span className="font-semibold">None</span>
+                <span className="font-semibold">
+                  {authInfo.phonenumber ? authInfo.phonenumber : 'none'}
+                </span>
               </div>
-              <div className="m-1">
-                <p>Your password</p>
-                <span className="font-semibold">*****</span>
-              </div>
-              <div className="m-1 flex text-[#00F] items-center hover:cursor-pointer hover:underline">
+              <div
+                onClick={() => setIsOpen(true)}
+                className="m-1 flex text-[#00F] items-center hover:cursor-pointer hover:underline"
+              >
                 <PencilIcon height={16} width={16} className="mr-1" />
                 <p> Edit </p>
               </div>
@@ -57,15 +69,16 @@ const ProfilePage = () => {
               <div className="mb-2">
                 <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-400">
                   Your default currency
+                  <p className="text-xs text-gray-400">(for new expenses)</p>
                 </label>
                 <select
                   id="countries"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-1"
                 >
                   <option selected value="US">
-                    USD ($)
+                    USDT
                   </option>
-                  <option value="CA">CAD ($)</option>
+                  <option value="CA">USDC</option>
                 </select>
               </div>
               <div className="mb-2">
@@ -100,7 +113,7 @@ const ProfilePage = () => {
                 <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-400">
                   You are connected with Google.
                 </label>
-                <button>Disconnect your external accounts</button>
+                <NormalButton text="Disconnect your external accounts"></NormalButton>
               </div>
             </div>
             <div className="p-2">
@@ -141,6 +154,7 @@ const ProfilePage = () => {
         <FeaturesBar />
       </div>
       <ProfileFooter />
+      <EditProfileModal isOpen={isOpen} onClose={onClose} onSave={onSave} />
     </div>
   );
 };
