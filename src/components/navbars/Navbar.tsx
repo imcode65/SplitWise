@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import LogoIcon from 'components/icons/LogoIcon';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppSelector } from 'store/hooks';
 import { hooks, metaMask } from 'components/web3/connectors/metaMask';
 
 const user = {

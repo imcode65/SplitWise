@@ -53,3 +53,18 @@ export const isSignUp =
         }
       });
   };
+
+export const updateUser = (userData: any) => async (dispatch: AppDispatch) => {
+  axios
+    .post(`${API_SERVER_URL}api/users/update`, userData)
+    .then((res) => {
+      toast.success('Successfully Updated');
+      dispatch({
+        type: USERACTION.SET_AUTH_USER,
+        payload: { authInfo: res.data }
+      });
+    })
+    .catch((err) => {
+      toast.success(err.response);
+    });
+};

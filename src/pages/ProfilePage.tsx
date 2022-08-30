@@ -1,4 +1,6 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import PencilIcon from 'components/icons/PencilIcon';
 import NotificationBar from 'components/layouts/bars/NotificationsBar';
 import PrivacyBar from 'components/layouts/bars/PrivacyBar';
@@ -8,8 +10,10 @@ import NormalButton from 'components/buttons/NormalButton';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import EditProfileModal from 'components/modals/EditProfileModal';
 import { ISaveData } from 'components/modals/EditProfileModal';
+import { updateUser } from 'store/actions';
 
 const ProfilePage = () => {
+  const dispatch = useDispatch();
   const { authInfo, isLogged } = useAppSelector((state) => state.auth);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [image, setImage] = useState<string>('');
@@ -19,22 +23,38 @@ const ProfilePage = () => {
   const [phonenumber, setPhonenumber] = useState<string>('');
 
   const onImageChange = (e: any) => {
+    setImage(e.target.files[0]);
     setImageURL(URL.createObjectURL(e.target.files[0]));
   };
-
-  const onSave = (data: ISaveData) => {
-    console.log(data);
+  const onSaveModal = (data: ISaveData) => {
+    updateUser(data)(dispatch);
     setIsOpen(false);
   };
-  const onClose = () => {
+  const onCloseModal = () => {
     setIsOpen(false);
+  };
+  const onSave = () => {
+    const formData = new FormData();
+    formData.append('myImage', image);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    };
+    axios
+      .post('/upload', formData, config)
+      .then((response) => {
+        alert('The file is successfully uploaded');
+      })
+      .catch((error) => {});
+    console.log('onSave');
   };
 
   useEffect(() => {
     setName(authInfo.name);
     setEmail(authInfo.email);
     setPhonenumber(authInfo.phonenumber);
-  });
+  }, [authInfo]);
   return (
     <div className="container mx-auto">
       <div className="sm:px-16 sm:py-4 p-4">
@@ -42,6 +62,17 @@ const ProfilePage = () => {
         <div className="grid md:grid-cols-2">
           <div className="grid sm:grid-cols-2 py-4">
             <div className="p-1 text-center overflow-auto">
+              {/* <form>
+                <div className="form-group">
+                  <input type="file" />
+                </div>
+                <div className="form-group">
+                  <button className="btn btn-primary" type="submit">
+                    Upload
+                  </button>
+                </div>
+              </form> */}
+
               <img src={imageURL} className="max-h-60 max-w-full mx-auto mb-2" />
               <input
                 className="mx-auto"
@@ -154,6 +185,7 @@ const ProfilePage = () => {
         </div>
         <div className="flex justify-end mb-4">
           <button
+            onClick={() => onSave()}
             type="button"
             className="text-white bg-[#ff652f] hover:bg-[#f8561b] rounded-md text-sm px-5 py-2.5 mr-2"
           >
@@ -168,7 +200,7 @@ const ProfilePage = () => {
         <FeaturesBar />
       </div>
       <ProfileFooter />
-      <EditProfileModal isOpen={isOpen} onClose={onClose} onSave={onSave} />
+      <EditProfileModal isOpen={isOpen} onClose={onCloseModal} onSave={onSaveModal} />
     </div>
   );
 };

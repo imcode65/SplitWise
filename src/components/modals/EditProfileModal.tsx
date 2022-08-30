@@ -5,7 +5,12 @@ import { useAppSelector } from 'store/hooks';
 export interface ISaveData {
   name?: string;
   email?: string;
-  phonenumb?: string;
+  phonenumber?: string;
+  walletaddress: string;
+  avatar?: string;
+  timezone?: string;
+  langauge?: string;
+  currency?: string;
 }
 export interface IModal {
   isOpen: boolean;
@@ -29,9 +34,9 @@ const EditProfileModal: React.FC<IModal> = (props) => {
     const data = {
       name: name,
       email: email,
-      phonenumber: phonenumber ? phonenumber : ''
+      phonenumber: phonenumber ? phonenumber : '',
+      walletaddress: authInfo.walletaddress
     };
-    console.log(data);
     props.onSave(data);
   };
 
