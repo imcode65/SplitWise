@@ -1,9 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import LogoIcon from 'components/icons/LogoIcon';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { hooks, metaMask } from 'components/web3/connectors/metaMask';
 
 const user = {
   imageUrl:
@@ -14,8 +15,19 @@ function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
 }
 
+const {
+  //  useChainId,
+  useAccounts,
+  // useIsActivating
+  useIsActive
+  // useProvider,
+  // useENSNames
+} = hooks;
+
 const Navbar = () => {
   const { authInfo, isLogged } = useAppSelector((state) => state.auth);
+  const accounts = useAccounts();
+  console.log(accounts);
   const userNavigation = [
     { name: 'Your account', href: '/profile', onClick: () => {} },
     { name: 'Create a group', href: '#', onClick: () => {} },
@@ -23,13 +35,23 @@ const Navbar = () => {
     { name: 'Contact support', href: '#', onClick: () => {} },
     {
       name: 'Disconnect',
-      href: '#',
+      href: '/',
       onClick: () => onDisconnect()
     }
   ];
 
+  useEffect(() => {
+    void metaMask.connectEagerly().catch(() => {
+      console.debug('Failed to connect eagerly to metamask');
+    });
+  }, []);
+
   const onDisconnect = () => {
-    console.log('onDisconnect');
+    if (metaMask?.deactivate) {
+      metaMask.deactivate();
+      console.log(metaMask.deactivate);
+    }
+    console.log('Disconnect');
   };
 
   return (
@@ -83,8 +105,7 @@ const Navbar = () => {
                           {userNavigation.map((item) => (
                             <Menu.Item key={item.name}>
                               {({ active }) => (
-                                <a
-                                  href={item.href}
+                                <div
                                   className={classNames(
                                     active ? 'bg-gray-100' : '',
                                     'block px-4 py-2 text-sm text-gray-700  hover:bg-teal-color'
@@ -92,7 +113,7 @@ const Navbar = () => {
                                   onClick={item.onClick}
                                 >
                                   {item.name}
-                                </a>
+                                </div>
                               )}
                             </Menu.Item>
                           ))}

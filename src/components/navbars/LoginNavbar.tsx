@@ -34,12 +34,18 @@ const LoginNavbar = () => {
       .activate()
       .then((res) => {
         setIsConnected(true);
-        toast.success('wallet connected');
+        toast.success('Wallet connected');
       })
       .catch((err) => {
         toast.success(err.message);
       });
   };
+
+  useEffect(() => {
+    void metaMask.connectEagerly().catch(() => {
+      console.debug('Failed to connect eagerly to metamask');
+    });
+  }, []);
 
   useEffect(() => {
     if (navigate !== undefined && dispatch !== undefined && accounts && accounts.length > 0) {
