@@ -13,17 +13,28 @@ const ProfilePage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [image, setImage] = useState<string>('');
   const [imageURL, setImageURL] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [emailaddress, setEmailaddress] = useState<string>('');
+  const [phonenumber, setPhonenumber] = useState<string>('');
 
   const onImageChange = (e: any) => {
     setImageURL(URL.createObjectURL(e.target.files[0]));
   };
 
-  const onClose = () => {
-    console.log('onClose');
-  };
   const onSave = () => {
+    setIsOpen(false);
     console.log('onSave');
   };
+  const onClose = () => {
+    setIsOpen(false);
+    console.log('onClose');
+  };
+
+  useEffect(() => {
+    setName(authInfo.name);
+    setEmailaddress(authInfo.email);
+    setPhonenumber(authInfo.phonenumber);
+  });
   return (
     <div className="container mx-auto">
       <div className="sm:px-16 sm:py-4 p-4">
@@ -43,23 +54,23 @@ const ProfilePage = () => {
             <div className="p-1">
               <div className="m-1">
                 <p>Your name</p>
-                <span className="font-semibold">{authInfo.name}</span>
+                <span className="font-semibold">{name}</span>
               </div>
               <div className="m-1">
                 <p>Your email address</p>
-                <span className="font-semibold">{authInfo.email}</span>
+                <span className="font-semibold">{emailaddress}</span>
               </div>
               <div className="m-1">
                 <p>Your phone number</p>
-                <span className="font-semibold">
-                  {authInfo.phonenumber ? authInfo.phonenumber : 'none'}
-                </span>
+                <div className="flex items-center">
+                  <span className="font-semibold">{phonenumber ? phonenumber : 'none'}</span>
+                </div>
               </div>
               <div
+                className="m-1 text-sm flex text-[#00F] items-center hover:cursor-pointer hover:underline"
                 onClick={() => setIsOpen(true)}
-                className="m-1 flex text-[#00F] items-center hover:cursor-pointer hover:underline"
               >
-                <PencilIcon height={16} width={16} className="mr-1" />
+                <PencilIcon height={14} width={14} className="mx-1" />
                 <p> Edit </p>
               </div>
             </div>
@@ -113,7 +124,10 @@ const ProfilePage = () => {
                 <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-400">
                   You are connected with Google.
                 </label>
-                <NormalButton text="Disconnect your external accounts"></NormalButton>
+                <NormalButton
+                  text="Disconnect your external accounts"
+                  className="text-sm"
+                ></NormalButton>
               </div>
             </div>
             <div className="p-2">
