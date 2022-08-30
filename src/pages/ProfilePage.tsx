@@ -7,6 +7,7 @@ import FeaturesBar from 'components/layouts/bars/FeaturesBar';
 import NormalButton from 'components/buttons/NormalButton';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import EditProfileModal from 'components/modals/EditProfileModal';
+import { ISaveData } from 'components/modals/EditProfileModal';
 
 const ProfilePage = () => {
   const { authInfo, isLogged } = useAppSelector((state) => state.auth);
@@ -14,25 +15,24 @@ const ProfilePage = () => {
   const [image, setImage] = useState<string>('');
   const [imageURL, setImageURL] = useState<string>('');
   const [name, setName] = useState<string>('');
-  const [emailaddress, setEmailaddress] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [phonenumber, setPhonenumber] = useState<string>('');
 
   const onImageChange = (e: any) => {
     setImageURL(URL.createObjectURL(e.target.files[0]));
   };
 
-  const onSave = () => {
+  const onSave = (data: ISaveData) => {
+    console.log(data);
     setIsOpen(false);
-    console.log('onSave');
   };
   const onClose = () => {
     setIsOpen(false);
-    console.log('onClose');
   };
 
   useEffect(() => {
     setName(authInfo.name);
-    setEmailaddress(authInfo.email);
+    setEmail(authInfo.email);
     setPhonenumber(authInfo.phonenumber);
   });
   return (
@@ -58,7 +58,7 @@ const ProfilePage = () => {
               </div>
               <div className="m-1">
                 <p>Your email address</p>
-                <span className="font-semibold">{emailaddress}</span>
+                <span className="font-semibold">{email}</span>
               </div>
               <div className="m-1">
                 <p>Your phone number</p>

@@ -1,22 +1,45 @@
 import { useState, Fragment, useEffect } from 'react';
 import { Dialog, Portal, Transition } from '@headlessui/react';
+import { useAppSelector } from 'store/hooks';
 
+export interface ISaveData {
+  name?: string;
+  email?: string;
+  phonenumb?: string;
+}
 export interface IModal {
   isOpen: boolean;
   onClose: () => void;
-  onSave: () => void;
+  onSave: (data: ISaveData) => void;
 }
 
 const EditProfileModal: React.FC<IModal> = (props) => {
+  const { authInfo } = useAppSelector((state) => state.auth);
   const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
-  const [emailAddress, setEmailAddress] = useState<string>('');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [phonenumber, setPhonenumber] = useState<string>('');
 
   useEffect(() => {
     setModalStatus(props.isOpen);
   });
 
+  const onSave = () => {
+    console.log('onSave');
+    const data = {
+      name: name,
+      email: email,
+      phonenumber: phonenumber ? phonenumber : ''
+    };
+    console.log(data);
+    props.onSave(data);
+  };
+
+  useEffect(() => {
+    setName(authInfo.name);
+    setEmail(authInfo.email);
+    setPhonenumber(authInfo.phonenumber);
+  }, [props.isOpen]);
   return (
     <>
       <Transition appear show={modalStatus} as={Fragment}>
@@ -55,6 +78,7 @@ const EditProfileModal: React.FC<IModal> = (props) => {
                       </label>
                       <input
                         type="text"
+                        onChange={(e) => setName(e.target.value)}
                         value={name}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         placeholder="name"
@@ -65,8 +89,9 @@ const EditProfileModal: React.FC<IModal> = (props) => {
                         Your email address
                       </label>
                       <input
-                        type="text"
-                        value={emailAddress}
+                        type="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         placeholder="email"
                       />
@@ -77,7 +102,8 @@ const EditProfileModal: React.FC<IModal> = (props) => {
                       </label>
                       <input
                         type="text"
-                        value={phoneNumber}
+                        onChange={(e) => setPhonenumber(e.target.value)}
+                        value={phonenumber}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         placeholder="phone"
                       />
@@ -87,7 +113,7 @@ const EditProfileModal: React.FC<IModal> = (props) => {
                     <button
                       type="button"
                       className="text-white bg-[#ff652f] hover:bg-[#f8561b] rounded-md text-sm px-5 py-2.5 mr-2"
-                      onClick={props.onSave}
+                      onClick={() => onSave()}
                     >
                       Save
                     </button>

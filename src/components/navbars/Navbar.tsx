@@ -27,7 +27,6 @@ const {
 const Navbar = () => {
   const { authInfo, isLogged } = useAppSelector((state) => state.auth);
   const accounts = useAccounts();
-  console.log(accounts);
   const userNavigation = [
     { name: 'Your account', href: '/profile', onClick: () => {} },
     { name: 'Create a group', href: '#', onClick: () => {} },
