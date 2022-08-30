@@ -10,7 +10,7 @@ import NormalButton from 'components/buttons/NormalButton';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import EditProfileModal from 'components/modals/EditProfileModal';
 import { ISaveData } from 'components/modals/EditProfileModal';
-import { updateUser } from 'store/actions';
+import { updateUser, uploadImage } from 'store/actions';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -36,18 +36,17 @@ const ProfilePage = () => {
   const onSave = () => {
     const formData = new FormData();
     formData.append('myImage', image);
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('phonenumber', phonenumber ? phonenumber : '');
+    formData.append('walletaddress', authInfo.walletaddress);
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
       }
     };
-    axios
-      .post('/upload', formData, config)
-      .then((response) => {
-        alert('The file is successfully uploaded');
-      })
-      .catch((error) => {});
-    console.log('onSave');
+    // uploadImage(formData, config)(dispatch);
+    updateUser(formData, config)(dispatch);
   };
 
   useEffect(() => {

@@ -54,10 +54,11 @@ export const isSignUp =
       });
   };
 
-export const updateUser = (userData: any) => async (dispatch: AppDispatch) => {
+export const updateUser = (userData: any, config?: any) => async (dispatch: AppDispatch) => {
   axios
-    .post(`${API_SERVER_URL}api/users/update`, userData)
+    .post(`${API_SERVER_URL}api/users/update`, userData, config)
     .then((res) => {
+      console.log(res.data);
       toast.success('Successfully Updated');
       dispatch({
         type: USERACTION.SET_AUTH_USER,
@@ -67,4 +68,13 @@ export const updateUser = (userData: any) => async (dispatch: AppDispatch) => {
     .catch((err) => {
       toast.success(err.response);
     });
+};
+
+export const uploadImage = (formData: any, config: any) => async (dispatch: AppDispatch) => {
+  axios
+    .post('/upload_image', formData, config)
+    .then((response) => {
+      console.log(response.data.filename);
+    })
+    .catch((error) => {});
 };

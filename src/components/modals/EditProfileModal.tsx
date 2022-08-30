@@ -30,7 +30,6 @@ const EditProfileModal: React.FC<IModal> = (props) => {
   });
 
   const onSave = () => {
-    console.log('onSave');
     const data = {
       name: name,
       email: email,
