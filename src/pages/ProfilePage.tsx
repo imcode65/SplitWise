@@ -21,6 +21,7 @@ const ProfilePage = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [phonenumber, setPhonenumber] = useState<string>('');
+  const [avatar, setAvatar] = useState<string>('');
 
   const onImageChange = (e: any) => {
     setImage(e.target.files[0]);
@@ -35,7 +36,9 @@ const ProfilePage = () => {
   };
   const onSave = () => {
     const formData = new FormData();
-    formData.append('myImage', image);
+    if (image) {
+      formData.append('myImage', image);
+    }
     formData.append('name', name);
     formData.append('email', email);
     formData.append('phonenumber', phonenumber ? phonenumber : '');
@@ -45,7 +48,6 @@ const ProfilePage = () => {
         'content-type': 'multipart/form-data'
       }
     };
-    // uploadImage(formData, config)(dispatch);
     updateUser(formData, config)(dispatch);
   };
 
@@ -53,6 +55,7 @@ const ProfilePage = () => {
     setName(authInfo.name);
     setEmail(authInfo.email);
     setPhonenumber(authInfo.phonenumber);
+    setAvatar(authInfo.avatar);
   }, [authInfo]);
   return (
     <div className="container mx-auto">
@@ -71,8 +74,11 @@ const ProfilePage = () => {
                   </button>
                 </div>
               </form> */}
-
-              <img src={imageURL} className="max-h-60 max-w-full mx-auto mb-2" />
+              {imageURL ? (
+                <img src={imageURL} className="max-h-60 max-w-full mx-auto mb-2" />
+              ) : (
+                <img src={avatar} className="max-h-60 max-w-full mx-auto mb-2" />
+              )}
               <input
                 className="mx-auto"
                 type="file"
