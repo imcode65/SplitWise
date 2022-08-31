@@ -1,2 +1,1 @@
-const currency = ['USDT', 'USDC'];
-export default currency;
+export const CURRENCY_TYPES = ['USDT', 'USDC'];

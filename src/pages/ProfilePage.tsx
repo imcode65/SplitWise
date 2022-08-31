@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
 import PencilIcon from 'components/icons/PencilIcon';
 import NotificationBar from 'components/layouts/bars/NotificationsBar';
 import PrivacyBar from 'components/layouts/bars/PrivacyBar';
@@ -10,8 +9,8 @@ import NormalButton from 'components/buttons/NormalButton';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import EditProfileModal from 'components/modals/EditProfileModal';
 import { ISaveData } from 'components/modals/EditProfileModal';
-import { updateUser, uploadImage } from 'store/actions';
-import currency_types from 'datas/currency';
+import { updateUser } from 'store/actions/authActions';
+import { CURRENCY_TYPES } from 'datas/currency';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -126,7 +125,7 @@ const ProfilePage = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-1"
                   onChange={(e) => setCurrency(e.target.value)}
                 >
-                  {currency_types.map((item, key) => {
+                  {CURRENCY_TYPES.map((item, key) => {
                     return (
                       <option value={item} key={key}>
                         {item}

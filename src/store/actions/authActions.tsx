@@ -69,12 +69,3 @@ export const updateUser = (userData: any, config?: any) => async (dispatch: AppD
       toast.success(err.response);
     });
 };
-
-export const uploadImage = (formData: any, config: any) => async (dispatch: AppDispatch) => {
-  axios
-    .post('/upload_image', formData, config)
-    .then((response) => {
-      console.log(response.data.filename);
-    })
-    .catch((error) => {});
-};

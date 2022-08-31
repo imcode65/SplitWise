@@ -1,7 +1,17 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { sendInvite } from 'store/actions/inviteActions';
 
 const InviteFriendsForm = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
+
+  const onSendInvite = () => {
+    const data = {
+      email: email
+    };
+    sendInvite(data)(dispatch);
+  };
   return (
     <div className="overflow-auto">
       <div className="bg-teal-color text-white font-semibold px-2 py-1 border-1 border-teal-border">
@@ -17,6 +27,7 @@ const InviteFriendsForm = () => {
         />
         <button
           type="button"
+          onClick={() => onSendInvite()}
           className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-2 py-1 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-full overflow-hidden"
         >
           Send Invite

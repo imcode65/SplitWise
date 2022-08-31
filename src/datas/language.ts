@@ -1,2 +1,1 @@
-const languages = ['English'];
-export default languages;
+export const LANGUAGES = ['English'];
