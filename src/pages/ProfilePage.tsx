@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import EditProfileModal from 'components/modals/EditProfileModal';
 import { ISaveData } from 'components/modals/EditProfileModal';
 import { updateUser, uploadImage } from 'store/actions';
+import currency_types from 'datas/currency';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const ProfilePage = () => {
   const [email, setEmail] = useState<string>('');
   const [phonenumber, setPhonenumber] = useState<string>('');
   const [avatar, setAvatar] = useState<string>('');
+  const [currency, setCurrency] = useState<string>('');
 
   const onImageChange = (e: any) => {
     setImage(e.target.files[0]);
@@ -43,6 +45,7 @@ const ProfilePage = () => {
     formData.append('email', email);
     formData.append('phonenumber', phonenumber ? phonenumber : '');
     formData.append('walletaddress', authInfo.walletaddress);
+    formData.append('currency', currency);
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
@@ -56,6 +59,7 @@ const ProfilePage = () => {
     setEmail(authInfo.email);
     setPhonenumber(authInfo.phonenumber);
     setAvatar(authInfo.avatar);
+    setCurrency(authInfo.currency);
   }, [authInfo]);
   return (
     <div className="container mx-auto">
@@ -119,13 +123,16 @@ const ProfilePage = () => {
                   <p className="text-xs text-gray-400">(for new expenses)</p>
                 </label>
                 <select
-                  id="countries"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-1"
+                  onChange={(e) => setCurrency(e.target.value)}
                 >
-                  <option selected value="US">
-                    USDT
-                  </option>
-                  <option value="CA">USDC</option>
+                  {currency_types.map((item, key) => {
+                    return (
+                      <option value={item} key={key}>
+                        {item}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
               <div className="mb-2">

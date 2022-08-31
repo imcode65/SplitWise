@@ -6,11 +6,6 @@ import LogoIcon from 'components/icons/LogoIcon';
 import { useAppSelector } from 'store/hooks';
 import { hooks, metaMask } from 'components/web3/connectors/metaMask';
 
-const user = {
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-};
-
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
 }
@@ -76,7 +71,11 @@ const Navbar = () => {
                           Home
                         </NavLink>
                         <Menu.Button className="max-w-xs bg-teal-color rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-white">
-                          <img className="h-8 w-8 rounded-full mr-2" src={user.imageUrl} alt="" />
+                          <img
+                            className="h-8 w-8 rounded-full mr-2"
+                            src={authInfo.avatar}
+                            alt="No Image"
+                          />
                           <span className="text-white font-semibold">{authInfo?.name}</span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
