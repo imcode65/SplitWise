@@ -1,10 +1,12 @@
 import { Fragment, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import LogoIcon from 'components/icons/LogoIcon';
 import { useAppSelector } from 'store/hooks';
 import { hooks, metaMask } from 'components/web3/connectors/metaMask';
+import WalletModal from 'components/modals/WalletModal';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -33,6 +35,7 @@ const Navbar = () => {
       onClick: () => onDisconnect()
     }
   ];
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     void metaMask.connectEagerly().catch(() => {
@@ -45,6 +48,12 @@ const Navbar = () => {
       metaMask.deactivate();
     }
     console.log('Disconnect');
+  };
+  const onSaveModal = () => {
+    setIsOpen(false);
+  };
+  const onCloseModal = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -70,6 +79,12 @@ const Navbar = () => {
                         >
                           Home
                         </NavLink>
+                        <button
+                          onClick={() => setIsOpen(true)}
+                          className={`items-center py-1 px-2 mr-2 font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
+                        >
+                          Wallet
+                        </button>
                         <Menu.Button className="max-w-xs bg-teal-color rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-white">
                           <img
                             className="h-8 w-8 rounded-full mr-2"
@@ -153,6 +168,7 @@ const Navbar = () => {
           </>
         )}
       </Disclosure>
+      <WalletModal isOpen={isOpen} onClose={onCloseModal} onSave={onSaveModal} />
     </div>
   );
 };

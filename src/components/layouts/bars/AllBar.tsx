@@ -32,7 +32,7 @@ const AllBar = () => {
         </div>
       </div>
       <ExpenseModal
-        show={showExpenseModal}
+        isOpen={showExpenseModal}
         onClose={() => setShowExpenseModal(false)}
         onSave={() => console.log('onSave')}
       />
