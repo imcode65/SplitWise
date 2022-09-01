@@ -1,8 +1,8 @@
 import { useState, Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Dialog, Portal, Transition } from '@headlessui/react';
+import { Dialog, Transition } from '@headlessui/react';
 import { useAppSelector } from 'store/hooks';
-import { sendInvite } from 'store/actions/inviteActions';
+import { sendInvite } from 'store/actions/friendsActions';
 import LogoIcon from 'components/icons/LogoIcon';
 import toast from 'react-hot-toast';
 
@@ -14,8 +14,8 @@ export interface IModal {
 
 const InvitieFriendsModal: React.FC<IModal> = (props) => {
   const dispatch = useDispatch();
-  const [modalStatus, setModalStatus] = useState<boolean>(false);
   const { authInfo } = useAppSelector((state) => state.auth);
+  const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [text, setText] = useState<string>('');
 

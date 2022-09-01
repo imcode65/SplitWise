@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { sendInvite } from 'store/actions/inviteActions';
+import { sendInvite } from 'store/actions/friendsActions';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import toast from 'react-hot-toast';
 
@@ -21,7 +21,7 @@ const InviteFriendsForm = () => {
     }
   };
   return (
-    <div className="overflow-auto">
+    <div className="overflow-auto my-1">
       <div className="bg-teal-color text-white font-semibold px-2 py-1 border-1 border-teal-border">
         <span>Invite friends</span>
       </div>

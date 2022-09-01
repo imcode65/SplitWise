@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'store/hooks';
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 import InviteFriendsForm from 'components/forms/InviteFriendsForm';
 import InvitieFriendsModal from 'components/modals/InviteFriendsModal';
 import LogoIcon from 'components/icons/LogoIcon';
 import FlagIcon from 'components/icons/FlagIcon';
 import ListIcon from 'components/icons/ListIcon';
 import PlusIcon from 'components/icons/PlusIcon';
+import UserIcon from 'components/icons/UserIcon';
+import { getFriendsByEmail } from 'store/actions/friendsActions';
 
 const LeftSideBar = () => {
+  const dispatch = useDispatch();
+  const { authInfo } = useAppSelector((state) => state.auth);
   const [pageState, setPageState] = useState<string>('dashboard');
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const FRIEND_DATA = ['Lionel', 'ShineStar', 'Kaara'];
 
   const onChangePageState = (state: string) => {
     setPageState(state);
@@ -18,6 +26,14 @@ const LeftSideBar = () => {
   const onSaveModal = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const data = {
+      email: authInfo.email
+    };
+    getFriendsByEmail(data)(dispatch);
+    console.log('get frineds');
+  });
   return (
     <div className="p-2 overflow-auto">
       <NavLink
@@ -56,20 +72,33 @@ const LeftSideBar = () => {
         <ListIcon width={20} height={20} className="grow-0 shrink-0" />
         <span className="ml-1">All expenses</span>
       </NavLink>
-      <div className="flex mb-2 px-2 justify-between text-gray-400 hover:bg-gray-200 hover:text-gray-600">
+      <div className="flex mb-2 px-2 justify-between text-gray-400 hover:bg-gray-200 hover:text-gray-600 text-sm bg-gray-100">
         <span>GROUPS</span>
         <div className="flex items-center cursor-pointer">
           <PlusIcon width={12} height={12} />
           <span>ADD</span>
         </div>
       </div>
-      <div className="flex mb-2 px-2 justify-between text-gray-400 hover:bg-gray-200 hover:text-gray-600">
-        <span>FRIENDS</span>
-        <div className="flex items-center cursor-pointer" onClick={() => setIsOpen(true)}>
-          <PlusIcon width={12} height={12} />
-          <span>ADD</span>
+      <div className="mb-1">
+        <div className="flex px-2 justify-between text-gray-400 hover:bg-gray-200 hover:text-gray-600 text-sm bg-gray-100">
+          <span>FRIENDS</span>
+          <div className="flex items-center cursor-pointer" onClick={() => setIsOpen(true)}>
+            <PlusIcon width={12} height={12} />
+            <span>ADD</span>
+          </div>
+        </div>
+        <div className="p-1">
+          {FRIEND_DATA.map((val, key) => {
+            return (
+              <div className="flex" key={key}>
+                <UserIcon width={16} height={16} />
+                <span className="ml-1 text-sm text-gray-400">{val}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
+      <InviteFriendsForm />
       <button
         type="button"
         className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-md text-sm px-4 py-2 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
@@ -112,7 +141,6 @@ const LeftSideBar = () => {
         </svg>
         Tweet
       </button>
-      <InviteFriendsForm />
       <InvitieFriendsModal isOpen={isOpen} onClose={() => setIsOpen(false)} onSave={onSaveModal} />
     </div>
   );

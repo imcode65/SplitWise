@@ -19,3 +19,14 @@ export const sendInvite =
         console.log(err);
       });
   };
+
+export const getFriendsByEmail = (data: { email: string }) => async (dispatch: AppDispatch) => {
+  axios
+    .post(`${API_SERVER_URL}api/friends/getfriendsbyemail`, data)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
