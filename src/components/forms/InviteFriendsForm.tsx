@@ -2,18 +2,23 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendInvite } from 'store/actions/inviteActions';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import toast from 'react-hot-toast';
 
 const InviteFriendsForm = () => {
   const dispatch = useDispatch();
   const { authInfo } = useAppSelector((state) => state.auth);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState<string>('');
 
   const onSendInvite = () => {
-    const data = {
-      email: authInfo.email,
-      email2: email
-    };
-    sendInvite(data)(dispatch);
+    if (email) {
+      const data = {
+        email1: authInfo.email,
+        email2: email
+      };
+      sendInvite(data)(dispatch);
+    } else {
+      toast.error("Input friend's email");
+    }
   };
   return (
     <div className="overflow-auto">

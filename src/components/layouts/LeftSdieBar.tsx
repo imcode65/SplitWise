@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import InviteFriendsForm from 'components/forms/InviteFriendsForm';
+import InvitieFriendsModal from 'components/modals/InviteFriendsModal';
 import LogoIcon from 'components/icons/LogoIcon';
 import FlagIcon from 'components/icons/FlagIcon';
 import ListIcon from 'components/icons/ListIcon';
 import PlusIcon from 'components/icons/PlusIcon';
 
 const LeftSideBar = () => {
-  const [pageState, setPageState] = useState('dashboard');
+  const [pageState, setPageState] = useState<string>('dashboard');
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const onChangePageState = (state: string) => {
     setPageState(state);
   };
 
+  const onSaveModal = () => {
+    setIsOpen(false);
+  };
   return (
     <div className="p-2 overflow-auto">
       <NavLink
@@ -60,7 +65,7 @@ const LeftSideBar = () => {
       </div>
       <div className="flex mb-2 px-2 justify-between text-gray-400 hover:bg-gray-200 hover:text-gray-600">
         <span>FRIENDS</span>
-        <div className="flex items-center cursor-pointer">
+        <div className="flex items-center cursor-pointer" onClick={() => setIsOpen(true)}>
           <PlusIcon width={12} height={12} />
           <span>ADD</span>
         </div>
@@ -108,6 +113,7 @@ const LeftSideBar = () => {
         Tweet
       </button>
       <InviteFriendsForm />
+      <InvitieFriendsModal isOpen={isOpen} onClose={() => setIsOpen(false)} onSave={onSaveModal} />
     </div>
   );
 };
