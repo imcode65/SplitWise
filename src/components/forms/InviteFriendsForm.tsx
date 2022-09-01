@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendInvite } from 'store/actions/inviteActions';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 const InviteFriendsForm = () => {
   const dispatch = useDispatch();
+  const { authInfo } = useAppSelector((state) => state.auth);
   const [email, setEmail] = useState('');
 
   const onSendInvite = () => {
     const data = {
-      email: email
+      email: authInfo.email,
+      email2: email
     };
     sendInvite(data)(dispatch);
   };

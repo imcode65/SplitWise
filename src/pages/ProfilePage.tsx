@@ -14,7 +14,7 @@ import { CURRENCY_TYPES } from 'datas/currency';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
-  const { authInfo, isLogged } = useAppSelector((state) => state.auth);
+  const { authInfo } = useAppSelector((state) => state.auth);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [image, setImage] = useState<string>('');
   const [imageURL, setImageURL] = useState<string>('');

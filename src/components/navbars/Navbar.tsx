@@ -81,11 +81,12 @@ const Navbar = () => {
                         </NavLink>
                         <button
                           onClick={() => setIsOpen(true)}
-                          className={`items-center py-1 px-2 mr-2 font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
+                          className={`items-center py-1 px-2 mr-2
+                           font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
                         >
                           Wallet
                         </button>
-                        <Menu.Button className="max-w-xs bg-teal-color rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-white">
+                        <Menu.Button className="max-w-xs bg-teal-color px-2 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-white">
                           <img
                             className="h-8 w-8 rounded-full mr-2"
                             src={authInfo.avatar}
