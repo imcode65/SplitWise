@@ -10,14 +10,26 @@ import FlagIcon from 'components/icons/FlagIcon';
 import ListIcon from 'components/icons/ListIcon';
 import PlusIcon from 'components/icons/PlusIcon';
 import UserIcon from 'components/icons/UserIcon';
-import { getFriendsByEmail } from 'store/actions/friendsActions';
+import { getFriendsByID } from 'store/actions/friendsActions';
 
 const LeftSideBar = () => {
   const dispatch = useDispatch();
-  const { authInfo } = useAppSelector((state) => state.auth);
+  const { auth, friend } = useAppSelector((state) => state);
   const [pageState, setPageState] = useState<string>('dashboard');
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const FRIEND_DATA = ['Lionel', 'ShineStar', 'Kaara'];
+  const [friends, setFriends] = useState<[]>([]);
+  const FRIEND_DATA = [
+    {
+      email: '1@1.com',
+      name: 'KB',
+      walletaddress: '10xA37f49E7B0fb28923515eE6a5D8B5a4fC2f2Cd1B'
+    },
+    {
+      email: '1@1.com',
+      name: 'KB2',
+      walletaddress: '10xA37f49E7B0fb28923515eE6a5D8B5a4fC2f2Cd1B'
+    }
+  ];
 
   const onChangePageState = (state: string) => {
     setPageState(state);
@@ -29,11 +41,11 @@ const LeftSideBar = () => {
 
   useEffect(() => {
     const data = {
-      email: authInfo.email
+      id: auth.authInfo._id
     };
-    getFriendsByEmail(data)(dispatch);
-    console.log('get frineds');
-  });
+    getFriendsByID(data)(dispatch);
+  }, [auth]);
+
   return (
     <div className="p-2 overflow-auto">
       <NavLink
@@ -88,14 +100,18 @@ const LeftSideBar = () => {
           </div>
         </div>
         <div className="p-1">
-          {FRIEND_DATA.map((val, key) => {
-            return (
-              <div className="flex" key={key}>
-                <UserIcon width={16} height={16} />
-                <span className="ml-1 text-sm text-gray-400">{val}</span>
-              </div>
-            );
-          })}
+          {friend.friends !== undefined
+            ? friend.friends.map((val: any, key: number) => {
+                return (
+                  <NavLink to="/friends" key={key}>
+                    <div className="flex hover:bg-gray-200">
+                      <UserIcon width={16} height={16} />
+                      <span className="ml-1 text-sm text-gray-400">{val.name}</span>
+                    </div>
+                  </NavLink>
+                );
+              })
+            : ''}
         </div>
       </div>
       <InviteFriendsForm />

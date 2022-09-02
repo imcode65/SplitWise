@@ -42,7 +42,7 @@ export const isSignUp =
           payload: { authInfo: res.data.user }
         });
         if (res.data.status === 'success') {
-          toast.success('Login Success');
+          // toast.success('Login Success');
           navigate('/dashboard');
         }
       })

@@ -67,16 +67,6 @@ const ProfilePage = () => {
         <div className="grid md:grid-cols-2">
           <div className="grid sm:grid-cols-2 py-4">
             <div className="p-1 text-center overflow-auto">
-              {/* <form>
-                <div className="form-group">
-                  <input type="file" />
-                </div>
-                <div className="form-group">
-                  <button className="btn btn-primary" type="submit">
-                    Upload
-                  </button>
-                </div>
-              </form> */}
               {imageURL ? (
                 <img src={imageURL} className="max-h-60 max-w-full mx-auto mb-2" />
               ) : (

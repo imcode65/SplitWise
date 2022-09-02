@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { AppDispatch } from 'store';
 import { API_SERVER_URL } from 'config';
+import { USERACTION } from '../types';
 import toast from 'react-hot-toast';
 
 export const sendInvite =
@@ -20,11 +21,18 @@ export const sendInvite =
       });
   };
 
-export const getFriendsByEmail = (data: { email: string }) => async (dispatch: AppDispatch) => {
+export const getFriendsByID = (data: { id: string }) => async (dispatch: AppDispatch) => {
   axios
-    .post(`${API_SERVER_URL}api/friends/getfriendsbyemail`, data)
+    .post(`${API_SERVER_URL}api/friends/getfriendsbyid`, data)
     .then((res) => {
-      console.log(res);
+      if (res.data.status === 'fail') {
+        toast.error(res.data.msg);
+      } else {
+        dispatch({
+          type: USERACTION.SET_FRIENDS,
+          payload: { friendsInfo: res.data }
+        });
+      }
     })
     .catch((err) => {
       console.log(err);

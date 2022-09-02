@@ -1,5 +1,6 @@
 export enum USERACTION {
   SIGNUP,
   SET_AUTH_USER,
-  GET_ERRORS
+  GET_ERRORS,
+  SET_FRIENDS
 }
