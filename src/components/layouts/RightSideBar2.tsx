@@ -3,6 +3,7 @@ import AlignIcon from 'components/icons/AlignIcon';
 import CalendarIcon from 'components/icons/CalendarIcon';
 import ChartIcon from 'components/icons/ChartIcon';
 import SettingIcon from 'components/icons/SettingIcon';
+import FriendSetting from './right/FriendSetting';
 
 const RightSideBar2 = () => {
   const [barStatus, setBarStatus] = useState<number>(1);
@@ -43,13 +44,19 @@ const RightSideBar2 = () => {
           <SettingIcon height={16} width={16}></SettingIcon>
         </div>
       </div>
-      <p className="text-[#999] font-semibold">YOUR TOTAL BALANCE</p>
-      <p className="text-[#999]">You are all settled up</p>
+      {barStatus === 4 ? (
+        <FriendSetting></FriendSetting>
+      ) : (
+        <>
+          <p className="text-[#999] font-semibold">YOUR TOTAL BALANCE</p>
+          <p className="text-[#999]">You are all settled up</p>
+        </>
+      )}
       <p className="text-[#999] font-semibold my-2">HEY THERE!</p>
       <div className="bg-[#eee] rounded-sm p-4 text-left">
         <p>It looks like you use an ad blocker. That’s cool! So do we :)</p>
         <br />
-        <p>Please support Splitwise by telling your friends about us!</p>
+        <p className="mb-2">Please support Splitwise by telling your friends about us!</p>
         <button
           type="button"
           className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-md text-sm px-4 py-2 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
