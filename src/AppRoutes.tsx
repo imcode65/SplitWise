@@ -5,6 +5,7 @@ import Dashboard from 'pages/Dashboard';
 import ActivityBar from 'components/layouts/bars/ActivityBar';
 import DashboardBar from 'components/layouts/bars/DashboardBar';
 import AllBar from 'components/layouts/bars/AllBar';
+import FriendBar from 'components/layouts/bars/FriendBar';
 import ProfilePage from 'pages/ProfilePage';
 import SignUpPage from 'pages/SignUpPage';
 import NotFound from 'pages/NotFound';
@@ -27,10 +28,12 @@ function AppRoutes() {
               <Route path="activity" element={<ActivityBar />} />
               <Route path="dashboard" element={<DashboardBar />} />
               <Route path="all" element={<AllBar />} />
+              <Route path="friends/" element={<FriendBar />} />
             </Route>
             <Route path="profile" element={<ProfilePage />}></Route>
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
+          {/* <Route path="*" element={<Navigate to="/" />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster
           position="top-right"

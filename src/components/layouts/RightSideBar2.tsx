@@ -10,16 +10,36 @@ const RightSideBar2 = () => {
   return (
     <div className="py-4 px-6 text-sm">
       <div className="flex">
-        <div className="mb-2 mr-1 hover:cursor-pointer hover:border-gray-300 border-1 p-2 rounded-md">
+        <div
+          className={`${
+            barStatus === 1 ? 'bg-gray-300' : ''
+          } mb-2 mr-1 hover:cursor-pointer hover:border-gray-300 border-1 p-2 rounded-md`}
+          onClick={() => setBarStatus(1)}
+        >
           <AlignIcon height={16} width={16}></AlignIcon>
         </div>
-        <div className="mb-2 mr-1 hover:cursor-pointer hover:border-gray-300 border-1 p-2 rounded-md">
+        <div
+          className={`${
+            barStatus === 2 ? 'bg-gray-300' : ''
+          } mb-2 mr-1 hover:cursor-pointer hover:border-gray-300 border-1 p-2 rounded-md`}
+          onClick={() => setBarStatus(2)}
+        >
           <CalendarIcon height={16} width={16}></CalendarIcon>
         </div>
-        <div className="mb-2 mr-1 hover:cursor-pointer hover:border-gray-300 border-1 p-2 rounded-md">
+        <div
+          className={`${
+            barStatus === 3 ? 'bg-gray-300' : ''
+          } mb-2 mr-1 hover:cursor-pointer hover:border-gray-300 border-1 p-2 rounded-md`}
+          onClick={() => setBarStatus(3)}
+        >
           <ChartIcon height={16} width={16}></ChartIcon>
         </div>
-        <div className="mb-2 mr-1 hover:cursor-pointer hover:border-gray-300 border-1 p-2 rounded-md">
+        <div
+          className={`${
+            barStatus === 4 ? 'bg-gray-300' : ''
+          } mb-2 mr-1 hover:cursor-pointer hover:border-gray-300 border-1 p-2 rounded-md`}
+          onClick={() => setBarStatus(4)}
+        >
           <SettingIcon height={16} width={16}></SettingIcon>
         </div>
       </div>

@@ -18,18 +18,6 @@ const LeftSideBar = () => {
   const [pageState, setPageState] = useState<string>('dashboard');
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [friends, setFriends] = useState<[]>([]);
-  const FRIEND_DATA = [
-    {
-      email: '1@1.com',
-      name: 'KB',
-      walletaddress: '10xA37f49E7B0fb28923515eE6a5D8B5a4fC2f2Cd1B'
-    },
-    {
-      email: '1@1.com',
-      name: 'KB2',
-      walletaddress: '10xA37f49E7B0fb28923515eE6a5D8B5a4fC2f2Cd1B'
-    }
-  ];
 
   const onChangePageState = (state: string) => {
     setPageState(state);
@@ -103,7 +91,16 @@ const LeftSideBar = () => {
           {friend.friends !== undefined
             ? friend.friends.map((val: any, key: number) => {
                 return (
-                  <NavLink to="/friends" key={key}>
+                  <NavLink
+                    className={`flex items-center px-2 hover:bg-gray-200 mb-1 ${
+                      pageState === key.toString()
+                        ? 'text-teal-color font-bold border-l-4 border-teal-500'
+                        : 'text-gray-500 ml-1'
+                    }`}
+                    to="/friends"
+                    onClick={() => onChangePageState(key.toString())}
+                    key={key}
+                  >
                     <div className="flex hover:bg-gray-200">
                       <UserIcon width={16} height={16} />
                       <span className="ml-1 text-sm text-gray-400">{val.name}</span>
