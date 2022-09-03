@@ -28,7 +28,7 @@ function AppRoutes() {
               <Route path="activity" element={<ActivityBar />} />
               <Route path="dashboard" element={<DashboardBar />} />
               <Route path="all" element={<AllBar />} />
-              <Route path="friends/" element={<FriendBar />} />
+              <Route path="friends/:id" element={<FriendBar />} />
             </Route>
             <Route path="profile" element={<ProfilePage />}></Route>
           </Route>

@@ -97,7 +97,7 @@ const LeftSideBar = () => {
                         ? 'text-teal-color font-bold border-l-4 border-teal-500'
                         : 'text-gray-500 ml-1'
                     }`}
-                    to="/friends"
+                    to={`/friends/${val._id}`}
                     onClick={() => onChangePageState(key.toString())}
                     key={key}
                   >

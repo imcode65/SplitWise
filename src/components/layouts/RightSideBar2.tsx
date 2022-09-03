@@ -4,6 +4,7 @@ import CalendarIcon from 'components/icons/CalendarIcon';
 import ChartIcon from 'components/icons/ChartIcon';
 import SettingIcon from 'components/icons/SettingIcon';
 import FriendSetting from './right/FriendSetting';
+import FriendChart from './right/FriendChart';
 
 const RightSideBar2 = () => {
   const [barStatus, setBarStatus] = useState<number>(1);
@@ -46,6 +47,8 @@ const RightSideBar2 = () => {
       </div>
       {barStatus === 4 ? (
         <FriendSetting></FriendSetting>
+      ) : barStatus === 3 ? (
+        <FriendChart></FriendChart>
       ) : (
         <>
           <p className="text-[#999] font-semibold">YOUR TOTAL BALANCE</p>
