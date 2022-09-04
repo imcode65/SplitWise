@@ -22,12 +22,14 @@ export const sendInvite =
   };
 
 export const getFriendsByID = (data: { id: string }) => async (dispatch: AppDispatch) => {
+  console.log(data);
   axios
     .post(`${API_SERVER_URL}api/friends/getfriendsbyid`, data)
     .then((res) => {
       if (res.data.status === 'fail') {
         toast.error(res.data.msg);
       } else {
+        console.log(res.data);
         dispatch({
           type: USERACTION.SET_FRIENDS,
           payload: { friendsInfo: res.data }
@@ -38,3 +40,15 @@ export const getFriendsByID = (data: { id: string }) => async (dispatch: AppDisp
       console.log(err);
     });
 };
+
+export const removeFriend =
+  (data: { id1?: string; id2?: string }) => async (dispatch: AppDispatch) => {
+    axios
+      .post(`${API_SERVER_URL}api/friends/removefriend`, data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };

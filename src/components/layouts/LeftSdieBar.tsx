@@ -97,13 +97,13 @@ const LeftSideBar = () => {
                         ? 'text-teal-color font-bold border-l-4 border-teal-500'
                         : 'text-gray-500 ml-1'
                     }`}
-                    to={`/friends/${val._id}`}
+                    to={`/friends/${val.user1._id}`}
                     onClick={() => onChangePageState(key.toString())}
                     key={key}
                   >
                     <div className="flex hover:bg-gray-200">
                       <UserIcon width={16} height={16} />
-                      <span className="ml-1 text-sm text-gray-400">{val.name}</span>
+                      <span className="ml-1 text-sm text-gray-400">{val.user1.name}</span>
                     </div>
                   </NavLink>
                 );
