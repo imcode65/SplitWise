@@ -56,6 +56,7 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
+  console.log(authInfo);
   return (
     <div>
       <Disclosure as="nav" className="bg-teal-color">
@@ -65,7 +66,7 @@ const Navbar = () => {
               <div className="flex items-center justify-between h-12">
                 <div className="flex items-center">
                   <div className="flex">
-                    <LogoIcon height={20} width={20} className="mr-2" />
+                    <LogoIcon height={24} width={24} className="mr-2" />
                     <span className="text-white text-xl font-bold">Splitwise</span>
                   </div>
                 </div>
