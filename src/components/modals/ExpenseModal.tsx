@@ -44,14 +44,14 @@ const ExpenseModal: React.FC<IModal> = (props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
-                  <div className="flex justify-between items-start px-4 py-2 rounded-t border-b dark:border-gray-600 bg-teal-color">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all border-1 border-gray-600">
+                  <div className="flex justify-between items-center px-4 py-2 rounded-t dark:border-gray-600 bg-teal-color border-b-1 border-gray-600">
                     <h3 className="text-lg font-semibold text-white dark:text-white">
                       Add an expense
                     </h3>
                     <button
                       type="button"
-                      className="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                       onClick={props.onClose}
                     >
                       <svg
@@ -76,7 +76,13 @@ const ExpenseModal: React.FC<IModal> = (props) => {
                       <input
                         className="w-72 bg-gray-200 border-2 ml-2 text-sm border-gray-200 rounded px-2 py-1 text-gray-700 focus:outline-none focus:bg-white focus:border-blue-500"
                         type="email"
-                        placeholder="Enter a email address"
+                        placeholder="Enter names or email addresses"
+                      />
+                    </div>
+                    <div className="flex items-center justify-center pt-2 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600 my-2">
+                      <input
+                        className="focus:outline-none text-xl border-b-2 border-dashed"
+                        placeholder="Enter a description"
                       />
                     </div>
                     <div className="flex items-center pt-2 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600 justify-end">

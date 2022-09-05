@@ -71,8 +71,8 @@ const EditProfileModal: React.FC<IModal> = (props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
-                  <div className="w-full flex justify-between items-start px-4 py-2 rounded-t border-b dark:border-gray-600 bg-teal-color">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all border-1 border-gray-600">
+                  <div className="w-full flex justify-between items-start px-4 py-2 rounded-t dark:border-gray-600 bg-teal-color  border-b-1 border-gray-600">
                     <h3 className="text-lg font-semibold text-white">Edit Profile</h3>
                     <button
                       type="button"

@@ -72,9 +72,9 @@ const WalletModal: React.FC<IModal> = (props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
-                  <div className="w-full flex justify-between items-start px-4 py-2 rounded-t border-b dark:border-gray-600 bg-teal-color">
-                    <h3 className="text-lg font-semibold text-white dark:text-white">Wallet</h3>
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all border-1 border-gray-600">
+                  <div className="w-full flex justify-between items-center px-4 py-2 rounded-t dark:border-gray-600 bg-teal-color border-b-1 border-gray-600">
+                    <h3 className="text-lg font-bold text-white dark:text-white">Wallet</h3>
                     <button
                       type="button"
                       className="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -103,7 +103,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                         <div className="flex bg-gray-200 items-center px-1 rounded-md">
                           <img className="h-8 w-8" src={`/coin-logo/${currency}.png`} />
                           <select
-                            className="bg-gray-200 text-gray-900 rounded-sm focus:ring-blue-500 w-20 px-1"
+                            className="bg-gray-200 text-gray-900 rounded-sm focus:ring-blue-500 w-20 px-1 focus:outline-none"
                             onChange={(e) => onChangeCurrency(e)}
                           >
                             {CURRENCY_TYPES.map((item, key) => {
@@ -132,15 +132,6 @@ const WalletModal: React.FC<IModal> = (props) => {
                         className="text-white mt-2 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
                       >
                         Copy
-                      </button>
-                    </div>
-                    <div className="flex justify-end mt-4">
-                      <button
-                        type="button"
-                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2"
-                        onClick={props.onClose}
-                      >
-                        Cancel
                       </button>
                     </div>
                   </div>

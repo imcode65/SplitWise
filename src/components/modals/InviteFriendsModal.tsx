@@ -69,8 +69,8 @@ const InvitieFriendsModal: React.FC<IModal> = (props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
-                  <div className="flex justify-between items-start px-4 pt-4 rounded-t dark:border-gray-600">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all border-1 border-gray-600">
+                  <div className="flex justify-between items-start px-4 pt-4 rounded-t">
                     <div className="flex items-center">
                       <LogoIcon height={20} width={20} className="mr-2" />
                       <span className="text-gray-800 text-2xl font-semibold">Invite Friends</span>
