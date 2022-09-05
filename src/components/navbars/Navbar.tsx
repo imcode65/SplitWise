@@ -56,7 +56,6 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
-  console.log(authInfo);
   return (
     <div>
       <Disclosure as="nav" className="bg-teal-color">

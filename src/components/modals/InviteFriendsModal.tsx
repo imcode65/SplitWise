@@ -104,7 +104,7 @@ const InvitieFriendsModal: React.FC<IModal> = (props) => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter a email address"
+                        placeholder="Enter a email address or username"
                       />
                     </div>
                     <textarea

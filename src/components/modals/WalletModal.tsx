@@ -1,5 +1,8 @@
 import { useState, Fragment, useEffect } from 'react';
 import { Dialog, Portal, Transition } from '@headlessui/react';
+import { DEPOSIT_ADDRESS } from 'config';
+import toast from 'react-hot-toast';
+import { CURRENCY_TYPES } from 'datas/currency';
 
 export interface IModal {
   isOpen: boolean;
@@ -9,6 +12,7 @@ export interface IModal {
 
 const WalletModal: React.FC<IModal> = (props) => {
   const [modalStatus, setModalStatus] = useState<boolean>(false);
+  const [currency, setCurrency] = useState<string>('');
 
   useEffect(() => {
     setModalStatus(props.isOpen);
@@ -16,6 +20,11 @@ const WalletModal: React.FC<IModal> = (props) => {
 
   const onSave = () => {
     props.onSave();
+  };
+
+  const onCopy = () => {
+    navigator.clipboard.writeText(DEPOSIT_ADDRESS);
+    toast.success('copied');
   };
 
   return (
@@ -70,12 +79,37 @@ const WalletModal: React.FC<IModal> = (props) => {
                     </button>
                   </div>
                   <div className="p-6">
-                    <div className="my-4">
-                      <div className="my-2">
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                          Your Balance
-                        </label>
+                    <div className="my-1">
+                      <label>Deposit Currency</label>
+                      <div className="flex justify-between bg-gray-400 rounded-lg border-3 border-gray-300 py-1 px-2">
+                        <select
+                          className="bg-gray-200 border border-gray-300 text-gray-900 rounded-sm focus:ring-blue-500 focus:border-gray-500 w-28 p-1"
+                          onChange={(e) => setCurrency(e.target.value)}
+                        >
+                          {CURRENCY_TYPES.map((item, key) => {
+                            return (
+                              <option value={item} key={key}>
+                                {item}
+                              </option>
+                            );
+                          })}
+                        </select>
+                        <div className="flex flex-col">
+                          <span className="text-sm">Balance</span>
+                          <span className="text-white font-bold text-center text-lg">800</span>
+                        </div>
                       </div>
+                    </div>
+                    <div className="my-2 rounded-lg bg-gray-400 p-4">
+                      <p className="font-semibold">Deposit address:</p>
+                      <span>{DEPOSIT_ADDRESS}</span>
+                      <button
+                        onClick={() => onCopy()}
+                        type="button"
+                        className="text-white mt-2 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                      >
+                        Copy
+                      </button>
                     </div>
                     <div className="flex justify-end mt-4">
                       <button
