@@ -1,4 +1,4 @@
-import { USERACTION } from '../types';
+import { ACTION } from '../types';
 
 export interface IAuthInfo {
   name?: string;
@@ -16,7 +16,7 @@ export interface IAuthState {
 }
 
 export interface IUserAction {
-  type: USERACTION;
+  type: ACTION;
   payload?: any;
 }
 
@@ -27,7 +27,7 @@ const initialAuthState: IAuthState = {
 
 const userReducer = (state = initialAuthState, action?: IUserAction) => {
   switch (action?.type) {
-    case USERACTION.SET_AUTH_USER:
+    case ACTION.SET_AUTH_USER:
       return {
         ...state,
         authInfo: action.payload.authInfo,

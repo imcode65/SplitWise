@@ -1,8 +1,11 @@
 import { useState, Fragment, useEffect } from 'react';
 import { Dialog, Portal, Transition } from '@headlessui/react';
 import { DEPOSIT_ADDRESS } from 'config';
+import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
+import { useAppSelector } from 'store/hooks';
 import { CURRENCY_TYPES } from 'datas/currency';
+import { getBalance } from 'store/actions';
 
 export interface IModal {
   isOpen: boolean;
@@ -11,12 +14,22 @@ export interface IModal {
 }
 
 const WalletModal: React.FC<IModal> = (props) => {
+  const dispatch = useDispatch();
+  const { auth } = useAppSelector((state) => state);
   const [modalStatus, setModalStatus] = useState<boolean>(false);
-  const [currency, setCurrency] = useState<string>('');
+  const [currency, setCurrency] = useState<string>('USDT');
 
   useEffect(() => {
     setModalStatus(props.isOpen);
-  });
+  }, [props.isOpen]);
+
+  useEffect(() => {
+    const data = {
+      id: auth.authInfo._id,
+      currency: currency
+    };
+    getBalance(data)(dispatch);
+  }, []);
 
   const onSave = () => {
     props.onSave();

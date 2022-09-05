@@ -1,6 +1,7 @@
-export enum USERACTION {
+export enum ACTION {
   SIGNUP,
   SET_AUTH_USER,
   GET_ERRORS,
-  SET_FRIENDS
+  SET_FRIENDS,
+  SET_CURRENCY
 }

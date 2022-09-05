@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { AppDispatch } from 'store';
 import { API_SERVER_URL } from 'config';
-import { USERACTION } from '../types';
+import { ACTION } from '../types';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 
@@ -34,7 +34,7 @@ export const getFriendsByID = (data: { id?: string }) => async (dispatch: AppDis
         toast.error(res.data.msg);
       } else {
         dispatch({
-          type: USERACTION.SET_FRIENDS,
+          type: ACTION.SET_FRIENDS,
           payload: { friendsInfo: res.data }
         });
       }

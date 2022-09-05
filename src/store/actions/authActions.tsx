@@ -1,13 +1,19 @@
 import axios from 'axios';
-import { USERACTION } from '../types';
+import { ACTION } from '../types';
 import { AppDispatch } from 'store';
 import { IAuthInfo } from 'store/reducers/authReducer';
 import { API_SERVER_URL } from 'config';
 import toast from 'react-hot-toast';
 
+export interface IRegisterUser {
+  email: string;
+  name: string;
+  walletaddress: string;
+}
+
 export const setAuthUser = (authInfo: IAuthInfo) => async (dispatch: AppDispatch) => {
   dispatch({
-    type: USERACTION.SIGNUP,
+    type: ACTION.SIGNUP,
     payload: {
       authInfo: authInfo
     }
@@ -15,14 +21,14 @@ export const setAuthUser = (authInfo: IAuthInfo) => async (dispatch: AppDispatch
 };
 
 export const registerUser =
-  (userData: any, navigate: (path: string) => void) => async (dispatch: AppDispatch) => {
+  (userData: IRegisterUser, navigate: (path: string) => void) => async (dispatch: AppDispatch) => {
     axios
       .post(`${API_SERVER_URL}api/users/register`, userData)
       .then((res) => {
         toast.success('Successfully Registered');
         navigate('/dashboard');
         dispatch({
-          type: USERACTION.SET_AUTH_USER,
+          type: ACTION.SET_AUTH_USER,
           payload: { authInfo: res.data }
         });
       })
@@ -38,7 +44,7 @@ export const isSignUp =
       .post(`${API_SERVER_URL}api/users/issignup`, data)
       .then((res) => {
         dispatch({
-          type: USERACTION.SET_AUTH_USER,
+          type: ACTION.SET_AUTH_USER,
           payload: { authInfo: res.data.user }
         });
         if (res.data.status === 'success') {
@@ -61,7 +67,7 @@ export const updateUser = (userData: any, config?: any) => async (dispatch: AppD
       console.log(res.data);
       toast.success('Successfully Updated');
       dispatch({
-        type: USERACTION.SET_AUTH_USER,
+        type: ACTION.SET_AUTH_USER,
         payload: { authInfo: res.data }
       });
     })

@@ -1,4 +1,4 @@
-import { USERACTION } from '../types';
+import { ACTION } from '../types';
 
 export interface IFriend {
   id?: string;
@@ -11,22 +11,22 @@ export interface IFriend {
   language?: string;
 }
 
-export interface IAuthState {
+export interface IFriendState {
   friends?: IFriend[];
 }
 
 export interface IUserAction {
-  type: USERACTION;
+  type: ACTION;
   payload?: any;
 }
 
-const initialAuthState: IAuthState = {
+const initialAuthState: IFriendState = {
   friends: undefined
 };
 
 const friendReducer = (state = initialAuthState, action?: IUserAction) => {
   switch (action?.type) {
-    case USERACTION.SET_FRIENDS:
+    case ACTION.SET_FRIENDS:
       return {
         ...state,
         friends: action.payload.friendsInfo

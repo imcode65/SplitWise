@@ -12,7 +12,7 @@ const ConfirmModal: React.FC<IModal> = (props) => {
 
   useEffect(() => {
     setModalStatus(props.isOpen);
-  });
+  }, [props.isOpen]);
 
   return (
     <>

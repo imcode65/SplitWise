@@ -11,7 +11,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
 
   useEffect(() => {
     setModalStatus(props.isOpen);
-  });
+  }, [props.isOpen]);
 
   const onSave = () => {
     props.onSave();
