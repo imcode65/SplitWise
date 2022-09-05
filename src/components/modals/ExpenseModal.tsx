@@ -1,5 +1,6 @@
 import { useState, Fragment, useEffect } from 'react';
 import { Dialog, Portal, Transition } from '@headlessui/react';
+import NormalButton from 'components/buttons/NormalButton';
 export interface IModal {
   isOpen: boolean;
   onClose: () => void;
@@ -8,6 +9,9 @@ export interface IModal {
 
 const ExpenseModal: React.FC<IModal> = (props) => {
   const [modalStatus, setModalStatus] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [pay, setPay] = useState<number>(0);
 
   useEffect(() => {
     setModalStatus(props.isOpen);
@@ -45,7 +49,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all border-1 border-gray-600">
-                  <div className="flex justify-between items-center px-4 py-2 rounded-t dark:border-gray-600 bg-teal-color border-b-1 border-gray-600">
+                  <div className="flex justify-between items-center px-4 py-2 rounded-t bg-teal-color border-b-1 border-gray-600">
                     <h3 className="text-lg font-semibold text-white dark:text-white">
                       Add an expense
                     </h3>
@@ -70,30 +74,54 @@ const ExpenseModal: React.FC<IModal> = (props) => {
                       <span className="sr-only">Close modal</span>
                     </button>
                   </div>
-                  <div className="p-4">
-                    <div className="flex items-center mb-4">
-                      <p className="text-sm">With you and: </p>
-                      <input
-                        className="w-72 bg-gray-200 border-2 ml-2 text-sm border-gray-200 rounded px-2 py-1 text-gray-700 focus:outline-none focus:bg-white focus:border-blue-500"
-                        type="email"
-                        placeholder="Enter names or email addresses"
-                      />
-                    </div>
-                    <div className="flex items-center justify-center pt-2 px-6 rounded-b border-t border-gray-200 my-2">
+                  <div className="flex items-center p-4">
+                    <p className="text-sm">With you and: </p>
+                    <input
+                      className="w-72 bg-gray-200 border-2 ml-2 text-sm border-gray-200 rounded px-2 py-1 text-gray-700 focus:outline-none focus:bg-white focus:border-blue-500"
+                      type="email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter names or email addresses"
+                    />
+                  </div>
+                  <div className={`px-4 mb-2 space-y-4 transition-all ${email ? 'h-68' : 'h-0'}`}>
+                    <div className="flex items-center justify-center pt-2 px-6 rounded-b border-t border-gray-200">
                       <img className="mr-2" src="/general@2x.png" />
                       <div className="flex flex-col">
                         <input
                           className="focus:outline-none text-xl border-b-2 border-dashed"
+                          onChange={(e) => setDescription(e.target.value)}
                           placeholder="Enter a description"
                         />
                         <div className="border-b-2 border-dashed mt-2">
                           <span className="mr-1">$</span>
                           <input
+                            type="number"
                             className="focus:outline-none text-3xl font-bold w-52"
+                            onChange={(e) => setPay(parseFloat(e.target.value))}
                             placeholder="0.00"
                           />
                         </div>
                       </div>
+                    </div>
+                    <div className="flex flex-col px-16 items-center text-sm">
+                      <div>
+                        Paid by{' '}
+                        <span className="px-1 rounded-lg bg-gray-100 border-dashed border-1 border-gray-500 text-teal-color">
+                          you
+                        </span>{' '}
+                        and split{' '}
+                        <span className="px-1 rounded-lg bg-gray-100 border-dashed border-1 border-gray-500 text-teal-color">
+                          equally
+                        </span>
+                        .
+                      </div>
+                      <div className="details">(${pay}/person)</div>
+                    </div>
+                    <div className="flex justify-center">
+                      <NormalButton
+                        className="rounded-xl px-4 text-sm"
+                        text="September 6, 2022"
+                      ></NormalButton>
                     </div>
                     <div className="flex items-center pt-2 space-x-2 rounded-b border-t border-gray-200 justify-end">
                       <button

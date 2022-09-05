@@ -2,6 +2,9 @@ module.exports = {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      height: {
+        '68': '17rem',
+      },
       borderWidth: {
         '1': '1px',
         '3': '3px',
