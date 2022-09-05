@@ -21,7 +21,7 @@ const initialAuthState: IWalletState = {
 
 const walletReducer = (state = initialAuthState, action?: IWalletAction) => {
   switch (action?.type) {
-    case ACTION.SET_FRIENDS:
+    case ACTION.SET_CURRENCY:
       return {
         ...state,
         wallet: action.payload.walletInfo

@@ -15,7 +15,7 @@ export interface IModal {
 
 const WalletModal: React.FC<IModal> = (props) => {
   const dispatch = useDispatch();
-  const { auth } = useAppSelector((state) => state);
+  const { auth, wallet } = useAppSelector((state) => state);
   const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [currency, setCurrency] = useState<string>('USDT');
 
@@ -31,13 +31,18 @@ const WalletModal: React.FC<IModal> = (props) => {
     getBalance(data)(dispatch);
   }, []);
 
-  const onSave = () => {
-    props.onSave();
-  };
-
   const onCopy = () => {
     navigator.clipboard.writeText(DEPOSIT_ADDRESS);
     toast.success('copied');
+  };
+
+  const onChangeCurrency = (e: any) => {
+    setCurrency(e.target.value);
+    const data = {
+      id: auth.authInfo._id,
+      currency: e.target.value
+    };
+    getBalance(data)(dispatch);
   };
 
   return (
@@ -95,21 +100,26 @@ const WalletModal: React.FC<IModal> = (props) => {
                     <div className="my-1">
                       <label>Deposit Currency</label>
                       <div className="flex justify-between bg-gray-400 rounded-lg border-3 border-gray-300 py-1 px-2">
-                        <select
-                          className="bg-gray-200 border border-gray-300 text-gray-900 rounded-sm focus:ring-blue-500 focus:border-gray-500 w-28 p-1"
-                          onChange={(e) => setCurrency(e.target.value)}
-                        >
-                          {CURRENCY_TYPES.map((item, key) => {
-                            return (
-                              <option value={item} key={key}>
-                                {item}
-                              </option>
-                            );
-                          })}
-                        </select>
+                        <div className="flex bg-gray-200 items-center px-1 rounded-md">
+                          <img className="h-8 w-8" src={`/coin-logo/${currency}.png`} />
+                          <select
+                            className="bg-gray-200 text-gray-900 rounded-sm focus:ring-blue-500 w-20 px-1"
+                            onChange={(e) => onChangeCurrency(e)}
+                          >
+                            {CURRENCY_TYPES.map((item, key) => {
+                              return (
+                                <option value={item} key={key}>
+                                  {item}
+                                </option>
+                              );
+                            })}
+                          </select>
+                        </div>
                         <div className="flex flex-col">
                           <span className="text-sm text-gray-700 font-semibold">Balance</span>
-                          <span className="text-white font-bold text-center text-lg">800</span>
+                          <span className="text-white font-bold text-center text-lg">
+                            {wallet.wallet.amount}
+                          </span>
                         </div>
                       </div>
                     </div>

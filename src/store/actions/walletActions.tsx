@@ -9,7 +9,10 @@ export const getBalance =
     axios
       .post(`${API_SERVER_URL}api/wallet/getbalance`, data)
       .then((res) => {
-        console.log(res);
+        dispatch({
+          type: ACTION.SET_CURRENCY,
+          payload: { walletInfo: res.data }
+        });
       })
       .catch((err) => {
         console.log(err);
