@@ -95,7 +95,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                           })}
                         </select>
                         <div className="flex flex-col">
-                          <span className="text-sm">Balance</span>
+                          <span className="text-sm text-gray-700 font-semibold">Balance</span>
                           <span className="text-white font-bold text-center text-lg">800</span>
                         </div>
                       </div>

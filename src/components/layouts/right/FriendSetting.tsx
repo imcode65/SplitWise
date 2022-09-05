@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'store/hooks';
 import NormalButton from 'components/buttons/NormalButton';
 import ConfirmModal from 'components/modals/ConfirmModal';
-import { removeFriend } from 'store/actions/friendsActions';
+import { removeFriend } from 'store/actions';
 
 const FriendSetting = () => {
   const dispatch = useDispatch();

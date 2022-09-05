@@ -9,7 +9,7 @@ import NormalButton from 'components/buttons/NormalButton';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import EditProfileModal from 'components/modals/EditProfileModal';
 import { ISaveData } from 'components/modals/EditProfileModal';
-import { updateUser } from 'store/actions/authActions';
+import { updateUser } from 'store/actions';
 import { CURRENCY_TYPES } from 'datas/currency';
 
 const ProfilePage = () => {

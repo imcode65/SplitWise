@@ -11,7 +11,7 @@ import FlagIcon from 'components/icons/FlagIcon';
 import ListIcon from 'components/icons/ListIcon';
 import PlusIcon from 'components/icons/PlusIcon';
 import UserIcon from 'components/icons/UserIcon';
-import { getFriendsByID } from 'store/actions/friendsActions';
+import { getFriendsByID } from 'store/actions';
 
 const LeftSideBar = () => {
   const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Dialog, Transition } from '@headlessui/react';
 import { useAppSelector } from 'store/hooks';
-import { sendInvite } from 'store/actions/friendsActions';
+import { sendInvite } from 'store/actions';
 import LogoIcon from 'components/icons/LogoIcon';
 import toast from 'react-hot-toast';
 

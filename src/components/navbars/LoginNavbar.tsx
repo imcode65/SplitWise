@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import LogoIcon from 'components/icons/LogoIcon';
 import MetaMaskIcon from 'components/icons/MetaMaskIcon';
 import { hooks, metaMask } from 'components/web3/connectors/metaMask';
-import { isSignUp } from 'store/actions/authActions';
+import { isSignUp } from 'store/actions';
 import { WalletAddressFormat } from 'methods/WalletAddressFormat';
 import toast from 'react-hot-toast';
 

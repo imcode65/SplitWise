@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { sendInvite } from 'store/actions/friendsActions';
+import { sendInvite } from 'store/actions';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import toast from 'react-hot-toast';
 
