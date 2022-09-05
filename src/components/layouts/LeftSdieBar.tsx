@@ -35,7 +35,7 @@ const LeftSideBar = () => {
       id: auth.authInfo._id
     };
     getFriendsByID(data)(dispatch);
-  }, [auth]);
+  }, []);
 
   return (
     <div className="p-2 overflow-auto">

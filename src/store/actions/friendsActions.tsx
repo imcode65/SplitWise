@@ -3,6 +3,7 @@ import { AppDispatch } from 'store';
 import { API_SERVER_URL } from 'config';
 import { USERACTION } from '../types';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 
 export const sendInvite =
   (
@@ -17,8 +18,7 @@ export const sendInvite =
           toast.error(res.data.msg);
         } else {
           toast.success('Invite sent');
-          getFriendsByID({ id: data.id });
-          // navigate('/dashboard');
+          getFriendsByID({ id: data.id })(dispatch);
         }
       })
       .catch((err) => {
@@ -27,14 +27,12 @@ export const sendInvite =
   };
 
 export const getFriendsByID = (data: { id?: string }) => async (dispatch: AppDispatch) => {
-  console.log('getting friends');
   axios
     .post(`${API_SERVER_URL}api/friends/getfriendsbyid`, data)
     .then((res) => {
       if (res.data.status === 'fail') {
         toast.error(res.data.msg);
       } else {
-        console.log(res.data);
         dispatch({
           type: USERACTION.SET_FRIENDS,
           payload: { friendsInfo: res.data }
@@ -53,8 +51,8 @@ export const removeFriend =
       .post(`${API_SERVER_URL}api/friends/removefriend`, data)
       .then((res) => {
         if (res.data.status === 'success') {
-          // navigate('/dashboard');
-          getFriendsByID({ id: data.id1 });
+          getFriendsByID({ id: data.id1 })(dispatch);
+          navigate('/dashboard');
         }
       })
       .catch((err) => {
