@@ -1,21 +1,25 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { sendInvite } from 'store/actions/friendsActions';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import toast from 'react-hot-toast';
 
 const InviteFriendsForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { authInfo } = useAppSelector((state) => state.auth);
   const [email, setEmail] = useState<string>('');
 
   const onSendInvite = () => {
     if (email) {
       const data = {
+        id: authInfo._id,
         email1: authInfo.email,
         email2: email
       };
-      sendInvite(data)(dispatch);
+      sendInvite(data, navigate)(dispatch);
+      setEmail('');
     } else {
       toast.error("Input friend's email");
     }

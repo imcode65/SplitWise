@@ -5,8 +5,11 @@ import { USERACTION } from '../types';
 import toast from 'react-hot-toast';
 
 export const sendInvite =
-  (data: { email1: string; email2: string; msg?: string }) => async (dispatch: AppDispatch) => {
-    console.log(data);
+  (
+    data: { id?: string; email1: string; email2: string; msg?: string },
+    navigate: (path: string) => void
+  ) =>
+  async (dispatch: AppDispatch) => {
     axios
       .post(`${API_SERVER_URL}api/friends/register`, data)
       .then((res) => {
@@ -14,6 +17,8 @@ export const sendInvite =
           toast.error(res.data.msg);
         } else {
           toast.success('Invite sent');
+          getFriendsByID({ id: data.id });
+          // navigate('/dashboard');
         }
       })
       .catch((err) => {
@@ -21,8 +26,8 @@ export const sendInvite =
       });
   };
 
-export const getFriendsByID = (data: { id: string }) => async (dispatch: AppDispatch) => {
-  console.log(data);
+export const getFriendsByID = (data: { id?: string }) => async (dispatch: AppDispatch) => {
+  console.log('getting friends');
   axios
     .post(`${API_SERVER_URL}api/friends/getfriendsbyid`, data)
     .then((res) => {
@@ -42,11 +47,15 @@ export const getFriendsByID = (data: { id: string }) => async (dispatch: AppDisp
 };
 
 export const removeFriend =
-  (data: { id1?: string; id2?: string }) => async (dispatch: AppDispatch) => {
+  (data: { id1?: string; id2?: string }, navigate: (path: string) => void) =>
+  async (dispatch: AppDispatch) => {
     axios
       .post(`${API_SERVER_URL}api/friends/removefriend`, data)
       .then((res) => {
-        console.log(res);
+        if (res.data.status === 'success') {
+          // navigate('/dashboard');
+          getFriendsByID({ id: data.id1 });
+        }
       })
       .catch((err) => {
         console.log(err);

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'store/hooks';
@@ -8,6 +8,7 @@ import { removeFriend } from 'store/actions/friendsActions';
 
 const FriendSetting = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { auth } = useAppSelector((state) => state);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { id } = useParams();
@@ -18,8 +19,7 @@ const FriendSetting = () => {
       id1: auth.authInfo._id,
       id2: id
     };
-    removeFriend(data)(dispatch);
-    console.log(data);
+    removeFriend(data, navigate)(dispatch);
   };
   const onClose = () => {
     setIsOpen(false);

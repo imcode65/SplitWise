@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'store/hooks';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import InviteFriendsForm from 'components/forms/InviteFriendsForm';
 import InvitieFriendsModal from 'components/modals/InviteFriendsModal';
@@ -14,6 +15,7 @@ import { getFriendsByID } from 'store/actions/friendsActions';
 
 const LeftSideBar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { auth, friend } = useAppSelector((state) => state);
   const [pageState, setPageState] = useState<string>('dashboard');
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -28,6 +30,7 @@ const LeftSideBar = () => {
   };
 
   useEffect(() => {
+    // setPageState('dashboard');
     const data = {
       id: auth.authInfo._id
     };
@@ -97,13 +100,17 @@ const LeftSideBar = () => {
                         ? 'text-teal-color font-bold border-l-4 border-teal-500'
                         : 'text-gray-500 ml-1'
                     }`}
-                    to={`/friends/${val.user1._id}`}
+                    to={`/friends/${
+                      auth.authInfo._id !== val.user1._id ? val.user1._id : val.user2._id
+                    }`}
                     onClick={() => onChangePageState(key.toString())}
                     key={key}
                   >
                     <div className="flex hover:bg-gray-200">
                       <UserIcon width={16} height={16} />
-                      <span className="ml-1 text-sm text-gray-400">{val.user1.name}</span>
+                      <span className="ml-1 text-sm text-gray-400">
+                        {auth.authInfo._id !== val.user1._id ? val.user1.name : val.user2.name}
+                      </span>
                     </div>
                   </NavLink>
                 );

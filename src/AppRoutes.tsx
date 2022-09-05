@@ -12,9 +12,14 @@ import NotFound from 'pages/NotFound';
 import Type1NavbarLayout from 'components/layouts/Type1NavbarLayout';
 import Type2NavbarLayout from 'components/layouts/Type2NavbarLayout';
 import { Toaster } from 'react-hot-toast';
+import { useEffect } from 'react';
 
 function AppRoutes() {
   const location = useLocation();
+  // useEffect(() => {
+  //   autoLogin();
+  // }, []);
+
   return (
     <Providers>
       <div className="flex flex-col h-screen">

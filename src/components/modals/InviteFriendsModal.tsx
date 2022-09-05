@@ -1,5 +1,6 @@
 import { useState, Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { Dialog, Transition } from '@headlessui/react';
 import { useAppSelector } from 'store/hooks';
 import { sendInvite } from 'store/actions/friendsActions';
@@ -14,6 +15,7 @@ export interface IModal {
 
 const InvitieFriendsModal: React.FC<IModal> = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { authInfo } = useAppSelector((state) => state.auth);
   const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
@@ -28,11 +30,12 @@ const InvitieFriendsModal: React.FC<IModal> = (props) => {
   const onSave = () => {
     if (email) {
       const data = {
+        id: authInfo._id,
         email1: authInfo.email,
         email2: email,
         msg: text
       };
-      sendInvite(data)(dispatch);
+      sendInvite(data, navigate)(dispatch);
       props.onSave();
     } else {
       toast.error("Input friend's email");
