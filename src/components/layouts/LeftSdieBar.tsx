@@ -38,11 +38,11 @@ const LeftSideBar = () => {
   }, []);
 
   return (
-    <div className="p-2 overflow-auto">
+    <div className="p-2 overflow-auto space-y-2">
       <NavLink
         to="/dashboard"
         onClick={() => onChangePageState('dashboard')}
-        className={`flex items-center px-2 hover:bg-gray-200 mb-2 ${
+        className={`flex items-center px-2 hover:bg-gray-200 ${
           pageState === 'dashboard'
             ? 'text-teal-color font-bold border-l-4 border-teal-500'
             : 'text-gray-500 ml-1'
@@ -54,7 +54,7 @@ const LeftSideBar = () => {
       <NavLink
         to="/activity"
         onClick={() => onChangePageState('activity')}
-        className={`flex items-center px-2 hover:bg-gray-200 mb-2 ${
+        className={`flex items-center px-2 hover:bg-gray-200 ${
           pageState === 'activity'
             ? 'text-teal-color font-bold border-l-4 border-teal-500'
             : 'text-gray-500 ml-1'
@@ -66,7 +66,7 @@ const LeftSideBar = () => {
       <NavLink
         to="/all"
         onClick={() => onChangePageState('all')}
-        className={`flex items-center px-2 hover:bg-gray-200 mb-2 ${
+        className={`flex items-center px-2 hover:bg-gray-200 ${
           pageState === 'all'
             ? 'text-teal-color font-bold border-l-4 border-teal-500'
             : 'text-gray-500 ml-1'
@@ -75,14 +75,14 @@ const LeftSideBar = () => {
         <ListIcon width={20} height={20} className="grow-0 shrink-0" />
         <span className="ml-1">All expenses</span>
       </NavLink>
-      <div className="flex mb-2 px-2 justify-between text-gray-400 hover:bg-gray-200 hover:text-gray-600 text-sm bg-gray-100">
+      <div className="flex px-2 justify-between text-gray-400 hover:bg-gray-200 hover:text-gray-600 text-sm bg-gray-100">
         <span>GROUPS</span>
         <div className="flex items-center cursor-pointer">
           <PlusIcon width={12} height={12} />
           <span>ADD</span>
         </div>
       </div>
-      <div className="mb-1">
+      <div>
         <div className="flex px-2 justify-between text-gray-400 hover:bg-gray-200 hover:text-gray-600 text-sm bg-gray-100">
           <span>FRIENDS</span>
           <div className="flex items-center cursor-pointer" onClick={() => setIsOpen(true)}>
@@ -90,12 +90,12 @@ const LeftSideBar = () => {
             <span>ADD</span>
           </div>
         </div>
-        <div className="p-1">
+        <div className="p-1 space-y-1">
           {friend.friends !== undefined
             ? friend.friends.map((val: any, key: number) => {
                 return (
                   <NavLink
-                    className={`flex items-center px-2 hover:bg-gray-200 mb-1 ${
+                    className={`flex items-center px-2 hover:bg-gray-200 ${
                       pageState === key.toString()
                         ? 'text-teal-color font-bold border-l-4 border-teal-500'
                         : 'text-gray-500 ml-1'
