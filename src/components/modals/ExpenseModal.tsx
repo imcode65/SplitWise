@@ -1,8 +1,10 @@
 import { useState, Fragment, useEffect } from 'react';
+import axios from 'axios';
 import { Dialog, Portal, Transition } from '@headlessui/react';
-import ReactChipInput from 'react-chip-input';
+import toast from 'react-hot-toast';
 import NormalButton from 'components/buttons/NormalButton';
-import './styles.css';
+import { useAppSelector } from 'store/hooks';
+import { API_SERVER_URL } from 'config';
 export interface IModal {
   isOpen: boolean;
   onClose: () => void;
@@ -10,6 +12,7 @@ export interface IModal {
 }
 
 const ExpenseModal: React.FC<IModal> = (props) => {
+  const { authInfo } = useAppSelector((state) => state.auth);
   const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [emails, setEmails] = useState<string[]>([]);
@@ -22,8 +25,23 @@ const ExpenseModal: React.FC<IModal> = (props) => {
 
   const onKeyDown = (e: any) => {
     if (e.key == 'Enter') {
-      setEmails((_emails) => [..._emails, e.target.value]);
-      setEmail('');
+      const data = {
+        address: e.target.value
+      };
+      axios
+        .post(`${API_SERVER_URL}api/users/exist`, data)
+        .then((res) => {
+          console.log(res);
+          if (res.data.status === 'success') {
+            setEmails((_emails) => [..._emails, e.target.value]);
+            setEmail('');
+          } else {
+            toast.error(res.data.msg);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -33,6 +51,16 @@ const ExpenseModal: React.FC<IModal> = (props) => {
         return key !== index;
       })
     );
+  };
+
+  const onSave = () => {
+    const data = {
+      description: description,
+      pay: pay,
+      currency: 'USDT',
+      sender_id: authInfo._id
+    };
+    console.log(data);
   };
 
   return (
@@ -181,7 +209,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
                       <button
                         type="button"
                         className="text-white bg-teal-color hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                        onClick={props.onSave}
+                        onClick={() => onSave()}
                       >
                         Save
                       </button>

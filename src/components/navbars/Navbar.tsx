@@ -72,17 +72,16 @@ const Navbar = () => {
                 <div className="hidden md:block">
                   <div className="ml-4 flex items-center md:ml-6">
                     <Menu as="div" className="ml-3 relative">
-                      <div className="flex space-x-4">
+                      <div className="flex space-x-2">
                         <NavLink
                           to="/dashboard"
-                          className={`items-center py-1 font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
+                          className={`items-center py-1 px-2 font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
                         >
                           Home
                         </NavLink>
                         <button
                           onClick={() => setIsOpen(true)}
-                          className={`items-center py-1
-                           font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
+                          className={`items-center py-1 px-2 font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
                         >
                           Wallet
                         </button>
