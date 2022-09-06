@@ -3,13 +3,9 @@ import { AppDispatch } from 'store';
 import { API_SERVER_URL } from 'config';
 import { ACTION } from '../types';
 import toast from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
 
 export const sendInvite =
-  (
-    data: { id?: string; email1: string; email2: string; msg?: string },
-    navigate: (path: string) => void
-  ) =>
+  (data: { id?: string; email1: string; email2: string; msg?: string }) =>
   async (dispatch: AppDispatch) => {
     axios
       .post(`${API_SERVER_URL}api/friends/register`, data)

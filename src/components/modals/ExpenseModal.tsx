@@ -1,5 +1,6 @@
 import { useState, Fragment, useEffect } from 'react';
 import { Dialog, Portal, Transition } from '@headlessui/react';
+import ReactChipInput from 'react-chip-input';
 import NormalButton from 'components/buttons/NormalButton';
 export interface IModal {
   isOpen: boolean;
@@ -10,6 +11,7 @@ export interface IModal {
 const ExpenseModal: React.FC<IModal> = (props) => {
   const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
+  const [chips, setChips] = useState<string[]>([]);
   const [description, setDescription] = useState<string>('');
   const [pay, setPay] = useState<number>(0);
 
@@ -17,8 +19,16 @@ const ExpenseModal: React.FC<IModal> = (props) => {
     setModalStatus(props.isOpen);
   }, [props.isOpen]);
 
-  const onSave = () => {
-    props.onSave();
+  const addChip = (value: string) => {
+    const tchips = chips.slice();
+    tchips.push(value);
+    setChips(chips);
+  };
+
+  const removeChip = (index: any) => {
+    const tchips = chips.slice();
+    tchips.splice(index, 1);
+    setChips(chips);
   };
 
   return (
@@ -76,11 +86,17 @@ const ExpenseModal: React.FC<IModal> = (props) => {
                   </div>
                   <div className="flex items-center p-4">
                     <p className="text-sm">With you and: </p>
-                    <input
+                    {/* <input
                       className="w-72 bg-gray-200 border-2 ml-2 text-sm border-gray-200 rounded px-2 py-1 text-gray-700 focus:outline-none focus:bg-white focus:border-blue-500"
                       type="email"
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter names or email addresses"
+                    /> */}
+                    <ReactChipInput
+                      classes=""
+                      chips={chips}
+                      onSubmit={(value: string) => addChip(value)}
+                      onRemove={(index: any) => removeChip(index)}
                     />
                   </div>
                   <div className={`px-4 mb-2 space-y-4 transition-all ${email ? 'h-68' : 'h-0'}`}>

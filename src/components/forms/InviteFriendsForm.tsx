@@ -18,7 +18,7 @@ const InviteFriendsForm = () => {
         email1: authInfo.email,
         email2: email
       };
-      sendInvite(data, navigate)(dispatch);
+      sendInvite(data)(dispatch);
       setEmail('');
     } else {
       toast.error("Input friend's email");

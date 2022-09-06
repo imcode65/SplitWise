@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import LogoIcon from 'components/icons/LogoIcon';
 import MetaMaskIcon from 'components/icons/MetaMaskIcon';

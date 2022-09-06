@@ -22,7 +22,7 @@ const {
 } = hooks;
 
 const Navbar = () => {
-  const { authInfo, isLogged } = useAppSelector((state) => state.auth);
+  const { authInfo } = useAppSelector((state) => state.auth);
   const accounts = useAccounts();
   const userNavigation = [
     { name: 'Your account', href: '/profile', onClick: () => {} },

@@ -35,7 +35,7 @@ const InvitieFriendsModal: React.FC<IModal> = (props) => {
         email2: email,
         msg: text
       };
-      sendInvite(data, navigate)(dispatch);
+      sendInvite(data)(dispatch);
       props.onSave();
     } else {
       toast.error("Input friend's email");
