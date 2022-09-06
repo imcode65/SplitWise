@@ -41,7 +41,7 @@ const DashboardBar = () => {
       <ExpenseModal
         isOpen={showExpenseModal}
         onClose={() => setShowExpenseModal(false)}
-        onSave={() => console.log('onSave')}
+        onSave={() => setShowExpenseModal(false)}
       />
     </div>
   );

@@ -16,11 +16,14 @@ const ExpenseModal: React.FC<IModal> = (props) => {
   const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [emails, setEmails] = useState<string[]>([]);
+  const [ids, setIDs] = useState<string[]>([]);
   const [description, setDescription] = useState<string>('');
   const [pay, setPay] = useState<number>(0);
 
   useEffect(() => {
     setModalStatus(props.isOpen);
+    setEmails([]);
+    setEmail('');
   }, [props.isOpen]);
 
   const onKeyDown = (e: any) => {
@@ -31,9 +34,9 @@ const ExpenseModal: React.FC<IModal> = (props) => {
       axios
         .post(`${API_SERVER_URL}api/users/exist`, data)
         .then((res) => {
-          console.log(res);
           if (res.data.status === 'success') {
-            setEmails((_emails) => [..._emails, e.target.value]);
+            setEmails((_emails) => [..._emails, res.data.data.name]);
+            setIDs((_ids) => [..._ids, res.data.data._id]);
             setEmail('');
           } else {
             toast.error(res.data.msg);
@@ -51,16 +54,31 @@ const ExpenseModal: React.FC<IModal> = (props) => {
         return key !== index;
       })
     );
+    setIDs((_ids) =>
+      _ids.filter((val, key) => {
+        return key !== index;
+      })
+    );
   };
 
   const onSave = () => {
-    const data = {
-      description: description,
-      pay: pay,
-      currency: 'USDT',
-      sender_id: authInfo._id
-    };
-    console.log(data);
+    emails.map((val, key) => {
+      const data = {
+        sender_id: authInfo._id,
+        receiver_id: ids[key],
+        description: description,
+        pay: pay,
+        currency: 'USDT',
+        repeast: ''
+      };
+      axios
+        .post(`${API_SERVER_URL}api/orders/save`, data)
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+    props.onSave();
   };
 
   return (
