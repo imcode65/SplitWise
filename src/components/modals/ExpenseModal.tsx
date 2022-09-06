@@ -2,6 +2,7 @@ import { useState, Fragment, useEffect } from 'react';
 import { Dialog, Portal, Transition } from '@headlessui/react';
 import ReactChipInput from 'react-chip-input';
 import NormalButton from 'components/buttons/NormalButton';
+import './styles.css';
 export interface IModal {
   isOpen: boolean;
   onClose: () => void;
@@ -11,7 +12,7 @@ export interface IModal {
 const ExpenseModal: React.FC<IModal> = (props) => {
   const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
-  const [chips, setChips] = useState<string[]>([]);
+  const [emails, setEmails] = useState<string[]>([]);
   const [description, setDescription] = useState<string>('');
   const [pay, setPay] = useState<number>(0);
 
@@ -19,16 +20,19 @@ const ExpenseModal: React.FC<IModal> = (props) => {
     setModalStatus(props.isOpen);
   }, [props.isOpen]);
 
-  const addChip = (value: string) => {
-    const tchips = chips.slice();
-    tchips.push(value);
-    setChips(chips);
+  const onKeyDown = (e: any) => {
+    if (e.key == 'Enter') {
+      setEmails((_emails) => [..._emails, e.target.value]);
+      setEmail('');
+    }
   };
 
-  const removeChip = (index: any) => {
-    const tchips = chips.slice();
-    tchips.splice(index, 1);
-    setChips(chips);
+  const onCloseEmail = (index: number) => {
+    setEmails((_emails) =>
+      _emails.filter((val, key) => {
+        return key !== index;
+      })
+    );
   };
 
   return (
@@ -73,7 +77,6 @@ const ExpenseModal: React.FC<IModal> = (props) => {
                         className="w-5 h-5"
                         fill="currentColor"
                         viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
                           fillRule="evenodd"
@@ -86,20 +89,48 @@ const ExpenseModal: React.FC<IModal> = (props) => {
                   </div>
                   <div className="flex items-center p-4">
                     <p className="text-sm">With you and: </p>
-                    {/* <input
-                      className="w-72 bg-gray-200 border-2 ml-2 text-sm border-gray-200 rounded px-2 py-1 text-gray-700 focus:outline-none focus:bg-white focus:border-blue-500"
-                      type="email"
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter names or email addresses"
-                    /> */}
-                    <ReactChipInput
-                      classes=""
-                      chips={chips}
-                      onSubmit={(value: string) => addChip(value)}
-                      onRemove={(index: any) => removeChip(index)}
-                    />
+                    <div className="flex flex-wrap w-80">
+                      {emails.map((val, key) => (
+                        <div
+                          key={key}
+                          className="px-2 bg-gray-200 rounded-lg mx-2 mb-2 flex justify-between items-center"
+                        >
+                          <span>{val}</span>
+                          <button
+                            type="button"
+                            className="text-gray-600 bg-transparent hover:text-gray-900 rounded-lg text-sm p-1 items-center"
+                            onClick={() => onCloseEmail(key)}
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="w-3 h-3"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clipRule="evenodd"
+                              ></path>
+                            </svg>
+                          </button>
+                        </div>
+                      ))}
+                      <input
+                        value={email}
+                        className="text-sm rounded px-2 py-1 text-gray-700 focus:outline-none focus:bg-white"
+                        type="email"
+                        onKeyDown={(e) => onKeyDown(e)}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter names or email addresses"
+                      />
+                    </div>
                   </div>
-                  <div className={`px-4 mb-2 space-y-4 transition-all ${email ? 'h-68' : 'h-0'}`}>
+                  <div
+                    className={`px-4 mb-2 space-y-4 transition-all ${
+                      emails.length > 0 ? 'h-68' : 'h-0'
+                    }`}
+                  >
                     <div className="flex items-center justify-center pt-2 px-6 rounded-b border-t border-gray-200">
                       <img className="mr-2" src="/general@2x.png" />
                       <div className="flex flex-col">
