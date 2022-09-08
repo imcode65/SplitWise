@@ -6,10 +6,12 @@ import { useAppSelector } from 'store/hooks';
 import { API_SERVER_URL } from 'config';
 import ListIcon from 'components/icons/ListIcon';
 import ChartIcon from 'components/icons/ChartIcon';
+import { ComputerDesktopIcon } from '@heroicons/react/24/outline';
 
 const DashboardBar = () => {
   const { authInfo } = useAppSelector((state) => state.auth);
   const [sendOrders, setSendOrders] = useState<any[]>([]);
+  const [receiveOrders, setReceiveOrders] = useState<any[]>([]);
   const [showExpenseModal, setShowExpenseModal] = useState<boolean>(false);
 
   useEffect(() => {
@@ -21,6 +23,17 @@ const DashboardBar = () => {
       .then((res) => {
         if (res.data.status !== 'fail') {
           setSendOrders(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .post(`${API_SERVER_URL}api/orders/get_receive_order`, data)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.status !== 'fail') {
+          setReceiveOrders(res.data);
         }
       })
       .catch((err) => {
@@ -63,29 +76,37 @@ const DashboardBar = () => {
             </div>
           </div>
         </div>
-        {sendOrders.length > 0 ? (
-          sendOrders.map((val, key) => {
-            console.log(val);
-            return (
-              <div key={key} className="border-b-1 border-gray-500 text-lg">
-                <span>{val.pay}</span>
-              </div>
-            );
-          })
-        ) : (
-          <div className="grid grid-cols-12 gap-4 p-8">
-            <div className="sm:col-span-5 col-span-12">
-              <img className="mx-auto" src="/1.png" />
-            </div>
-            <div className="sm:col-span-7 col-span-12">
-              <p className="text-3xl font-semibold">You're all settled up.</p>
-              <p className="text-3xl font-semibold">Awesome!</p>
-              <p className="text-lg text-gray-500 mt-4">
-                To add a new expense, click the orange "Add an expense" button.
-              </p>
-            </div>
+        <div className="grid grid-cols-2">
+          <div className="flex flex-col px-2 py-1 border-r-1 border-gray-400"></div>
+          <div className="flex flex-col px-2 py-1">
+            {sendOrders.length > 0 ? (
+              sendOrders.map((val, key) => {
+                console.log(val);
+                return (
+                  <div key={key} className="border-gray-500 text-lg">
+                    <span>{val.pay}</span>
+                    <span>{val.currency}</span>
+                  </div>
+                );
+              })
+            ) : (
+              <span className="text-gray-400 text-right">You are not owed anything</span>
+            )}
           </div>
-        )}
+        </div>
+
+        <div className="grid grid-cols-12 gap-4 p-8">
+          <div className="sm:col-span-5 col-span-12">
+            <img className="mx-auto" src="/1.png" />
+          </div>
+          <div className="sm:col-span-7 col-span-12">
+            <p className="text-3xl font-semibold">You're all settled up.</p>
+            <p className="text-3xl font-semibold">Awesome!</p>
+            <p className="text-lg text-gray-500 mt-4">
+              To add a new expense, click the orange "Add an expense" button.
+            </p>
+          </div>
+        </div>
       </div>
       <div className="col-span-1">
         <RightSideBar />
