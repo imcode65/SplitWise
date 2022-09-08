@@ -28,7 +28,6 @@ const WalletModal: React.FC<IModal> = (props) => {
       id: auth.authInfo._id,
       currency: currency
     };
-    console.log(data);
     getBalance(data)(dispatch);
   }, []);
 
