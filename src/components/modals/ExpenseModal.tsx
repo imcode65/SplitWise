@@ -69,7 +69,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
         description: description,
         pay: pay,
         currency: 'USDT',
-        repeast: ''
+        repeats: ''
       };
       axios
         .post(`${API_SERVER_URL}api/orders/save`, data)
