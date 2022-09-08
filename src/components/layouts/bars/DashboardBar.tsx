@@ -21,6 +21,7 @@ const DashboardBar = () => {
     axios
       .post(`${API_SERVER_URL}api/orders/get_send_order`, data)
       .then((res) => {
+        console.log(res.data);
         if (res.data.status !== 'fail') {
           setSendOrders(res.data);
         }
@@ -78,14 +79,22 @@ const DashboardBar = () => {
         </div>
         <div className="grid grid-cols-2">
           <div className="flex flex-col px-2 py-1 border-r-1 border-gray-400"></div>
-          <div className="flex flex-col px-2 py-1">
+          <div className="flex flex-col px-2 py-1 space-y-2">
             {sendOrders.length > 0 ? (
               sendOrders.map((val, key) => {
-                console.log(val);
                 return (
-                  <div key={key} className="border-gray-500 text-lg">
-                    <span>{val.pay}</span>
-                    <span>{val.currency}</span>
+                  <div key={key} className="border-gray-500 text-lg flex items-center">
+                    <img src={val.receiver_id.avatar} className="h-8 w-8 rounded-full mr-2" />
+                    <div className="flex flex-col text-sm">
+                      <span>{val.receiver_id.name}</span>
+                      <p className="text-teal-color">
+                        {' '}
+                        ownes you{' '}
+                        <span className="font-semibold">
+                          {val.pay} {val.currency}
+                        </span>
+                      </p>
+                    </div>
                   </div>
                 );
               })

@@ -28,6 +28,7 @@ const WalletModal: React.FC<IModal> = (props) => {
       id: auth.authInfo._id,
       currency: currency
     };
+    console.log(data);
     getBalance(data)(dispatch);
   }, []);
 
@@ -118,7 +119,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                         <div className="flex flex-col">
                           <span className="text-sm text-gray-700 font-semibold">Balance</span>
                           <span className="text-white font-bold text-center text-lg">
-                            {wallet.wallet.amount}
+                            {wallet.wallet?.amount}
                           </span>
                         </div>
                       </div>
