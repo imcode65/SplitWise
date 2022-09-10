@@ -7,12 +7,14 @@ import { API_SERVER_URL } from 'config';
 import ListIcon from 'components/icons/ListIcon';
 import ChartIcon from 'components/icons/ChartIcon';
 import { ComputerDesktopIcon } from '@heroicons/react/24/outline';
+import { NavLink } from 'react-router-dom';
 
 const DashboardBar = () => {
   const { authInfo } = useAppSelector((state) => state.auth);
   const [sendOrders, setSendOrders] = useState<any[]>([]);
   const [receiveOrders, setReceiveOrders] = useState<any[]>([]);
   const [showExpenseModal, setShowExpenseModal] = useState<boolean>(false);
+  const [viewStatus, setViewStatus] = useState<string>('list');
 
   useEffect(() => {
     const data = {
@@ -31,6 +33,7 @@ const DashboardBar = () => {
     axios
       .post(`${API_SERVER_URL}api/orders/get_receive_order`, data)
       .then((res) => {
+        console.log(res.data);
         if (res.data.status !== 'fail') {
           setReceiveOrders(res.data);
         }
@@ -75,14 +78,24 @@ const DashboardBar = () => {
             <div className="grid grid-cols-2 p-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-500 font-semibold">YOU OWE</span>
-                <div className="flex cursor-pointer items-center bg-[#eee] px-2 rounded-l border-1 border-gray-500">
+                <div
+                  onClick={() => setViewStatus('list')}
+                  className={`flex ${
+                    viewStatus === 'list' ? 'bg-[#eee]' : 'bg-white text-gray-400'
+                  } cursor-pointer items-center px-2 rounded-l border-1 border-gray-500`}
+                >
                   <ListIcon height={16} width={16} className="mr-1"></ListIcon>
                   view as list
                 </div>
               </div>
               <div>
                 <div className="flex justify-between">
-                  <div className="flex cursor-pointer items-center bg-[#eee] px-2 rounded-r border-y-1 border-r-1 border-gray-500">
+                  <div
+                    onClick={() => setViewStatus('chart')}
+                    className={`${
+                      viewStatus === 'chart' ? 'bg-[#eee]' : 'bg-white text-gray-400'
+                    } flex cursor-pointer items-center px-2 rounded-r border-y-1 border-r-1 border-gray-500`}
+                  >
                     <ChartIcon height={16} width={16} className="mr-1"></ChartIcon>
                     view chart
                   </div>
@@ -95,7 +108,10 @@ const DashboardBar = () => {
                 {receiveOrders.length > 0 ? (
                   receiveOrders.map((val, key) => {
                     return (
-                      <div key={key} className="border-gray-500 text-lg flex items-center">
+                      <div
+                        key={key}
+                        className="border-gray-500 text-lg flex items-center cursor-pointer"
+                      >
                         <img src={val.receiver_id.avatar} className="h-8 w-8 rounded-full mr-2" />
                         <div className="flex flex-col text-sm">
                           <span>{val.receiver_id.name}</span>
@@ -118,7 +134,11 @@ const DashboardBar = () => {
                 {sendOrders.length > 0 ? (
                   sendOrders.map((val, key) => {
                     return (
-                      <div key={key} className="border-gray-500 text-lg flex items-center">
+                      <NavLink
+                        key={key}
+                        className="border-gray-500 text-lg flex items-center cursor-pointer"
+                        to={`/friends/${val.receiver_id._id}`}
+                      >
                         <img src={val.receiver_id.avatar} className="h-8 w-8 rounded-full mr-2" />
                         <div className="flex flex-col text-sm">
                           <span>{val.receiver_id.name}</span>
@@ -130,7 +150,7 @@ const DashboardBar = () => {
                             </span>
                           </p>
                         </div>
-                      </div>
+                      </NavLink>
                     );
                   })
                 ) : (

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'store/hooks';
 import { NavLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import InviteFriendsForm from 'components/forms/InviteFriendsForm';
 import InvitieFriendsModal from 'components/modals/InviteFriendsModal';
@@ -15,22 +15,15 @@ import { getFriendsByID } from 'store/actions';
 
 const LeftSideBar = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const location = useLocation();
   const { auth, friend } = useAppSelector((state) => state);
-  const [pageState, setPageState] = useState<string>('dashboard');
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [friends, setFriends] = useState<[]>([]);
-
-  const onChangePageState = (state: string) => {
-    setPageState(state);
-  };
 
   const onSaveModal = () => {
     setIsOpen(false);
   };
 
   useEffect(() => {
-    // setPageState('dashboard');
     const data = {
       id: auth.authInfo._id
     };
@@ -41,9 +34,8 @@ const LeftSideBar = () => {
     <div className="p-2 overflow-auto space-y-2">
       <NavLink
         to="/dashboard"
-        onClick={() => onChangePageState('dashboard')}
         className={`flex items-center px-2 hover:bg-gray-200 ${
-          pageState === 'dashboard'
+          location.pathname === '/dashboard'
             ? 'text-teal-color font-bold border-l-4 border-teal-500'
             : 'text-gray-500 ml-1'
         }`}
@@ -53,9 +45,8 @@ const LeftSideBar = () => {
       </NavLink>
       <NavLink
         to="/activity"
-        onClick={() => onChangePageState('activity')}
         className={`flex items-center px-2 hover:bg-gray-200 ${
-          pageState === 'activity'
+          location.pathname === '/activity'
             ? 'text-teal-color font-bold border-l-4 border-teal-500'
             : 'text-gray-500 ml-1'
         }`}
@@ -65,9 +56,8 @@ const LeftSideBar = () => {
       </NavLink>
       <NavLink
         to="/all"
-        onClick={() => onChangePageState('all')}
         className={`flex items-center px-2 hover:bg-gray-200 ${
-          pageState === 'all'
+          location.pathname === '/all'
             ? 'text-teal-color font-bold border-l-4 border-teal-500'
             : 'text-gray-500 ml-1'
         }`}
@@ -93,17 +83,15 @@ const LeftSideBar = () => {
         <div className="p-1 space-y-1">
           {friend.friends !== undefined
             ? friend.friends.map((val: any, key: number) => {
+                const id = auth.authInfo._id !== val.user1._id ? val.user1._id : val.user2._id;
                 return (
                   <NavLink
                     className={`flex items-center px-2 hover:bg-gray-200 ${
-                      pageState === key.toString()
+                      location.pathname === '/friends/' + id
                         ? 'text-teal-color font-bold border-l-4 border-teal-500'
                         : 'text-gray-500 ml-1'
                     }`}
-                    to={`/friends/${
-                      auth.authInfo._id !== val.user1._id ? val.user1._id : val.user2._id
-                    }`}
-                    onClick={() => onChangePageState(key.toString())}
+                    to={`/friends/${id}`}
                     key={key}
                   >
                     <div className="flex hover:bg-gray-200">
