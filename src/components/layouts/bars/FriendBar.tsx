@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { useAppSelector } from 'store/hooks';
+import moment from 'moment';
 import axios from 'axios';
 import ExpenseModal from 'components/modals/ExpenseModal';
 import RightSideBar2 from '../RightSideBar2';
@@ -91,7 +92,13 @@ const FriendBar = () => {
                     className="border-gray-500 w-full text-lg flex justify-between items-center cursor-pointer"
                     to={`/friends/${val.receiver_id._id}`}
                   >
-                    <div className="flex flex-col">{new Date(val.date).getDate()}</div>
+                    <div className="flex items-center">
+                      <div className="flex flex-col items-center text-gray-400 mr-2">
+                        <div className="text-xs">{moment(val.date).format('MMM')}</div>
+                        <div>{new Date(val.date).getDate()}</div>
+                      </div>
+                      <div>{val.description}</div>
+                    </div>
                     <div className="mr-8 flex space-x-4">
                       <div className="flex flex-col text-sm">
                         <span className="text-gray-400">you paid</span>

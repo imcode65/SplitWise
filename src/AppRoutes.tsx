@@ -8,6 +8,7 @@ import AllBar from 'components/layouts/bars/AllBar';
 import FriendBar from 'components/layouts/bars/FriendBar';
 import ProfilePage from 'pages/ProfilePage';
 import SignUpPage from 'pages/SignUpPage';
+import LoginPage from 'pages/LoginPage';
 import NotFound from 'pages/NotFound';
 import Type1NavbarLayout from 'components/layouts/Type1NavbarLayout';
 import Type2NavbarLayout from 'components/layouts/Type2NavbarLayout';
@@ -27,6 +28,7 @@ function AppRoutes() {
           <Route path="" element={<Type2NavbarLayout />}>
             <Route path="" element={<FirstPage />}></Route>
             <Route path="signup" element={<SignUpPage />}></Route>
+            <Route path="login" element={<LoginPage />}></Route>
           </Route>
           <Route path="" element={<Type1NavbarLayout />}>
             <Route path="" element={<Dashboard />}>
