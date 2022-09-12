@@ -91,7 +91,7 @@ const FriendBar = () => {
                     className="border-gray-500 w-full text-lg flex justify-between items-center cursor-pointer"
                     to={`/friends/${val.receiver_id._id}`}
                   >
-                    <div>{val.date}</div>
+                    <div className="flex flex-col">{new Date(val.date).getDate()}</div>
                     <div className="mr-8 flex space-x-4">
                       <div className="flex flex-col text-sm">
                         <span className="text-gray-400">you paid</span>
