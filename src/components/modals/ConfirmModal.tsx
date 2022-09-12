@@ -67,8 +67,10 @@ const ConfirmModal: React.FC<IModal> = (props) => {
                   </div>
                   <div className="p-4">
                     <div className="my-2 text-center">
-                      <label className="block mb-2 text-2xl font-medium text-gray-900 dark:text-gray-300">
-                        Are you sure ?
+                      <label className="block mb-2 text-sm text-gray-900">
+                        Are you sure you want to delete this friend? This will delete all the
+                        expenses you've shared with them. Additionally, a note that you've removed
+                        them will will be added to their Recent Activity feed.
                       </label>
                     </div>
                     <div className="flex justify-end mt-4">
