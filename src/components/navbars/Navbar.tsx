@@ -30,9 +30,9 @@ const Navbar = () => {
     { name: 'Fairness calculators', href: '#', onClick: () => {} },
     { name: 'Contact support', href: '#', onClick: () => {} },
     {
-      name: 'Disconnect',
+      name: 'SingOut',
       href: '#',
-      onClick: () => onDisconnect()
+      onClick: () => onSignOut()
     }
   ];
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -43,11 +43,8 @@ const Navbar = () => {
     });
   }, []);
 
-  const onDisconnect = () => {
-    if (metaMask?.deactivate) {
-      metaMask.deactivate();
-    }
-    console.log('Disconnect');
+  const onSignOut = () => {
+    console.log('signout');
   };
   const onSaveModal = () => {
     setIsOpen(false);

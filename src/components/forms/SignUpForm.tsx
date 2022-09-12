@@ -26,13 +26,9 @@ const SignUpForm = () => {
     const data = {
       email: email,
       name: name,
-      walletaddress: accounts && accounts.length > 0 ? accounts[0] : ''
+      password: password
     };
-    if (data.walletaddress === '') {
-      toast.error('Please Connect Wallet');
-    } else {
-      registerUser(data, navigate)(dispatch);
-    }
+    registerUser(data, navigate)(dispatch);
   };
 
   return (
@@ -66,7 +62,7 @@ const SignUpForm = () => {
             Password
           </label>
           <input
-            type="text"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"

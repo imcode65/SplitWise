@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 export interface IRegisterUser {
   email: string;
   name: string;
-  walletaddress: string;
+  password: string;
 }
 
 export const setAuthUser = (authInfo: IAuthInfo) => async (dispatch: AppDispatch) => {
@@ -26,7 +26,7 @@ export const registerUser =
       .post(`${API_SERVER_URL}api/users/register`, userData)
       .then((res) => {
         toast.success('Successfully Registered');
-        navigate('/dashboard');
+        navigate('/login');
         dispatch({
           type: ACTION.SET_AUTH_USER,
           payload: { authInfo: res.data }

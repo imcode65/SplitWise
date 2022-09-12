@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 import { registerUser } from 'store/actions';
 import { hooks } from 'components/web3/connectors/metaMask';
 import toast from 'react-hot-toast';
-import { NavLink } from 'react-router-dom';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -13,7 +12,7 @@ const SignUpForm = () => {
   const [password, setPassword] = useState<string>('');
 
   const onLogin = () => {
-    console.log(onLogin);
+    console.log('onLogin');
   };
 
   return (
@@ -45,12 +44,12 @@ const SignUpForm = () => {
           />
         </div>
         <div className="py-4 mb-8">
-          <NavLink
-            to="/login"
+          <button
+            onClick={onLogin}
             className="w-full cursor-pointer text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
           >
             Login
-          </NavLink>
+          </button>
         </div>
       </div>
     </div>
