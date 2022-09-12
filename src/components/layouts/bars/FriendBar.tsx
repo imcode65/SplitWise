@@ -70,7 +70,6 @@ const FriendBar = () => {
             </button>
           </div>
         </div>
-
         {sendOrders.length === 0 && receiveOrders.length === 0 ? (
           <div className="grid grid-cols-12 gap-4 p-8">
             <div className="sm:col-span-5 col-span-12">
@@ -85,6 +84,36 @@ const FriendBar = () => {
           </div>
         ) : (
           <>
+            {sendOrders.map((val, key) => {
+              return (
+                <div className="flex px-2 py-1 space-y-2 border-b-1" key={key}>
+                  <NavLink
+                    className="border-gray-500 w-full text-lg flex justify-between items-center cursor-pointer"
+                    to={`/friends/${val.receiver_id._id}`}
+                  >
+                    <div>{val.date}</div>
+                    <div className="mr-8 flex space-x-4">
+                      <div className="flex flex-col text-sm">
+                        <span className="text-gray-400">you paid</span>
+                        <p className="text-black">
+                          <span className="font-semibold">
+                            {val.pay} {val.currency}
+                          </span>
+                        </p>
+                      </div>
+                      <div className="flex flex-col text-sm">
+                        <span className="text-gray-400">you lent {val.receiver_id.name}</span>
+                        <p className="text-teal-color">
+                          <span className="font-semibold">
+                            {val.pay} {val.currency}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </NavLink>
+                </div>
+              );
+            })}
             {receiveOrders.map((val, key) => {
               return (
                 <div className="flex px-2 py-1 border-b-1" key={key}>
@@ -95,7 +124,7 @@ const FriendBar = () => {
                     <div>{val.date}</div>
                     <div className="mr-8 flex space-x-4">
                       <div className="flex flex-col text-sm">
-                        <span className="text-gray-400">you paid</span>
+                        <span className="text-gray-400">{val.receiver_id.name} paid</span>
                         <p className="text-black">
                           <span className="font-semibold">
                             {val.pay} {val.currency}
@@ -103,40 +132,9 @@ const FriendBar = () => {
                         </p>
                       </div>
                       <div className="flex flex-col text-sm">
-                        <span className="text-gray-400">you lent {val.receiver_id.name}</span>
+                        <span className="text-gray-400">{val.receiver_id.name} lent you</span>
                         <p className="text-teal-color">
                           <span className="font-semibold text-[#ff652f]">
-                            {val.pay} {val.currency}
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </NavLink>
-                </div>
-              );
-            })}
-            {sendOrders.map((val, key) => {
-              return (
-                <div className="flex px-2 py-1 space-y-2 border-b-1">
-                  <NavLink
-                    key={key}
-                    className="border-gray-500 w-full text-lg flex justify-between items-center cursor-pointer"
-                    to={`/friends/${val.receiver_id._id}`}
-                  >
-                    <div>{val.date}</div>
-                    <div className="mr-8 flex space-x-4">
-                      <div className="flex flex-col text-sm">
-                        <span className="text-gray-400">you paid</span>
-                        <p className="text-black">
-                          <span className="font-semibold">
-                            {val.pay} {val.currency}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="flex flex-col text-sm">
-                        <span className="text-gray-400">you lent {val.receiver_id.name}</span>
-                        <p className="text-teal-color">
-                          <span className="font-semibold">
                             {val.pay} {val.currency}
                           </span>
                         </p>
