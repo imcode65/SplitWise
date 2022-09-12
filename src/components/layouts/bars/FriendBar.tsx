@@ -50,12 +50,10 @@ const FriendBar = () => {
       .catch((err) => {});
   }, [id]);
 
-  console.log(sendOrders);
-  console.log(receiveOrders);
   return (
     <div className="grid sm:grid-cols-4">
-      <div className="col-span-3 border-l-1 border-r-1 border-gray-600">
-        <div className="bg-[#eee] flex py-2 px-4 justify-between border-b-1 border-gray-600 flex-wrap">
+      <div className="col-span-3 border-l-1 border-r-1 border-gray-400">
+        <div className="bg-[#eee] flex py-2 px-4 justify-between border-b-1 border-gray-400 flex-wrap">
           <div className="flex md:text-3xl sm:text-xl font-semibold my-2">
             <img className="h-10 w-10 rounded-full mr-2" src={info.avatar} />
             {info.name}
@@ -87,46 +85,67 @@ const FriendBar = () => {
           </div>
         ) : (
           <>
-            <div className="flex px-2 py-1 space-y-2">
-              {sendOrders.map((val, key) => {
-                return (
+            {receiveOrders.map((val, key) => {
+              return (
+                <div className="flex px-2 py-1 border-b-1" key={key}>
+                  <NavLink
+                    className="border-gray-500 w-full text-lg flex justify-between items-center cursor-pointer"
+                    to={`/friends/${val.receiver_id._id}`}
+                  >
+                    <div>{val.date}</div>
+                    <div className="mr-8 flex space-x-4">
+                      <div className="flex flex-col text-sm">
+                        <span className="text-gray-400">you paid</span>
+                        <p className="text-black">
+                          <span className="font-semibold">
+                            {val.pay} {val.currency}
+                          </span>
+                        </p>
+                      </div>
+                      <div className="flex flex-col text-sm">
+                        <span className="text-gray-400">you lent {val.receiver_id.name}</span>
+                        <p className="text-teal-color">
+                          <span className="font-semibold text-[#ff652f]">
+                            {val.pay} {val.currency}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </NavLink>
+                </div>
+              );
+            })}
+            {sendOrders.map((val, key) => {
+              return (
+                <div className="flex px-2 py-1 space-y-2 border-b-1">
                   <NavLink
                     key={key}
                     className="border-gray-500 w-full text-lg flex justify-between items-center cursor-pointer"
                     to={`/friends/${val.receiver_id._id}`}
                   >
                     <div>{val.date}</div>
-                    <div className="flex flex-col text-sm mr-8">
-                      <span className="text-gray-400">you lent {val.receiver_id.name}</span>
-                      <p className="text-teal-color">
-                        <span className="font-semibold">
-                          {val.pay} {val.currency}
-                        </span>
-                      </p>
+                    <div className="mr-8 flex space-x-4">
+                      <div className="flex flex-col text-sm">
+                        <span className="text-gray-400">you paid</span>
+                        <p className="text-black">
+                          <span className="font-semibold">
+                            {val.pay} {val.currency}
+                          </span>
+                        </p>
+                      </div>
+                      <div className="flex flex-col text-sm">
+                        <span className="text-gray-400">you lent {val.receiver_id.name}</span>
+                        <p className="text-teal-color">
+                          <span className="font-semibold">
+                            {val.pay} {val.currency}
+                          </span>
+                        </p>
+                      </div>
                     </div>
                   </NavLink>
-                );
-              })}
-            </div>
-            <div className="flex px-2 py-1 border-r-1 border-gray-400">
-              {receiveOrders.map((val, key) => {
-                return (
-                  <div
-                    key={key}
-                    className="border-gray-500 text-lg flex items-center cursor-pointer"
-                  >
-                    <div className="flex flex-col text-sm">
-                      <span>{val.receiver_id.name}</span>
-                      <p className="text-teal-color">
-                        <span className="font-semibold">
-                          {val.pay} {val.currency}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </>
         )}
       </div>

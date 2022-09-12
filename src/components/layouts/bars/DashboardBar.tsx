@@ -43,8 +43,8 @@ const DashboardBar = () => {
 
   return (
     <div className="grid sm:grid-cols-4">
-      <div className="col-span-3 border-l-1 border-r-1 border-gray-600">
-        <div className="bg-[#eee] flex py-2 px-4 justify-between border-b-1 border-gray-600 flex-wrap">
+      <div className="col-span-3 border-l-1 border-r-1 border-gray-400">
+        <div className="bg-[#eee] flex py-2 px-4 justify-between border-b-1 border-gray-400 flex-wrap">
           <span className="md:text-3xl sm:text-xl font-semibold my-2">Dashboard</span>
           <div>
             <button
@@ -106,22 +106,23 @@ const DashboardBar = () => {
                 {receiveOrders.length > 0 ? (
                   receiveOrders.map((val, key) => {
                     return (
-                      <div
+                      <NavLink
                         key={key}
                         className="border-gray-500 text-lg flex items-center cursor-pointer"
+                        to={`/friends/${val.sender_id._id}`}
                       >
-                        <img src={val.receiver_id.avatar} className="h-8 w-8 rounded-full mr-2" />
+                        <img src={val.sender_id.avatar} className="h-8 w-8 rounded-full mr-2" />
                         <div className="flex flex-col text-sm">
-                          <span>{val.receiver_id.name}</span>
-                          <p className="text-teal-color">
+                          <span>{val.sender_id.name}</span>
+                          <p className="text-[#ff652f]">
                             {' '}
-                            ownes you{' '}
+                            you owe{' '}
                             <span className="font-semibold">
                               {val.pay} {val.currency}
                             </span>
                           </p>
                         </div>
-                      </div>
+                      </NavLink>
                     );
                   })
                 ) : (
