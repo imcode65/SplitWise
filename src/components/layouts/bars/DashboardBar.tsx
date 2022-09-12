@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import ExpenseModal from 'components/modals/ExpenseModal';
 import RightSideBar from 'components/layouts/RightSideBar';
@@ -6,8 +7,6 @@ import { useAppSelector } from 'store/hooks';
 import { API_SERVER_URL } from 'config';
 import ListIcon from 'components/icons/ListIcon';
 import ChartIcon from 'components/icons/ChartIcon';
-import { ComputerDesktopIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
 
 const DashboardBar = () => {
   const { authInfo } = useAppSelector((state) => state.auth);
@@ -18,7 +17,7 @@ const DashboardBar = () => {
 
   useEffect(() => {
     const data = {
-      walletaddress: authInfo.walletaddress
+      id: authInfo._id
     };
     axios
       .post(`${API_SERVER_URL}api/orders/get_send_order`, data)
@@ -33,7 +32,6 @@ const DashboardBar = () => {
     axios
       .post(`${API_SERVER_URL}api/orders/get_receive_order`, data)
       .then((res) => {
-        console.log(res.data);
         if (res.data.status !== 'fail') {
           setReceiveOrders(res.data);
         }

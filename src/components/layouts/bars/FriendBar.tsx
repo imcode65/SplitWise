@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { useAppSelector } from 'store/hooks';
 import axios from 'axios';
 import ExpenseModal from 'components/modals/ExpenseModal';
@@ -18,20 +19,39 @@ const FriendBar = () => {
     phonenumber: '',
     avatar: ''
   });
+  const [sendOrders, setSendOrders] = useState<any[]>([]);
+  const [receiveOrders, setReceiveOrders] = useState<any[]>([]);
 
   useEffect(() => {
-    const userData = {
+    const idData = {
       id: id
     };
     axios
-      .post(`${API_SERVER_URL}api/users/getbyid`, userData)
+      .post(`${API_SERVER_URL}api/users/getbyid`, idData)
       .then((res) => {
-        console.log(res.data);
         setInfo(res.data);
       })
       .catch((err) => {});
-  }, []);
+    const data = {
+      id1: auth.authInfo._id,
+      id2: id
+    };
+    axios
+      .post(`${API_SERVER_URL}api/orders/send_to_friend`, data)
+      .then((res) => {
+        setSendOrders(res.data);
+      })
+      .catch((err) => {});
+    axios
+      .post(`${API_SERVER_URL}api/orders/receive_from_friend`, data)
+      .then((res) => {
+        setReceiveOrders(res.data);
+      })
+      .catch((err) => {});
+  }, [id]);
 
+  console.log(sendOrders);
+  console.log(receiveOrders);
   return (
     <div className="grid sm:grid-cols-4">
       <div className="col-span-3 border-l-1 border-r-1 border-gray-600">
@@ -52,17 +72,63 @@ const FriendBar = () => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-12 gap-4 p-8">
-          <div className="sm:col-span-5 col-span-12">
-            <img className="mx-auto" src="/1.png" />
+
+        {sendOrders.length === 0 && receiveOrders.length === 0 ? (
+          <div className="grid grid-cols-12 gap-4 p-8">
+            <div className="sm:col-span-5 col-span-12">
+              <img className="mx-auto" src="/1.png" />
+            </div>
+            <div className="sm:col-span-7 col-span-12">
+              <p className="text-3xl font-semibold">You have not added any expenses yet.</p>
+              <p className="text-lg text-gray-500 mt-4">
+                To add a new expense, click the orange "Add an expense" button.
+              </p>
+            </div>
           </div>
-          <div className="sm:col-span-7 col-span-12">
-            <p className="text-3xl font-semibold">You have not added any expenses yet.</p>
-            <p className="text-lg text-gray-500 mt-4">
-              To add a new expense, click the orange "Add an expense" button.
-            </p>
-          </div>
-        </div>
+        ) : (
+          <>
+            <div className="flex px-2 py-1 space-y-2">
+              {sendOrders.map((val, key) => {
+                return (
+                  <NavLink
+                    key={key}
+                    className="border-gray-500 w-full text-lg flex justify-between items-center cursor-pointer"
+                    to={`/friends/${val.receiver_id._id}`}
+                  >
+                    <div>{val.date}</div>
+                    <div className="flex flex-col text-sm mr-8">
+                      <span className="text-gray-400">you lent {val.receiver_id.name}</span>
+                      <p className="text-teal-color">
+                        <span className="font-semibold">
+                          {val.pay} {val.currency}
+                        </span>
+                      </p>
+                    </div>
+                  </NavLink>
+                );
+              })}
+            </div>
+            <div className="flex px-2 py-1 border-r-1 border-gray-400">
+              {receiveOrders.map((val, key) => {
+                return (
+                  <div
+                    key={key}
+                    className="border-gray-500 text-lg flex items-center cursor-pointer"
+                  >
+                    <div className="flex flex-col text-sm">
+                      <span>{val.receiver_id.name}</span>
+                      <p className="text-teal-color">
+                        <span className="font-semibold">
+                          {val.pay} {val.currency}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
       <div className="col-span-1">
         <RightSideBar2 />
