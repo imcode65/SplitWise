@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { registerUser } from 'store/actions';
+import { login } from 'store/actions';
 import { hooks } from 'components/web3/connectors/metaMask';
 import toast from 'react-hot-toast';
 
@@ -12,7 +12,11 @@ const SignUpForm = () => {
   const [password, setPassword] = useState<string>('');
 
   const onLogin = () => {
-    console.log('onLogin');
+    const data = {
+      email: email,
+      password: password
+    };
+    login(data, navigate)(dispatch);
   };
 
   return (

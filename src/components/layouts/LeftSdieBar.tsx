@@ -24,6 +24,9 @@ const LeftSideBar = () => {
   };
 
   useEffect(() => {
+    if (auth.authInfo === undefined) {
+      return;
+    }
     const data = {
       id: auth.authInfo._id
     };

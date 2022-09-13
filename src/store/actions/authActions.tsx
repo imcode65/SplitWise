@@ -37,12 +37,13 @@ export const registerUser =
       });
   };
 
-export const isSignUp =
-  (data: { walletaddress: string }, navigate: (path: string) => void) =>
+export const login =
+  (data: { email: string; password: string }, navigate: (path: string) => void) =>
   async (dispatch: AppDispatch) => {
     axios
-      .post(`${API_SERVER_URL}api/users/issignup`, data)
+      .post(`${API_SERVER_URL}api/users/login`, data)
       .then((res) => {
+        console.log(res);
         dispatch({
           type: ACTION.SET_AUTH_USER,
           payload: { authInfo: res.data.user }
@@ -64,7 +65,6 @@ export const updateUser = (userData: any, config?: any) => async (dispatch: AppD
   axios
     .post(`${API_SERVER_URL}api/users/update`, userData, config)
     .then((res) => {
-      console.log(res.data);
       toast.success('Successfully Updated');
       dispatch({
         type: ACTION.SET_AUTH_USER,

@@ -13,13 +13,10 @@ import NotFound from 'pages/NotFound';
 import Type1NavbarLayout from 'components/layouts/Type1NavbarLayout';
 import Type2NavbarLayout from 'components/layouts/Type2NavbarLayout';
 import { Toaster } from 'react-hot-toast';
-import { useEffect } from 'react';
+import PrivateRoute from 'components/private-route/PrivateRoute';
 
 function AppRoutes() {
   const location = useLocation();
-  // useEffect(() => {
-  //   autoLogin();
-  // }, []);
 
   return (
     <Providers>
@@ -30,16 +27,29 @@ function AppRoutes() {
             <Route path="signup" element={<SignUpPage />}></Route>
             <Route path="login" element={<LoginPage />}></Route>
           </Route>
-          <Route path="" element={<Type1NavbarLayout />}>
+          <Route
+            path=""
+            element={
+              <PrivateRoute>
+                <Type1NavbarLayout />
+              </PrivateRoute>
+            }
+          >
             <Route path="" element={<Dashboard />}>
               <Route path="activity" element={<ActivityBar />} />
               <Route path="dashboard" element={<DashboardBar />} />
               <Route path="all" element={<AllBar />} />
               <Route path="friends/:id" element={<FriendBar />} />
             </Route>
-            <Route path="profile" element={<ProfilePage />}></Route>
+            <Route
+              path="profile"
+              element={
+                <PrivateRoute>
+                  <ProfilePage />
+                </PrivateRoute>
+              }
+            ></Route>
           </Route>
-          {/* <Route path="*" element={<Navigate to="/" />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster

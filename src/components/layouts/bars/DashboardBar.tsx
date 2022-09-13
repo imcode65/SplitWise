@@ -16,6 +16,9 @@ const DashboardBar = () => {
   const [viewStatus, setViewStatus] = useState<string>('list');
 
   useEffect(() => {
+    if (authInfo === undefined) {
+      return;
+    }
     const data = {
       id: authInfo._id
     };

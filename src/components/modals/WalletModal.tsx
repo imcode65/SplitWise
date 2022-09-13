@@ -24,11 +24,13 @@ const WalletModal: React.FC<IModal> = (props) => {
   }, [props.isOpen]);
 
   useEffect(() => {
-    const data = {
-      id: auth.authInfo._id,
-      currency: currency
-    };
-    getBalance(data)(dispatch);
+    if (auth.authInfo) {
+      const data = {
+        id: auth.authInfo._id,
+        currency: currency
+      };
+      getBalance(data)(dispatch);
+    }
   }, []);
 
   const onCopy = () => {
