@@ -9,6 +9,9 @@ export interface IRegisterUser {
   email: string;
   name: string;
   password: string;
+  currency: string;
+  language: string;
+  timezone: string;
 }
 
 export const setAuthUser = (authInfo: IAuthInfo) => async (dispatch: AppDispatch) => {

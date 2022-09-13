@@ -47,6 +47,8 @@ const ProfilePage = () => {
     formData.append('phonenumber', phonenumber ? phonenumber : '');
     formData.append('walletaddress', authInfo.walletaddress);
     formData.append('currency', currency);
+    formData.append('language', language);
+    formData.append('timezone', timezone);
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
@@ -61,7 +63,10 @@ const ProfilePage = () => {
     setPhonenumber(authInfo.phonenumber);
     setAvatar(authInfo.avatar);
     setCurrency(authInfo.currency);
+    setLanguage(authInfo.language);
+    setTimezone(authInfo.timezone);
   }, [authInfo]);
+
   return (
     <div className="container mx-auto">
       <div className="sm:px-16 sm:py-4 p-4">

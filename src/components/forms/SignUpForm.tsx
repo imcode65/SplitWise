@@ -17,7 +17,10 @@ const SignUpForm = () => {
     const data = {
       email: email,
       name: name,
-      password: password
+      password: password,
+      currency: 'USDT',
+      language: 'English',
+      timezone: 'EST'
     };
     registerUser(data, navigate)(dispatch);
   };

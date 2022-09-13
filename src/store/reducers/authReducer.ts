@@ -8,6 +8,7 @@ export interface IAuthInfo {
   avatar?: string;
   timezone?: string;
   language?: string;
+  currency?: string;
 }
 
 export interface IAuthState {

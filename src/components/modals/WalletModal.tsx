@@ -127,7 +127,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                     </div>
                     <div className="my-2 rounded-lg bg-gray-400 p-4">
                       <p className="font-semibold">Deposit address:</p>
-                      <span>{DEPOSIT_ADDRESS}</span>
+                      <span>{auth.authInfo.walletaddress}</span>
                       <button
                         onClick={() => onCopy()}
                         type="button"

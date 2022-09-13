@@ -137,7 +137,10 @@ const DashboardBar = () => {
                         className="border-gray-500 text-lg flex items-center cursor-pointer"
                         to={`/friends/${val.sender_id._id}`}
                       >
-                        <img src={val.sender_id.avatar} className="h-8 w-8 rounded-full mr-2" />
+                        <img
+                          src={val.sender_id.avatar ? val.sender_id.avatar : './avatar.png'}
+                          className="h-8 w-8 rounded-full mr-2"
+                        />
                         <div className="flex flex-col text-sm">
                           <span>{val.sender_id.name}</span>
                           <p className="text-[#ff652f]">
@@ -164,7 +167,10 @@ const DashboardBar = () => {
                         className="border-gray-500 text-lg flex items-center cursor-pointer"
                         to={`/friends/${val.receiver_id._id}`}
                       >
-                        <img src={val.receiver_id.avatar} className="h-8 w-8 rounded-full mr-2" />
+                        <img
+                          src={val.sender_id.avatar ? val.sender_id.avatar : './avatar.png'}
+                          className="h-8 w-8 rounded-full mr-2"
+                        />
                         <div className="flex flex-col text-sm">
                           <span>{val.receiver_id.name}</span>
                           <p className="text-teal-color">
