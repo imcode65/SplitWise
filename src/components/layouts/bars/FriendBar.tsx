@@ -33,6 +33,7 @@ const FriendBar = () => {
         setInfo(res.data);
       })
       .catch((err) => {});
+    getFunction();
     const data = {
       id1: auth.authInfo._id,
       id2: id
@@ -50,6 +51,37 @@ const FriendBar = () => {
       })
       .catch((err) => {});
   }, [id]);
+
+  const getFunction = () => {
+    const data = {
+      id: auth.authInfo._id
+    };
+    axios
+      .post(`${API_SERVER_URL}api/orders/get_send_order`, data)
+      .then((res) => {
+        if (res.data.status !== 'fail') {
+          setSendOrders(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .post(`${API_SERVER_URL}api/orders/get_receive_order`, data)
+      .then((res) => {
+        if (res.data.status !== 'fail') {
+          setReceiveOrders(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const onSave = () => {
+    setShowExpenseModal(false);
+    getFunction();
+  };
 
   return (
     <div className="grid sm:grid-cols-4">
@@ -100,6 +132,7 @@ const FriendBar = () => {
                         <div className="text-xs">{moment(val.date).format('MMM')}</div>
                         <div>{new Date(val.date).getDate()}</div>
                       </div>
+                      <img className="h-10 w-10 mr-2" src="../general@2x.png" />
                       <div>{val.description}</div>
                     </div>
                     <div className="mr-8 flex space-x-4">
@@ -131,7 +164,14 @@ const FriendBar = () => {
                     className="border-gray-500 w-full text-lg flex justify-between items-center cursor-pointer"
                     to={`/friends/${val.receiver_id._id}`}
                   >
-                    <div>{val.date}</div>
+                    <div className="flex items-center">
+                      <div className="flex flex-col items-center text-gray-400 mr-2">
+                        <div className="text-xs">{moment(val.date).format('MMM')}</div>
+                        <div>{new Date(val.date).getDate()}</div>
+                      </div>
+                      <img className="h-10 w-10 mr-2" src="../general@2x.png" />
+                      <div>{val.description}</div>
+                    </div>
                     <div className="mr-8 flex space-x-4">
                       <div className="flex flex-col text-sm">
                         <span className="text-gray-400">{val.receiver_id.name} paid</span>
@@ -163,7 +203,7 @@ const FriendBar = () => {
       <ExpenseModal
         isOpen={showExpenseModal}
         onClose={() => setShowExpenseModal(false)}
-        onSave={() => console.log('onSave')}
+        onSave={onSave}
       />
     </div>
   );

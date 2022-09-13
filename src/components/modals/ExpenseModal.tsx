@@ -1,6 +1,7 @@
 import { useState, Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import { useParams } from 'react-router';
 import { Dialog, Portal, Transition } from '@headlessui/react';
 import toast from 'react-hot-toast';
 import NormalButton from 'components/buttons/NormalButton';
@@ -23,11 +24,23 @@ const ExpenseModal: React.FC<IModal> = (props) => {
   const [ids, setIDs] = useState<string[]>([]);
   const [description, setDescription] = useState<string>('');
   const [pay, setPay] = useState<number>(0);
+  const { id } = useParams();
 
   useEffect(() => {
     setModalStatus(props.isOpen);
     setEmails([]);
     setEmail('');
+    if (id) {
+      const data = {
+        id: id
+      };
+      axios
+        .post(`${API_SERVER_URL}api/users/getbyid`, data)
+        .then((res) => {
+          setEmails([res.data.name]);
+        })
+        .catch((err) => {});
+    }
   }, [props.isOpen]);
 
   const onKeyDown = (e: any) => {
@@ -71,7 +84,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
         sender_id: authInfo._id,
         receiver_id: ids[key],
         description: description,
-        pay: pay,
+        pay: pay / (emails.length + 1),
         currency: 'USDT',
         repeats: ''
       };

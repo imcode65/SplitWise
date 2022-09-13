@@ -129,7 +129,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                       <>
                         <div className="my-1">
                           <label>Deposit Currency</label>
-                          <div className="flex justify-between bg-gray-400 rounded-lg border-3 border-gray-300 py-1 px-2">
+                          <div className="flex justify-between bg-gray-300 rounded-lg border-3 border-gray-300 py-1 px-2">
                             <div className="flex bg-gray-200 items-center px-1 rounded-md">
                               <img className="h-8 w-8" src={`/coin-logo/${currency}.png`} />
                               <select
@@ -153,7 +153,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                             </div>
                           </div>
                         </div>
-                        <div className="my-2 rounded-lg bg-gray-400 p-4">
+                        <div className="my-2 rounded-lg bg-gray-300 p-4">
                           <p className="font-semibold">Deposit address:</p>
                           <span>{auth.authInfo.walletaddress}</span>
                           <button
@@ -171,7 +171,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                           <label className="text-sm font-medium text-gray-900 dark:text-gray-300">
                             Currency
                           </label>
-                          <div className="flex justify-between bg-gray-400 rounded-lg border-3 border-gray-300 py-1 px-2">
+                          <div className="flex justify-between bg-gray-300 rounded-lg border-3 border-gray-300 py-1 px-2">
                             <div className="flex bg-gray-200 items-center px-1 rounded-md">
                               <img className="h-8 w-8" src={`/coin-logo/${currency}.png`} />
                               <select
