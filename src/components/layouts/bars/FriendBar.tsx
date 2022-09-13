@@ -56,7 +56,10 @@ const FriendBar = () => {
       <div className="col-span-3 border-l-1 border-r-1 border-gray-400">
         <div className="bg-[#eee] flex py-2 px-4 justify-between border-b-1 border-gray-400 flex-wrap">
           <div className="flex md:text-3xl sm:text-xl font-semibold my-2">
-            <img className="h-10 w-10 rounded-full mr-2" src={info.avatar} />
+            <img
+              className="h-10 w-10 rounded-full mr-2"
+              src={info.avatar ? info.avatar : '../avatar.png'}
+            />
             {info.name}
           </div>
           <div>

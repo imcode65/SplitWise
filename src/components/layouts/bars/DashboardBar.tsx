@@ -15,10 +15,7 @@ const DashboardBar = () => {
   const [showExpenseModal, setShowExpenseModal] = useState<boolean>(false);
   const [viewStatus, setViewStatus] = useState<string>('list');
 
-  useEffect(() => {
-    if (authInfo === undefined) {
-      return;
-    }
+  const getFunction = () => {
     const data = {
       id: authInfo._id
     };
@@ -42,6 +39,13 @@ const DashboardBar = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    if (authInfo === undefined) {
+      return;
+    }
+    getFunction();
   }, []);
 
   const onSettle = () => {
@@ -53,6 +57,11 @@ const DashboardBar = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const onSave = () => {
+    setShowExpenseModal(false);
+    getFunction();
   };
 
   return (
@@ -183,7 +192,7 @@ const DashboardBar = () => {
       <ExpenseModal
         isOpen={showExpenseModal}
         onClose={() => setShowExpenseModal(false)}
-        onSave={() => setShowExpenseModal(false)}
+        onSave={onSave}
       />
     </div>
   );

@@ -13,6 +13,10 @@ const InviteFriendsForm = () => {
 
   const onSendInvite = () => {
     if (email) {
+      if (authInfo.email === email || authInfo.name === email) {
+        toast.error('You inputed your email or username');
+        return;
+      }
       const data = {
         id: authInfo._id,
         email1: authInfo.email,

@@ -13,7 +13,6 @@ export const sendInvite =
         if (res.data.status === 'fail') {
           toast.error(res.data.msg);
         } else {
-          toast.success('Invite sent');
           getFriendsByID({ id: data.id })(dispatch);
         }
       })

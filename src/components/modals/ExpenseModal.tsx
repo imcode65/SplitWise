@@ -1,8 +1,10 @@
 import { useState, Fragment, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Dialog, Portal, Transition } from '@headlessui/react';
 import toast from 'react-hot-toast';
 import NormalButton from 'components/buttons/NormalButton';
+import { sendInvite } from 'store/actions';
 import { useAppSelector } from 'store/hooks';
 import { API_SERVER_URL } from 'config';
 export interface IModal {
@@ -12,7 +14,9 @@ export interface IModal {
 }
 
 const ExpenseModal: React.FC<IModal> = (props) => {
+  const dispatch = useDispatch();
   const { authInfo } = useAppSelector((state) => state.auth);
+  const { friend } = useAppSelector((state) => state);
   const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [emails, setEmails] = useState<string[]>([]);
@@ -73,7 +77,26 @@ const ExpenseModal: React.FC<IModal> = (props) => {
       };
       axios
         .post(`${API_SERVER_URL}api/orders/save`, data)
-        .then(() => {})
+        .then((res) => {
+          let isFriend = false;
+          friend.friends.map((value: any) => {
+            if (
+              value.user1._id === res.data.receiver_id ||
+              value.user2._id === res.data.receiver_id
+            ) {
+              isFriend = true;
+            }
+            if (isFriend === false) {
+              const dt = {
+                id: authInfo._id,
+                email1: authInfo.email,
+                email2: val
+              };
+              sendInvite(dt)(dispatch);
+            }
+            return;
+          });
+        })
         .catch((err) => {
           console.log(err);
         });
