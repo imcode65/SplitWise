@@ -33,7 +33,10 @@ const FriendBar = () => {
         setInfo(res.data);
       })
       .catch((err) => {});
-    getFunction();
+    getOrders();
+  }, [id]);
+
+  const getOrders = () => {
     const data = {
       id1: auth.authInfo._id,
       id2: id
@@ -50,37 +53,11 @@ const FriendBar = () => {
         setReceiveOrders(res.data);
       })
       .catch((err) => {});
-  }, [id]);
-
-  const getFunction = () => {
-    const data = {
-      id: auth.authInfo._id
-    };
-    axios
-      .post(`${API_SERVER_URL}api/orders/get_send_order`, data)
-      .then((res) => {
-        if (res.data.status !== 'fail') {
-          setSendOrders(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    axios
-      .post(`${API_SERVER_URL}api/orders/get_receive_order`, data)
-      .then((res) => {
-        if (res.data.status !== 'fail') {
-          setReceiveOrders(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   const onSave = () => {
     setShowExpenseModal(false);
-    getFunction();
+    getOrders();
   };
 
   return (

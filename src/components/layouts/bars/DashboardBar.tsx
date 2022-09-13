@@ -58,7 +58,7 @@ const DashboardBar = () => {
     setReceiveOrders(receive);
   };
 
-  const getFunction = () => {
+  const getOrders = () => {
     const data = {
       id: authInfo._id
     };
@@ -91,7 +91,7 @@ const DashboardBar = () => {
     if (authInfo === undefined) {
       return;
     }
-    getFunction();
+    getOrders();
   }, []);
 
   const onSettle = () => {
@@ -107,7 +107,7 @@ const DashboardBar = () => {
 
   const onSave = () => {
     setShowExpenseModal(false);
-    getFunction();
+    getOrders();
   };
 
   return (
