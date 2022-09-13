@@ -23,6 +23,8 @@ const ProfilePage = () => {
   const [phonenumber, setPhonenumber] = useState<string>('');
   const [avatar, setAvatar] = useState<string>('');
   const [currency, setCurrency] = useState<string>('');
+  const [timezone, setTimezone] = useState<string>('');
+  const [language, setLanguage] = useState<string>('');
 
   const onImageChange = (e: any) => {
     setImage(e.target.files[0]);
@@ -114,6 +116,7 @@ const ProfilePage = () => {
                 <select
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-1"
                   onChange={(e) => setCurrency(e.target.value)}
+                  value={currency}
                 >
                   {CURRENCY_TYPES.map((item, key) => {
                     return (
@@ -129,12 +132,11 @@ const ProfilePage = () => {
                   Your time zone
                 </label>
                 <select
-                  id="countries"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-1"
+                  onChange={(e) => setTimezone(e.target.value)}
+                  value={timezone}
                 >
-                  <option selected value="EST">
-                    EST
-                  </option>
+                  <option value="EST">EST</option>
                   <option value="JST">JST</option>
                 </select>
               </div>
@@ -145,11 +147,11 @@ const ProfilePage = () => {
                 <select
                   id="countries"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-1"
+                  onChange={(e) => setLanguage(e.target.value)}
+                  value={language}
                 >
-                  <option selected value="US">
-                    English
-                  </option>
-                  <option value="JP">Japanese</option>
+                  <option value="English">English</option>
+                  <option value="Japanese">Japanese</option>
                 </select>
               </div>
               <div className="mb-2">

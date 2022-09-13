@@ -5,24 +5,15 @@ import { registerUser } from 'store/actions';
 import { hooks } from 'components/web3/connectors/metaMask';
 import toast from 'react-hot-toast';
 
-const {
-  //  useChainId,
-  useAccounts,
-  useIsActivating
-  // useIsActive,
-  // useProvider,
-  // useENSNames
-} = hooks;
-
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const accounts = useAccounts();
 
-  const onSignUp = () => {
+  const onSignUp = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const data = {
       email: email,
       name: name,
@@ -34,7 +25,7 @@ const SignUpForm = () => {
   return (
     <div className="lg:w-1/2 xl:w-1/2 px-4 md:px-16 shadow-lg border-1 border-gray-400">
       <div className="text-3xl font-mont my-4 text-center">Sign Up</div>
-      <div>
+      <form onSubmit={onSignUp}>
         <div className="mb-4">
           <label className="block mb-2 text-sm font-medium text-gray-900">Email</label>
           <input
@@ -71,14 +62,14 @@ const SignUpForm = () => {
         </div>
         <div className="py-4 mb-8">
           <button
-            onClick={onSignUp}
+            type="submit"
             value="Log in"
             className="w-full cursor-pointer text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
           >
             Sign Up
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

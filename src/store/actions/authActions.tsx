@@ -39,13 +39,12 @@ export const login =
     axios
       .post(`${API_SERVER_URL}api/users/login`, data)
       .then((res) => {
-        console.log(res);
         dispatch({
           type: ACTION.SET_AUTH_USER,
           payload: { authInfo: res.data.user, isLogged: true }
         });
         if (res.data.status === 'success') {
-          // toast.success('Login Success');
+          toast.success('Login Success');
           navigate('/dashboard');
         }
       })
