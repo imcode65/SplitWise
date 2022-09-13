@@ -60,6 +60,19 @@ const FriendBar = () => {
     getOrders();
   };
 
+  const onDeleteOrder = (_id: string) => {
+    const data = {
+      id: _id
+    };
+    axios
+      .post(`${API_SERVER_URL}api/orders/deletebyid`, data)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {});
+    getOrders();
+  };
+
   return (
     <div className="grid sm:grid-cols-4">
       <div className="col-span-3 border-l-1 border-r-1 border-gray-400">
@@ -112,7 +125,7 @@ const FriendBar = () => {
                       <img className="h-10 w-10 mr-2" src="../general@2x.png" />
                       <div>{val.description}</div>
                     </div>
-                    <div className="mr-8 flex space-x-4">
+                    <div className="flex space-x-4">
                       <div className="flex flex-col text-sm">
                         <span className="text-gray-400">you paid</span>
                         <p className="text-black">
@@ -128,6 +141,27 @@ const FriendBar = () => {
                             {val.pay} {val.currency}
                           </span>
                         </p>
+                      </div>
+                      <div className="flex justify-center items-center">
+                        <button
+                          onClick={() => onDeleteOrder(val._id)}
+                          type="button"
+                          className="text-white hover:text-red-500 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="w-5 h-5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            ></path>
+                          </svg>
+                          <span className="sr-only">Close modal</span>
+                        </button>
                       </div>
                     </div>
                   </NavLink>
@@ -149,7 +183,7 @@ const FriendBar = () => {
                       <img className="h-10 w-10 mr-2" src="../general@2x.png" />
                       <div>{val.description}</div>
                     </div>
-                    <div className="mr-8 flex space-x-4">
+                    <div className="flex space-x-4">
                       <div className="flex flex-col text-sm">
                         <span className="text-gray-400">{val.receiver_id.name} paid</span>
                         <p className="text-black">
@@ -165,6 +199,27 @@ const FriendBar = () => {
                             {val.pay} {val.currency}
                           </span>
                         </p>
+                      </div>
+                      <div className="flex justify-center items-center">
+                        <button
+                          onClick={() => onDeleteOrder(val._id)}
+                          type="button"
+                          className="text-white hover:text-red-500 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="w-5 h-5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            ></path>
+                          </svg>
+                          <span className="sr-only">Close modal</span>
+                        </button>
                       </div>
                     </div>
                   </NavLink>

@@ -42,7 +42,6 @@ const DashboardBar = () => {
         }
       }
     }
-    console.log(result);
     const send: any[] = [],
       receive: any[] = [];
     for (let i = 0; i < result.length; i++) {
@@ -65,16 +64,10 @@ const DashboardBar = () => {
     axios
       .post(`${API_SERVER_URL}api/orders/get_send_order`, data)
       .then((res) => {
-        if (res.data.status !== 'fail') {
-          console.log(res.data);
-          // setSendOrders(res.data);
-        }
         axios
           .post(`${API_SERVER_URL}api/orders/get_receive_order`, data)
           .then((re) => {
             if (re.data.status !== 'fail') {
-              console.log(re.data);
-              // setReceiveOrders(re.data);
               calculate(res.data, re.data);
             }
           })
