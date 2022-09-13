@@ -15,6 +15,49 @@ const DashboardBar = () => {
   const [showExpenseModal, setShowExpenseModal] = useState<boolean>(false);
   const [viewStatus, setViewStatus] = useState<string>('list');
 
+  const calculate = (TSendOrders: any[], TReceiveOrders: any[]) => {
+    const data: any[] = TSendOrders.concat(TReceiveOrders);
+    const result: any[] = [];
+    for (let i = 0; i < data.length; i++) {
+      let flag = false;
+      for (let j = 0; j < result.length; j++) {
+        if (
+          (data[i].sender_id._id === result[j].sender_id._id &&
+            data[i].receiver_id._id === result[j].receiver_id._id) ||
+          (data[i].sender_id._id === result[j].receiver_id._id &&
+            data[i].receiver_id._id === result[j].sender_id._id)
+        ) {
+          if (data[i].sender_id._id === authInfo._id) {
+            result[j].pay -= data[i].pay;
+          } else {
+            result[j].pay += data[i].pay;
+          }
+          flag = true;
+        }
+      }
+      if (flag === false) {
+        result.push(data[i]);
+        if (data[i].sender_id._id === authInfo._id) {
+          result[result.length - 1].pay *= -1;
+        }
+      }
+    }
+    console.log(result);
+    const send: any[] = [],
+      receive: any[] = [];
+    for (let i = 0; i < result.length; i++) {
+      if (result[i].pay > 0) {
+        receive.push(result[i]);
+      }
+      if (result[i].pay < 0) {
+        result[i].pay *= -1;
+        send.push(result[i]);
+      }
+    }
+    setSendOrders(send);
+    setReceiveOrders(receive);
+  };
+
   const getFunction = () => {
     const data = {
       id: authInfo._id
@@ -23,18 +66,21 @@ const DashboardBar = () => {
       .post(`${API_SERVER_URL}api/orders/get_send_order`, data)
       .then((res) => {
         if (res.data.status !== 'fail') {
-          setSendOrders(res.data);
+          console.log(res.data);
+          // setSendOrders(res.data);
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    axios
-      .post(`${API_SERVER_URL}api/orders/get_receive_order`, data)
-      .then((res) => {
-        if (res.data.status !== 'fail') {
-          setReceiveOrders(res.data);
-        }
+        axios
+          .post(`${API_SERVER_URL}api/orders/get_receive_order`, data)
+          .then((re) => {
+            if (re.data.status !== 'fail') {
+              console.log(re.data);
+              // setReceiveOrders(re.data);
+              calculate(res.data, re.data);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -168,7 +214,7 @@ const DashboardBar = () => {
                         to={`/friends/${val.receiver_id._id}`}
                       >
                         <img
-                          src={val.sender_id.avatar ? val.sender_id.avatar : './avatar.png'}
+                          src={val.receiver_id.avatar ? val.receiver_id.avatar : './avatar.png'}
                           className="h-8 w-8 rounded-full mr-2"
                         />
                         <div className="flex flex-col text-sm">

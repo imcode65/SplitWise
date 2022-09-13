@@ -91,6 +91,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
       axios
         .post(`${API_SERVER_URL}api/orders/save`, data)
         .then((res) => {
+          console.log(res.data);
           let isFriend = false;
           friend.friends.map((value: any) => {
             if (
@@ -99,16 +100,16 @@ const ExpenseModal: React.FC<IModal> = (props) => {
             ) {
               isFriend = true;
             }
-            if (isFriend === false) {
-              const dt = {
-                id: authInfo._id,
-                email1: authInfo.email,
-                email2: val
-              };
-              sendInvite(dt)(dispatch);
-            }
             return;
           });
+          if (isFriend === false) {
+            const dt = {
+              id: authInfo._id,
+              email1: authInfo.email,
+              email2: val
+            };
+            sendInvite(dt)(dispatch);
+          }
         })
         .catch((err) => {
           console.log(err);
