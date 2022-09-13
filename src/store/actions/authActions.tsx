@@ -27,10 +27,6 @@ export const registerUser =
       .then((res) => {
         toast.success('Successfully Registered');
         navigate('/login');
-        dispatch({
-          type: ACTION.SET_AUTH_USER,
-          payload: { authInfo: res.data }
-        });
       })
       .catch((err) => {
         toast.success(err.response);
@@ -46,7 +42,7 @@ export const login =
         console.log(res);
         dispatch({
           type: ACTION.SET_AUTH_USER,
-          payload: { authInfo: res.data.user }
+          payload: { authInfo: res.data.user, isLogged: true }
         });
         if (res.data.status === 'success') {
           // toast.success('Login Success');
@@ -68,10 +64,18 @@ export const updateUser = (userData: any, config?: any) => async (dispatch: AppD
       toast.success('Successfully Updated');
       dispatch({
         type: ACTION.SET_AUTH_USER,
-        payload: { authInfo: res.data }
+        payload: { authInfo: res.data, isLogged: true }
       });
     })
     .catch((err) => {
       toast.success(err.response);
     });
+};
+
+export const signOut = (navigate: (path: string) => void) => async (dispatch: AppDispatch) => {
+  dispatch({
+    type: ACTION.SET_AUTH_USER,
+    payload: { authInfo: {}, isLogged: false }
+  });
+  navigate('/login');
 };

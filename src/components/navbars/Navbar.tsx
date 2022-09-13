@@ -1,29 +1,23 @@
 import { Fragment, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import LogoIcon from 'components/icons/LogoIcon';
 import { useAppSelector } from 'store/hooks';
-import { hooks, metaMask } from 'components/web3/connectors/metaMask';
 import WalletModal from 'components/modals/WalletModal';
+import { signOut } from 'store/actions';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-const {
-  //  useChainId,
-  useAccounts,
-  // useIsActivating
-  useIsActive
-  // useProvider,
-  // useENSNames
-} = hooks;
-
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { authInfo } = useAppSelector((state) => state.auth);
-  const accounts = useAccounts();
   const userNavigation = [
     { name: 'Your account', href: '/profile', onClick: () => {} },
     { name: 'Create a group', href: '#', onClick: () => {} },
@@ -37,18 +31,16 @@ const Navbar = () => {
   ];
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    void metaMask.connectEagerly().catch(() => {
-      console.debug('Failed to connect eagerly to metamask');
-    });
-  }, []);
+  useEffect(() => {}, []);
 
   const onSignOut = () => {
-    console.log('signout');
+    signOut(navigate)(dispatch);
   };
+
   const onSaveModal = () => {
     setIsOpen(false);
   };
+
   const onCloseModal = () => {
     setIsOpen(false);
   };

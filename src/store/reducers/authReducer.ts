@@ -31,7 +31,7 @@ const userReducer = (state = initialAuthState, action?: IUserAction) => {
       return {
         ...state,
         authInfo: action.payload.authInfo,
-        isLogged: true
+        isLogged: action.payload.isLogged
       };
     default:
       return state;
