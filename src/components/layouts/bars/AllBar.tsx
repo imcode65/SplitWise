@@ -77,7 +77,7 @@ const AllBar = () => {
                       </span>
                       <p className="text-black">
                         <span className="font-semibold">
-                          {val.pay} {val.currency}
+                          {val.total_pay} {val.currency}
                         </span>
                       </p>
                     </div>

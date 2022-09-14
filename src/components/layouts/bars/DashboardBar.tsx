@@ -46,10 +46,11 @@ const DashboardBar = () => {
       receive: any[] = [];
     for (let i = 0; i < result.length; i++) {
       if (result[i].pay > 0) {
+        result[i].pay = result[i].pay.toFixed(2);
         receive.push(result[i]);
       }
       if (result[i].pay < 0) {
-        result[i].pay *= -1;
+        result[i].pay = result[i].pay.toFixed(2) * -1;
         send.push(result[i]);
       }
     }

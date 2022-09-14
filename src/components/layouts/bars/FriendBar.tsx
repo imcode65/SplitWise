@@ -130,7 +130,7 @@ const FriendBar = () => {
                         <span className="text-gray-400">you paid</span>
                         <p className="text-black">
                           <span className="font-semibold">
-                            {val.pay} {val.currency}
+                            {val.total_pay} {val.currency}
                           </span>
                         </p>
                       </div>
@@ -193,7 +193,7 @@ const FriendBar = () => {
                         <span className="text-gray-400">{val.receiver_id.name} lent you</span>
                         <p className="text-teal-color">
                           <span className="font-semibold text-[#ff652f]">
-                            {val.pay} {val.currency}
+                            {val.total_pay} {val.currency}
                           </span>
                         </p>
                       </div>
