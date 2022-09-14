@@ -10,6 +10,8 @@ import ProfilePage from 'pages/ProfilePage';
 import SignUpPage from 'pages/SignUpPage';
 import LoginPage from 'pages/LoginPage';
 import NotFound from 'pages/NotFound';
+import Calculators from 'pages/Calculators';
+import Contact from 'pages/Contact';
 import Type1NavbarLayout from 'components/layouts/Type1NavbarLayout';
 import Type2NavbarLayout from 'components/layouts/Type2NavbarLayout';
 import { Toaster } from 'react-hot-toast';
@@ -41,14 +43,9 @@ function AppRoutes() {
               <Route path="all" element={<AllBar />} />
               <Route path="friends/:id" element={<FriendBar />} />
             </Route>
-            <Route
-              path="profile"
-              element={
-                <PrivateRoute>
-                  <ProfilePage />
-                </PrivateRoute>
-              }
-            ></Route>
+            <Route path="profile" element={<ProfilePage />}></Route>
+            <Route path="calculators" element={<Calculators />}></Route>
+            <Route path="contact" element={<Contact />}></Route>
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -9,52 +9,15 @@ import { hooks, metaMask } from 'components/web3/connectors/metaMask';
 // import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
 
-const {
-  //  useChainId,
-  useAccounts,
-  useIsActivating
-  // useIsActive,
-  // useProvider,
-  // useENSNames
-} = hooks;
-
 const LoginNavbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const [isConnected, setIsConnected] = useState<boolean>(false);
-  // const chainId = useChainId();
-  // const accounts = useAccounts();
-  // const isActivating = useIsActivating();
-  // const isActive = useIsActive();
-  // const provider = useProvider();
-  // const ENSNames = useENSNames(provider);
-  // const onConnectWallet = () => {
-  //   if (isActivating) return;
-  //   metaMask
-  //     .activate()
-  //     .then((res) => {
-  //       setIsConnected(true);
-  //       toast.success('Wallet connected');
-  //     })
-  //     .catch((err) => {
-  //       toast.success(err.message);
-  //     });
-  // };
 
   useEffect(() => {
     // void metaMask.connectEagerly().catch(() => {
     //   console.debug('Failed to connect eagerly to metamask');
     // });
   }, []);
-
-  // useEffect(() => {
-  //   if (navigate !== undefined && dispatch !== undefined && accounts && accounts.length > 0) {
-  //     const data = {
-  //       walletaddress: accounts[0]
-  //     };
-  //     isSignUp(data, navigate)(dispatch);
-  //   }
-  // }, [accounts, navigate, dispatch]);
 
   return (
     <nav className="flex items-center justify-between px-16 py-5 mx-auto w-full">
@@ -70,13 +33,22 @@ const LoginNavbar = () => {
         <MetaMaskIcon height={20} width={20} className="mr-2" />
         {isConnected && accounts ? WalletAddressFormat(accounts[0]) : 'Connect Metamask'}
       </button> */}
-      <NavLink
-        to="/login"
-        type="button"
-        className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
-      >
-        Login
-      </NavLink>
+      <div>
+        <NavLink
+          to="/login"
+          type="button"
+          className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
+        >
+          Login
+        </NavLink>
+        <NavLink
+          to="/signup"
+          type="button"
+          className="text-white bg-teal-color hover:bg-teal-600 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
+        >
+          Sign up
+        </NavLink>
+      </div>
     </nav>
   );
 };

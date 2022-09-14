@@ -21,8 +21,8 @@ const Navbar = () => {
   const userNavigation = [
     { name: 'Your account', href: '/profile', onClick: () => {} },
     { name: 'Create a group', href: '#', onClick: () => {} },
-    { name: 'Fairness calculators', href: '#', onClick: () => {} },
-    { name: 'Contact support', href: '#', onClick: () => {} },
+    { name: 'Fairness calculators', href: '/calculators', onClick: () => {} },
+    { name: 'Contact support', href: '/contact', onClick: () => {} },
     {
       name: 'SingOut',
       href: '#',
