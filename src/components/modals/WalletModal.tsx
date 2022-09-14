@@ -24,6 +24,13 @@ const WalletModal: React.FC<IModal> = (props) => {
 
   useEffect(() => {
     setModalStatus(props.isOpen);
+    if (auth.authInfo) {
+      const data = {
+        id: auth.authInfo._id,
+        currency: currency
+      };
+      getBalance(data)(dispatch);
+    }
   }, [props.isOpen]);
 
   useEffect(() => {

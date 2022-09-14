@@ -17,7 +17,7 @@ export interface IModal {
 const ExpenseModal: React.FC<IModal> = (props) => {
   const dispatch = useDispatch();
   const { authInfo } = useAppSelector((state) => state.auth);
-  const { friend } = useAppSelector((state) => state);
+  const { auth, friend } = useAppSelector((state) => state);
   const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [emails, setEmails] = useState<string[]>([]);
@@ -49,6 +49,10 @@ const ExpenseModal: React.FC<IModal> = (props) => {
       const data = {
         address: e.target.value
       };
+      if (e.target.value === auth.authInfo.email || e.target.value === auth.authInfo.name) {
+        toast.error('You inputed your email or username');
+        return;
+      }
       axios
         .post(`${API_SERVER_URL}api/users/exist`, data)
         .then((res) => {
