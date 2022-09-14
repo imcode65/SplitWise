@@ -19,6 +19,11 @@ const DashboardBar = () => {
     const data: any[] = TSendOrders.concat(TReceiveOrders);
     const result: any[] = [];
     for (let i = 0; i < data.length; i++) {
+      if (data[i].sender_id._id === authInfo._id) {
+        data[i].pay *= -1;
+      }
+    }
+    for (let i = 0; i < data.length; i++) {
       let flag = false;
       for (let j = 0; j < result.length; j++) {
         if (
@@ -27,29 +32,32 @@ const DashboardBar = () => {
           (data[i].sender_id._id === result[j].receiver_id._id &&
             data[i].receiver_id._id === result[j].sender_id._id)
         ) {
-          if (data[i].sender_id._id === authInfo._id) {
-            result[j].pay -= data[i].pay;
-          } else {
-            result[j].pay += data[i].pay;
-          }
+          result[j].pay += data[i].pay;
           flag = true;
         }
       }
       if (flag === false) {
         result.push(data[i]);
-        if (data[i].sender_id._id === authInfo._id) {
-          result[result.length - 1].pay *= -1;
-        }
       }
     }
     const send: any[] = [],
       receive: any[] = [];
     for (let i = 0; i < result.length; i++) {
       if (result[i].pay > 0) {
+        if (result[i].sender_id._id === authInfo._id) {
+          const temp = result[i].receiver_id;
+          result[i].receiver_id = result[i].sender_id;
+          result[i].sender_id = temp;
+        }
         result[i].pay = result[i].pay.toFixed(2);
         receive.push(result[i]);
       }
       if (result[i].pay < 0) {
+        if (result[i].receiver_id._id === authInfo._id) {
+          const temp = result[i].receiver_id;
+          result[i].receiver_id = result[i].sender_id;
+          result[i].sender_id = temp;
+        }
         result[i].pay = result[i].pay.toFixed(2) * -1;
         send.push(result[i]);
       }

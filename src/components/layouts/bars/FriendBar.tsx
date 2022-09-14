@@ -182,18 +182,18 @@ const FriendBar = () => {
                     </div>
                     <div className="flex space-x-4">
                       <div className="flex flex-col text-sm">
-                        <span className="text-gray-400">{val.receiver_id.name} paid</span>
+                        <span className="text-gray-400">{val.sender_id.name} paid</span>
                         <p className="text-black">
                           <span className="font-semibold">
-                            {val.pay} {val.currency}
+                            {val.total_pay} {val.currency}
                           </span>
                         </p>
                       </div>
                       <div className="flex flex-col text-sm">
-                        <span className="text-gray-400">{val.receiver_id.name} lent you</span>
+                        <span className="text-gray-400">{val.sender_id.name} lent you</span>
                         <p className="text-teal-color">
                           <span className="font-semibold text-[#ff652f]">
-                            {val.total_pay} {val.currency}
+                            {val.pay} {val.currency}
                           </span>
                         </p>
                       </div>
