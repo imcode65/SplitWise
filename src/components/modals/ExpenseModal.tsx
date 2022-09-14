@@ -38,6 +38,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
         .post(`${API_SERVER_URL}api/users/getbyid`, data)
         .then((res) => {
           setEmails([res.data.name]);
+          setIDs([res.data._id]);
         })
         .catch((err) => {});
     }
@@ -84,14 +85,13 @@ const ExpenseModal: React.FC<IModal> = (props) => {
         sender_id: authInfo._id,
         receiver_id: ids[key],
         description: description,
-        pay: pay / (emails.length + 1),
-        currency: 'USDT',
+        pay: (pay / (emails.length + 1)).toFixed(2),
+        currency: authInfo.currency,
         repeats: ''
       };
       axios
         .post(`${API_SERVER_URL}api/orders/save`, data)
         .then((res) => {
-          console.log(res.data);
           let isFriend = false;
           friend.friends.map((value: any) => {
             if (

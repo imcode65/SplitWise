@@ -67,7 +67,7 @@ const FriendBar = () => {
     axios
       .post(`${API_SERVER_URL}api/orders/deletebyid`, data)
       .then((res) => {
-        console.log(res.data);
+        getOrders();
       })
       .catch((err) => {});
     getOrders();
@@ -171,10 +171,7 @@ const FriendBar = () => {
             {receiveOrders.map((val, key) => {
               return (
                 <div className="flex px-2 py-1 border-b-1" key={key}>
-                  <NavLink
-                    className="border-gray-500 w-full text-lg flex justify-between items-center cursor-pointer"
-                    to={`/friends/${val.receiver_id._id}`}
-                  >
+                  <div className="border-gray-500 w-full text-lg flex justify-between items-center cursor-pointer">
                     <div className="flex items-center">
                       <div className="flex flex-col items-center text-gray-400 mr-2">
                         <div className="text-xs">{moment(val.date).format('MMM')}</div>
@@ -222,7 +219,7 @@ const FriendBar = () => {
                         </button>
                       </div>
                     </div>
-                  </NavLink>
+                  </div>
                 </div>
               );
             })}

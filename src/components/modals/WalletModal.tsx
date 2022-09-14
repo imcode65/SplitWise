@@ -37,7 +37,7 @@ const WalletModal: React.FC<IModal> = (props) => {
   }, []);
 
   const onCopy = () => {
-    navigator.clipboard.writeText(DEPOSIT_ADDRESS);
+    navigator.clipboard.writeText(auth.authInfo.walletaddress);
     toast.success('copied');
   };
 
