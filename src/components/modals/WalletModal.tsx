@@ -1,6 +1,5 @@
 import { useState, Fragment, useEffect } from 'react';
 import { Dialog, Tab, Transition } from '@headlessui/react';
-import { DEPOSIT_ADDRESS } from 'config';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { useAppSelector } from 'store/hooks';
@@ -135,8 +134,10 @@ const WalletModal: React.FC<IModal> = (props) => {
                     {page === 'deposit' ? (
                       <>
                         <div className="my-1">
-                          <label>Deposit Currency</label>
-                          <div className="flex justify-between bg-gray-300 rounded-lg border-3 border-gray-300 py-1 px-2">
+                          <label className="text-sm font-medium text-gray-900 dark:text-gray-300">
+                            Currency
+                          </label>
+                          <div className="flex justify-between bg-gray-300 rounded-lg border-3 border-gray-300 py-1">
                             <div className="flex bg-gray-200 items-center px-1 rounded-md">
                               <img className="h-8 w-8" src={`/coin-logo/${currency}.png`} />
                               <select
@@ -153,7 +154,9 @@ const WalletModal: React.FC<IModal> = (props) => {
                               </select>
                             </div>
                             <div className="flex flex-col">
-                              <span className="text-sm text-gray-700 font-semibold">Balance</span>
+                              <span className="text-sm text-gray-700 font-semibold mr-1">
+                                Balance
+                              </span>
                               <span className="text-white font-bold text-center text-lg">
                                 {wallet.wallet?.amount}
                               </span>
@@ -178,7 +181,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                           <label className="text-sm font-medium text-gray-900 dark:text-gray-300">
                             Currency
                           </label>
-                          <div className="flex justify-between bg-gray-300 rounded-lg border-3 border-gray-300 py-1 px-2">
+                          <div className="flex justify-between bg-gray-300 rounded-lg border-3 border-gray-300 py-1">
                             <div className="flex bg-gray-200 items-center px-1 rounded-md">
                               <img className="h-8 w-8" src={`/coin-logo/${currency}.png`} />
                               <select
@@ -195,7 +198,9 @@ const WalletModal: React.FC<IModal> = (props) => {
                               </select>
                             </div>
                             <div className="flex flex-col">
-                              <span className="text-sm text-gray-700 font-semibold">Balance</span>
+                              <span className="text-sm text-gray-700 font-semibold mr-1">
+                                Balance
+                              </span>
                               <span className="text-white font-bold text-center text-lg">
                                 {wallet.wallet?.amount}
                               </span>
@@ -215,7 +220,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                         </div>
                         <div className="mb-4">
                           <label className="text-sm font-medium text-gray-900 dark:text-gray-300">
-                            Withdraw ammount
+                            Withdraw amount
                           </label>
                           <input
                             type="number"

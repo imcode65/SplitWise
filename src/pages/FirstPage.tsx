@@ -6,12 +6,12 @@ const FirstPage = () => {
     <div className="">
       <div className="container mx-auto">
         <div className="grid grid-cols-2 my-8">
-          <div>
+          <div className="ml-8">
             <p className="font-semibold text-6xl text-gray-600">
               Less stress when sharing expenses
             </p>
             <p className="font-semibold text-6xl text-teal-color">on tips</p>
-            <p className="text-lg">
+            <p className="text-lg my-4">
               Keep track of your shared expenses and balances with housemates, trips, groups,
               friends, and family.
             </p>
@@ -78,21 +78,21 @@ const FirstPage = () => {
           <div className="lg:w-1/2">
             <div className="lg:flex lg:flex-col lg:justify-center lg:h-full">
               <h1 className="text-2xl text-center">Get even more with PRO</h1>
-              <p className="text-center block mx-6 mt-2 text-lg mb-6 max-w-95 mx-auto">
+              <p className="text-center mt-2 text-lg mb-6 max-w-95 mx-auto">
                 Get even more organized with receipt scanning, charts and graphs, currency
                 conversion, and more!
               </p>
               <div className="flex justify-center  mb-4">
-                <a
+                <NavLink
                   className="mx-auto px-10 py-3 bg-charcoal-trans border border-white shadow text-white font-mont font-semibold rounded sm-cta-button"
-                  href="/signup"
+                  to="/signup"
                 >
                   Sign up
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>
-          <div className="lg:w-1/2">
+          <div className="lg:w-1/2 mb-2">
             <div className="lg:flex lg:flex-col lg:justify-end lg:h-full">
               <img src="./asset5.png" className="w-65 lg:w-81 mx-auto" />
             </div>
