@@ -228,13 +228,13 @@ const ExpenseModal: React.FC<IModal> = (props) => {
                           placeholder="Enter a description"
                         />
                         <div className="border-b-2 border-dashed mt-2">
-                          <span className="mr-1">$</span>
                           <input
                             type="number"
                             className="focus:outline-none text-3xl font-bold w-52"
                             onChange={(e) => setPay(parseFloat(e.target.value))}
                             placeholder="0.00"
                           />
+                          <span className="mr-1">USDT</span>
                         </div>
                       </div>
                     </div>

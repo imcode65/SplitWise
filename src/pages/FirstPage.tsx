@@ -6,7 +6,7 @@ const FirstPage = () => {
     <div className="">
       <div className="container mx-auto">
         <div className="grid grid-cols-2 my-8">
-          <div className="ml-8">
+          <div className="ml-16">
             <p className="font-semibold text-6xl text-gray-600">
               Less stress when sharing expenses
             </p>
@@ -74,7 +74,7 @@ const FirstPage = () => {
           </div>
         </div>
 
-        <div className="bg-facets w-full text-white pt-8 h-landing-feature bg-purple flex-col lg:flex-row flex justify-between lg:flex">
+        <div className="bg-facets w-full pt-8 h-landing-feature bg-purple flex-col lg:flex-row flex justify-between lg:flex">
           <div className="lg:w-1/2">
             <div className="lg:flex lg:flex-col lg:justify-center lg:h-full">
               <h1 className="text-2xl text-center">Get even more with PRO</h1>
@@ -82,9 +82,9 @@ const FirstPage = () => {
                 Get even more organized with receipt scanning, charts and graphs, currency
                 conversion, and more!
               </p>
-              <div className="flex justify-center  mb-4">
+              <div className="flex justify-center mb-4">
                 <NavLink
-                  className="mx-auto px-10 py-3 bg-charcoal-trans border border-white shadow text-white font-mont font-semibold rounded sm-cta-button"
+                  className="text-white bg-teal-color hover:bg-teal-600 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-3 text-center inline-flex items-center mr-2 mb-2"
                   to="/signup"
                 >
                   Sign up

@@ -17,14 +17,13 @@ const LoginForm = () => {
       email: email,
       password: password
     };
-    console.log(data);
     login(data, navigate)(dispatch);
   };
 
   return (
-    <div className="w-full mt-4">
-      <div className="flex items-center justify-center">
-        <div className="px-8 py-6 text-left bg-white shadow-lg w-1/2">
+    <div className="w-full">
+      <div className="flex items-center justify-center bg-gray-100">
+        <div className="px-8 py-6 text-left my-4 bg-white shadow-lg w-1/2">
           <div className="flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
