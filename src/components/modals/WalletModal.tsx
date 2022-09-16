@@ -1,10 +1,13 @@
 import { useState, Fragment, useEffect } from 'react';
+import axios from 'axios';
 import { Dialog, Tab, Transition } from '@headlessui/react';
+// import WAValidator from 'wallet-address-validator';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { useAppSelector } from 'store/hooks';
 import { CURRENCY_TYPES } from 'datas/currency';
 import { getBalance } from 'store/actions';
+import { API_SERVER_URL } from 'config';
 
 export interface IModal {
   isOpen: boolean;
@@ -19,7 +22,7 @@ const WalletModal: React.FC<IModal> = (props) => {
   const [currency, setCurrency] = useState<string>('USDT');
   const [page, setPage] = useState<string>('deposit');
   const [withdrawAddress, setWithdrawAddress] = useState<string>('');
-  const [amount, setAmount] = useState<number>(0);
+  const [withdrawAmount, setWithdrawAmount] = useState<number>(1);
 
   useEffect(() => {
     setModalStatus(props.isOpen);
@@ -57,7 +60,33 @@ const WalletModal: React.FC<IModal> = (props) => {
   };
 
   const onWithdraw = () => {
-    console.log('withdraw');
+    if (withdrawAmount < 0) {
+      toast.error('Withdrawal amount should be greater than the fee');
+      return;
+    }
+    if (withdrawAmount > wallet.wallet.amount) {
+      toast.error('Withdrawal amount should be less than your balance');
+      return;
+    }
+    const data = {
+      user_id: auth.authInfo._id,
+      withdrawAddress: withdrawAddress,
+      withdrawAmount: withdrawAmount,
+      currency: currency
+    };
+    axios
+      .post(`${API_SERVER_URL}api/wallet/withdraw`, data)
+      .then((res) => {
+        toast.success('Withdraw Success');
+        const dt = {
+          id: auth.authInfo._id,
+          currency: currency
+        };
+        getBalance(dt)(dispatch);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -215,19 +244,40 @@ const WalletModal: React.FC<IModal> = (props) => {
                             type="text"
                             value={withdrawAddress}
                             onChange={(e) => setWithdrawAddress(e.target.value)}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            className="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                           />
                         </div>
                         <div className="mb-4">
                           <label className="text-sm font-medium text-gray-900 dark:text-gray-300">
                             Withdraw amount
                           </label>
-                          <input
-                            type="number"
-                            value={amount}
-                            onChange={(e) => setAmount(parseFloat(e.target.value))}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                          />
+                          <div className="flex border-1 border-gray-300 rounded-lg">
+                            <input
+                              type="number"
+                              value={withdrawAmount}
+                              onChange={(e) => setWithdrawAmount(parseFloat(e.target.value))}
+                              onBlur={(e) =>
+                                e.target.value > wallet.wallet.amount
+                                  ? setWithdrawAmount(wallet.wallet.amount)
+                                  : setWithdrawAmount(parseFloat(e.target.value))
+                              }
+                              className="outline-none bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            />
+                            <button
+                              onClick={() => setWithdrawAmount(1)}
+                              type="button"
+                              className="inline-block px-2 py-2 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded-l-xl shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out border-1 border-white"
+                            >
+                              Min
+                            </button>
+                            <button
+                              onClick={() => setWithdrawAmount(wallet.wallet.amount)}
+                              type="button"
+                              className="inline-block px-2 py-2 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded-r-xl shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out border-1 border-white"
+                            >
+                              Max
+                            </button>
+                          </div>
                         </div>
                         <div className="flex justify-center">
                           <button

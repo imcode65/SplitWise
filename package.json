@@ -74,6 +74,7 @@
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.2.5",
     "typescript": "^4.6.3",
+    "wallet-address-validator": "^0.2.4",
     "web-vitals": "^2.1.4",
     "webpack": "^5.64.4",
     "webpack-dev-server": "^4.6.0",
