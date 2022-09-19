@@ -113,7 +113,7 @@ const DashboardBar = () => {
   return (
     <div className="grid sm:grid-cols-4 relative overflow-hidden">
       <div className="col-span-3 border-x-1 min-h-screen border-gray-400">
-        <div className="bg-[#eee] flex py-2 px-4 justify-between border-b-1 border-gray-400 flex-wrap">
+        <div className="bg-[#eee] flex py-2 px-4 justify-between items-center border-b-1 border-gray-400 flex-wrap">
           <span className="md:text-3xl sm:text-xl font-semibold my-2">Dashboard</span>
           <div>
             <button

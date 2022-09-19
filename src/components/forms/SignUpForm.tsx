@@ -33,7 +33,7 @@ const SignUpForm = () => {
           <div className="flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-20 h-20 text-blue-600"
+              className="w-20 h-20 text-teal-color"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -58,7 +58,7 @@ const SignUpForm = () => {
                   placeholder="Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-color"
                 />
               </div>
               <div className="mt-4">
@@ -68,7 +68,7 @@ const SignUpForm = () => {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-color"
                 />
               </div>
               <div className="mt-4">
@@ -78,7 +78,7 @@ const SignUpForm = () => {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-color"
                 />
               </div>
               <div className="mt-4">
@@ -88,21 +88,21 @@ const SignUpForm = () => {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-color"
                 />
               </div>
               {/* <span className="text-xs text-red-400">Password must be same!</span> */}
               <div className="flex">
                 <button
                   type="submit"
-                  className="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
+                  className="w-full px-6 py-2 mt-4 text-white bg-teal-color rounded-lg hover:bg-teal-500"
                 >
                   Create Account
                 </button>
               </div>
               <div className="mt-6 text-grey-dark">
                 Already have an account?
-                <NavLink className="text-blue-600 hover:underline" to="/login">
+                <NavLink className="text-teal-color hover:underline" to="/login">
                   Log in
                 </NavLink>
               </div>

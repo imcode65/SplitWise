@@ -141,16 +141,6 @@ const Navbar = () => {
             <Disclosure.Panel className="md:hidden">
               <div className="pb-3 border-t border-gray-700">
                 <div className="mt-3 px-2 space-y-1">
-                  {userNavigation.map((item) => (
-                    <NavLink
-                      key={item.name}
-                      to={item.href}
-                      onClick={item.onClick}
-                      className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-teal-500"
-                    >
-                      {item.name}
-                    </NavLink>
-                  ))}
                   <NavLink
                     to="/dashboard"
                     className={`block items-center px-3 py-2 font-medium text-white rounded-md hover:bg-teal-500`}
@@ -163,6 +153,16 @@ const Navbar = () => {
                   >
                     Wallet
                   </button>
+                  {userNavigation.map((item) => (
+                    <NavLink
+                      key={item.name}
+                      to={item.href}
+                      onClick={item.onClick}
+                      className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-teal-500"
+                    >
+                      {item.name}
+                    </NavLink>
+                  ))}
                 </div>
               </div>
             </Disclosure.Panel>

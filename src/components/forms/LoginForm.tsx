@@ -27,7 +27,7 @@ const LoginForm = () => {
           <div className="flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-20 h-20 text-blue-600"
+              className="w-20 h-20 text-teal-color"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -52,7 +52,7 @@ const LoginForm = () => {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-color"
                 />
                 {/* <span className="text-xs tracking-wide text-red-600">Email field is required </span> */}
               </div>
@@ -63,17 +63,17 @@ const LoginForm = () => {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-color"
                 />
               </div>
               <div className="flex items-baseline justify-between">
                 <button
                   type="submit"
-                  className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
+                  className="px-6 py-2 mt-4 text-white bg-teal-color rounded-lg hover:bg-teal-500"
                 >
                   Login
                 </button>
-                <NavLink to="#" className="text-sm text-blue-600 hover:underline">
+                <NavLink to="#" className="text-sm text-teal-color hover:underline">
                   Forgot password?
                 </NavLink>
               </div>
