@@ -28,11 +28,11 @@ const FriendSetting = () => {
     <div>
       <NormalButton
         onClick={() => setIsOpen(true)}
-        className="mb-2 w-52 text-left"
+        className="mb-2 w-full text-left"
         text="Remove this friend"
       ></NormalButton>
-      <NormalButton className="mb-2 w-52 text-left" text="Send a balance reminder"></NormalButton>
-      <NormalButton className="mb-2 w-52 text-left" text="Export as spreadsheet"></NormalButton>
+      <NormalButton className="mb-2 w-full text-left" text="Send a balance reminder"></NormalButton>
+      <NormalButton className="mb-2 w-full text-left" text="Export as spreadsheet"></NormalButton>
       <ConfirmModal isOpen={isOpen} onClose={onClose} onSave={onDelete}></ConfirmModal>
     </div>
   );

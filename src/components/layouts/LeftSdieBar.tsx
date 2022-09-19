@@ -176,10 +176,9 @@ const LeftSideBar = () => {
 
         {/* sm sidebar start */}
         <div
-          className={`transform w-44 z-40 h-full absolute px-2 bg-white shadow md:h-full flex-col justify-between sm:hidden  transition duration-150 ease-in-out ${
+          className={`transform w-44 z-40 h-full absolute px-2 bg-white shadow md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out ${
             flag ? '-translate-x-44' : ''
           }`}
-          id="mobile-nav"
         >
           <div
             className="h-10 w-10 bg-teal-color absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer"
