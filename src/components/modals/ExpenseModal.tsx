@@ -84,6 +84,11 @@ const ExpenseModal: React.FC<IModal> = (props) => {
   };
 
   const onSave = () => {
+    console.log(pay);
+    if (!pay || pay === 0) {
+      toast.error('Invalid Amount');
+      return;
+    }
     emails.map((val, key) => {
       const data = {
         sender_id: authInfo._id,
@@ -97,23 +102,26 @@ const ExpenseModal: React.FC<IModal> = (props) => {
       axios
         .post(`${API_SERVER_URL}api/orders/save`, data)
         .then((res) => {
-          let isFriend = false;
-          friend.friends.map((value: any) => {
-            if (
-              value.user1._id === res.data.receiver_id ||
-              value.user2._id === res.data.receiver_id
-            ) {
-              isFriend = true;
+          if (res.data.status === 'success') {
+            toast.success('Expense successfully added');
+            let isFriend = false;
+            friend.friends.map((value: any) => {
+              if (
+                value.user1._id === res.data.order.receiver_id ||
+                value.user2._id === res.data.order.receiver_id
+              ) {
+                isFriend = true;
+              }
+              return;
+            });
+            if (isFriend === false) {
+              const dt = {
+                id: authInfo._id,
+                email1: authInfo.email,
+                email2: val
+              };
+              sendInvite(dt)(dispatch);
             }
-            return;
-          });
-          if (isFriend === false) {
-            const dt = {
-              id: authInfo._id,
-              email1: authInfo.email,
-              email2: val
-            };
-            sendInvite(dt)(dispatch);
           }
         })
         .catch((err) => {

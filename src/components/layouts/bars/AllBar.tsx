@@ -42,7 +42,7 @@ const AllBar = () => {
 
   return (
     <div className="grid sm:grid-cols-4">
-      <div className="col-span-3 border-l-1 border-r-1 border-gray-400">
+      <div className="col-span-3 border-l-1 border-r-1 border-gray-400 min-h-screen">
         <div className="bg-[#eee] flex py-2 px-4 justify-between border-b-1 border-gray-400 flex-wrap">
           <span className="md:text-3xl sm:text-xl font-semibold my-2">All expenses</span>
           <div>

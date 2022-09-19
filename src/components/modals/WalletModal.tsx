@@ -1,7 +1,9 @@
 import { useState, Fragment, useEffect } from 'react';
 import axios from 'axios';
 import { Dialog, Tab, Transition } from '@headlessui/react';
-// import WAValidator from 'wallet-address-validator';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
+import WAValidator from 'wallet-address-validator';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { useAppSelector } from 'store/hooks';
@@ -60,6 +62,11 @@ const WalletModal: React.FC<IModal> = (props) => {
   };
 
   const onWithdraw = () => {
+    // const valid = WAValidator.validate(withdrawAddress, 'BTC');
+    if (withdrawAddress === '') {
+      toast.error('Please input valid Withdraw address');
+      return;
+    }
     if (withdrawAmount < 0) {
       toast.error('Withdrawal amount should be greater than the fee');
       return;
