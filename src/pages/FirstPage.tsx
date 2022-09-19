@@ -5,12 +5,12 @@ const FirstPage = () => {
   return (
     <div className="">
       <div className="container mx-auto">
-        <div className="grid grid-cols-2 my-8">
-          <div className="ml-16">
-            <p className="font-semibold text-6xl text-gray-600">
+        <div className="grid sm:grid-cols-2 my-8">
+          <div className="ml-8 sm:ml-16 mb-4">
+            <p className="font-semibold text-4xl sm:text-6xl text-gray-600">
               Less stress when sharing expenses
             </p>
-            <p className="font-semibold text-6xl text-teal-color">on tips</p>
+            <p className="font-semibold text-4xl sm:text-6xl text-teal-color">on tips</p>
             <p className="text-lg my-4">
               Keep track of your shared expenses and balances with housemates, trips, groups,
               friends, and family.
@@ -18,7 +18,7 @@ const FirstPage = () => {
             <NavLink
               to="/signup"
               type="button"
-              className="text-white bg-teal-color w-48 h-16 text-xl hover:bg-teal-600 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg px-5 py-4 text-center"
+              className="text-white bg-teal-color w-30 sm:w-48 h-16 text-xl hover:bg-teal-600 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg px-5 py-4 text-center"
             >
               Sign up
             </NavLink>
@@ -29,7 +29,7 @@ const FirstPage = () => {
         </div>
       </div>
       <div className="lg:flex lg:flex-wrap">
-        <div className="bg-facets w-full text-white pt-8 bg-charcoal lg:h-landing-feature lg:w-1/2">
+        <div className="bg-facets w-full text-black pt-8 bg-charcoal lg:h-landing-feature lg:w-1/2">
           <div className="flex flex-col align-center justify-between h-full">
             <div>
               <h1 className="text-2xl text-center font-mont">Track balances</h1>
@@ -40,7 +40,7 @@ const FirstPage = () => {
             <img src="./asset1.png" className="mx-auto w-65 lg:w-81" />
           </div>
         </div>
-        <div className="bg-facets w-full text-white pt-8 bg-teal h-sm-landing-feature lg:h-landing-feature lg:w-1/2">
+        <div className="bg-facets w-full text-black pt-8 bg-teal h-sm-landing-feature lg:h-landing-feature lg:w-1/2">
           <div className="flex flex-col align-center justify-between h-full">
             <div>
               <h1 className="text-2xl text-center">Organize expenses</h1>
@@ -51,7 +51,7 @@ const FirstPage = () => {
             <img src="./asset2.png" className="mx-auto w-65 lg:w-81" />
           </div>
         </div>
-        <div className="bg-facets w-full text-white pt-8 bg-orange lg:h-landing-feature lg:w-1/2">
+        <div className="bg-facets w-full text-black pt-8 bg-orange lg:h-landing-feature lg:w-1/2">
           <div className="flex flex-col align-center justify-between h-full">
             <div>
               <h1 className="text-2xl text-center">Add expenses easily</h1>
@@ -62,7 +62,7 @@ const FirstPage = () => {
             <img src="./asset3.png" className="mx-auto w-65 lg:w-81" />
           </div>
         </div>
-        <div className="bg-facets w-full text-white pt-8 bg-charcoal lg:h-landing-feature lg:w-1/2">
+        <div className="bg-facets w-full text-black pt-8 bg-charcoal lg:h-landing-feature lg:w-1/2">
           <div className="flex flex-col align-center justify-between h-full">
             <div>
               <h1 className="text-2xl text-center">Pay friends back</h1>

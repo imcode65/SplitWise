@@ -22,8 +22,8 @@ const LoginForm = () => {
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-center bg-gray-100">
-        <div className="px-8 py-6 text-left my-4 bg-white shadow-lg w-1/2">
+      <div className="flex items-center justify-center bg-gray-100 px-2">
+        <div className="px-8 py-6 text-left my-4 bg-white shadow-lg sm:w-1/2 w-full">
           <div className="flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"

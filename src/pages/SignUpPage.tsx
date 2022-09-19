@@ -3,11 +3,9 @@ import SignUpForm from 'components/forms/SignUpForm';
 
 const SignUpPage = () => {
   return (
-    <div className="">
-      <div className="container mx-auto">
-        <div className="lg:flex align-center justify-center items-center mb-20">
-          <SignUpForm />
-        </div>
+    <div className="mx-auto">
+      <div className="lg:flex align-center justify-center items-center mb-20">
+        <SignUpForm />
       </div>
     </div>
   );
