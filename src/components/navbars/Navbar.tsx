@@ -146,11 +146,23 @@ const Navbar = () => {
                       key={item.name}
                       to={item.href}
                       onClick={item.onClick}
-                      className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-teal-500"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-teal-500"
                     >
                       {item.name}
                     </NavLink>
                   ))}
+                  <NavLink
+                    to="/dashboard"
+                    className={`block items-center px-3 py-2 font-medium text-white rounded-md hover:bg-teal-500`}
+                  >
+                    Home
+                  </NavLink>
+                  <button
+                    onClick={() => setIsOpen(true)}
+                    className={`w-full items-center text-left px-3 py-2 font-medium text-white rounded-md hover:bg-teal-500`}
+                  >
+                    Wallet
+                  </button>
                 </div>
               </div>
             </Disclosure.Panel>

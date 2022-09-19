@@ -13,7 +13,7 @@ const RightSideBar2 = () => {
   return (
     <>
       <div
-        className={`col-span-1 w-full absolute sm:relative md:h-full flex-col justify-between hidden sm:flex space-y-2`}
+        className={`w-full absolute sm:relative md:h-full flex-col justify-between hidden sm:flex space-y-2`}
       >
         <div className="py-4 px-6 text-sm">
           <div className="flex flex-wrap">
