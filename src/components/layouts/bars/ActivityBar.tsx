@@ -14,14 +14,12 @@ const ActivityBar = () => {
   }, []);
 
   const getActivitys = () => {
-    console.log('getAcitivtys');
     const data = {
       id: auth.authInfo._id
     };
     axios
       .post(`${API_SERVER_URL}api/historys/by_user_id`, data)
       .then((res) => {
-        console.log(res.data.data);
         setActivitys(res.data.data);
       })
       .catch((err) => {});
@@ -29,6 +27,15 @@ const ActivityBar = () => {
 
   const onDeleteOrder = (_id: string) => {
     console.log(_id);
+    const data = {
+      id: _id
+    };
+    axios
+      .post(`${API_SERVER_URL}api/historys/delete_by_id`, data)
+      .then((res) => {
+        getActivitys();
+      })
+      .catch((err) => {});
   };
 
   return (
