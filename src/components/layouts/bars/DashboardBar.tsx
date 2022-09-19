@@ -114,17 +114,17 @@ const DashboardBar = () => {
     <div className="grid sm:grid-cols-4 relative overflow-hidden">
       <div className="col-span-3 border-x-1 min-h-screen border-gray-400">
         <div className="bg-[#eee] flex py-2 px-4 justify-between items-center border-b-1 border-gray-400 flex-wrap">
-          <span className="md:text-3xl sm:text-xl font-semibold my-2">Dashboard</span>
+          <span className="md:text-3xl sm:text-2xl text-xl font-semibold my-2">Dashboard</span>
           <div>
             <button
-              className="text-white my-2 bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2 text-center mr-2"
+              className="text-white my-2 bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-4 py-2 text-center mr-2"
               onClick={() => setShowExpenseModal(true)}
             >
               Add an expense
             </button>
             <button
               onClick={() => onSettle()}
-              className="cursor-pointer text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2 text-center mr-2"
+              className="cursor-pointer text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-4 py-2 text-center mr-2"
             >
               Settle up
             </button>
