@@ -146,7 +146,7 @@ const Navbar = () => {
                       key={item.name}
                       to={item.href}
                       onClick={item.onClick}
-                      className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-gray-700"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-teal-500"
                     >
                       {item.name}
                     </NavLink>
