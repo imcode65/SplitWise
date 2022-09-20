@@ -6,6 +6,7 @@ import { registerUser } from 'store/actions';
 import { hooks } from 'components/web3/connectors/metaMask';
 import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
+import { ACTION } from '../../store/types';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,27 @@ const SignUpForm = () => {
 
   console.log(errors);
   const onSignUp = (event: React.FormEvent<HTMLFormElement>) => {
+    dispatch({
+      type: ACTION.GET_ERRORS,
+      payload: {}
+    });
     event.preventDefault();
+    if (email === '') {
+      toast.error('Please input email');
+      return;
+    }
+    if (name === '') {
+      toast.error('Please input name');
+      return;
+    }
+    if (password === '') {
+      toast.error('Please input password');
+      return;
+    }
+    if (confirmPassword === '') {
+      toast.error('Please input confirm password');
+      return;
+    }
     const data = {
       email: email,
       name: name,
@@ -72,7 +93,7 @@ const SignUpForm = () => {
               <div className="mt-4">
                 <label className="block">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

@@ -1,18 +1,33 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import toast from 'react-hot-toast';
+import { useAppSelector } from 'store/hooks';
 import { NavLink } from 'react-router-dom';
 import { login } from 'store/actions';
-import toast from 'react-hot-toast';
+import { ACTION } from '../../store/types';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { errors } = useAppSelector((state) => state);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const onLogin = (event: React.FormEvent<HTMLFormElement>) => {
+    dispatch({
+      type: ACTION.GET_ERRORS,
+      payload: {}
+    });
     event.preventDefault();
+    if (email === '') {
+      toast.error('Please input email');
+      return;
+    }
+    if (password === '') {
+      toast.error('Please input password');
+      return;
+    }
     const data = {
       email: email,
       password: password
@@ -20,6 +35,7 @@ const LoginForm = () => {
     login(data, navigate)(dispatch);
   };
 
+  console.log(errors);
   return (
     <div className="w-full">
       <div className="flex items-center justify-center bg-gray-100 px-2">
@@ -48,13 +64,13 @@ const LoginForm = () => {
               <div>
                 <label className="block">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-color"
                 />
-                {/* <span className="text-xs tracking-wide text-red-600">Email field is required </span> */}
+                <label className="text-red-500">{errors.emailnotfound}</label>
               </div>
               <div className="mt-4">
                 <label className="block">Password</label>
@@ -65,6 +81,7 @@ const LoginForm = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-color"
                 />
+                <label className="text-red-500">{errors.password}</label>
               </div>
               <div className="flex items-baseline justify-between">
                 <button

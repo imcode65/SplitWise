@@ -36,7 +36,6 @@ export const registerUser =
           type: ACTION.GET_ERRORS,
           payload: err.response.data
         });
-        console.log(err.response.data);
       });
   };
 
@@ -56,10 +55,10 @@ export const login =
         }
       })
       .catch((err) => {
-        if (err.response.data.msg === 'wallet not found') {
-          // toast.error(err.response.data.msg);
-          navigate('/signup');
-        }
+        dispatch({
+          type: ACTION.GET_ERRORS,
+          payload: err.response.data
+        });
       });
   };
 

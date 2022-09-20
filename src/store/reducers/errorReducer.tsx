@@ -4,6 +4,7 @@ export interface IAuthInfo {
   name?: string;
   email?: string;
   password?: string;
+  emailnotfound?: string;
 }
 
 export interface IErrorState {
