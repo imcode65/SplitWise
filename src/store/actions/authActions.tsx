@@ -32,7 +32,11 @@ export const registerUser =
         navigate('/login');
       })
       .catch((err) => {
-        toast.success(err.response);
+        dispatch({
+          type: ACTION.GET_ERRORS,
+          payload: err.response.data
+        });
+        console.log(err.response.data);
       });
   };
 

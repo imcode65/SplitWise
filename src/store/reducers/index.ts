@@ -6,18 +6,20 @@ import thunk from 'redux-thunk';
 import auth from 'store/reducers/authReducer';
 import friend from 'store/reducers/friendReducer';
 import wallet from 'store/reducers/walletReducer';
+import errors from 'store/reducers/errorReducer';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'friend', 'wallet'] // elements that will be persisted
+  whitelist: ['auth', 'friend', 'wallet', 'errors'] // elements that will be persisted
   // blacklist: ['auth', 'friend'] // elements that will not be persisted
 };
 
 const rootReducer = combineReducers({
   auth,
   friend,
-  wallet
+  wallet,
+  errors
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

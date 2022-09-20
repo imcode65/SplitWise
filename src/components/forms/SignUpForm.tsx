@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { useAppSelector } from 'store/hooks';
 import { registerUser } from 'store/actions';
 import { hooks } from 'components/web3/connectors/metaMask';
 import toast from 'react-hot-toast';
@@ -9,16 +10,20 @@ import { NavLink } from 'react-router-dom';
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { errors } = useAppSelector((state) => state);
   const [email, setEmail] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
 
+  console.log(errors);
   const onSignUp = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = {
       email: email,
       name: name,
       password: password,
+      confirmPassword: confirmPassword,
       currency: 'USDT',
       language: 'English',
       timezone: 'EST'
@@ -50,6 +55,9 @@ const SignUpForm = () => {
           </div>
           <h3 className="text-2xl font-bold text-center">Join us</h3>
           <form onSubmit={onSignUp}>
+            <div className="flex justify-center mt-2">
+              <span className="text-red-600 font-semibold">{errors.email}</span>
+            </div>
             <div className="mt-4">
               <div>
                 <label className="block">Name</label>
@@ -86,10 +94,11 @@ const SignUpForm = () => {
                 <input
                   type="password"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-teal-color"
                 />
+                <label className="text-red-500">{errors.password}</label>
               </div>
               {/* <span className="text-xs text-red-400">Password must be same!</span> */}
               <div className="flex">

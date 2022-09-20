@@ -94,8 +94,8 @@ const ExpenseModal: React.FC<IModal> = (props) => {
         sender_id: authInfo._id,
         receiver_id: ids[key],
         description: description,
-        total_pay: pay,
-        pay: (pay / (emails.length + 1)).toFixed(2),
+        total_pay: pay * emails.length,
+        pay: pay,
         currency: authInfo.currency,
         repeats: ''
       };
