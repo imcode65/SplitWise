@@ -1,9 +1,6 @@
 import { useState, Fragment, useEffect } from 'react';
 import axios from 'axios';
-import { Dialog, Tab, Transition } from '@headlessui/react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-import WAValidator from 'wallet-address-validator';
+import { Dialog, Transition } from '@headlessui/react';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { useAppSelector } from 'store/hooks';
@@ -35,7 +32,7 @@ const WalletModal: React.FC<IModal> = (props) => {
       };
       getBalance(data)(dispatch);
     }
-  }, [props.isOpen]);
+  }, [auth.authInfo, currency, dispatch, props.isOpen]);
 
   useEffect(() => {
     if (auth.authInfo) {
@@ -45,7 +42,7 @@ const WalletModal: React.FC<IModal> = (props) => {
       };
       getBalance(data)(dispatch);
     }
-  }, []);
+  }, [auth.authInfo, currency, dispatch]);
 
   const onCopy = () => {
     navigator.clipboard.writeText(auth.authInfo.walletaddress);
@@ -83,7 +80,7 @@ const WalletModal: React.FC<IModal> = (props) => {
     };
     axios
       .post(`${API_SERVER_URL}api/wallet/withdraw`, data)
-      .then((res) => {
+      .then(() => {
         toast.success('Withdraw Success');
         const dt = {
           id: auth.authInfo._id,

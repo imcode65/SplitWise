@@ -27,7 +27,7 @@ export const registerUser =
   (userData: IRegisterUser, navigate: (path: string) => void) => async (dispatch: AppDispatch) => {
     axios
       .post(`${API_SERVER_URL}api/users/register`, userData)
-      .then((res) => {
+      .then(() => {
         toast.success('Successfully Registered');
         navigate('/login');
       })

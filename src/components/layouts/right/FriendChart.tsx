@@ -1,5 +1,3 @@
-import NormalButton from 'components/buttons/NormalButton';
-
 const FriendChart = () => {
   return (
     <div>

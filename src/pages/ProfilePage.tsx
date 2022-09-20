@@ -6,8 +6,9 @@ import PrivacyBar from 'components/layouts/bars/PrivacyBar';
 import ProfileFooter from 'components/footers/ProfileFooter';
 import FeaturesBar from 'components/layouts/bars/FeaturesBar';
 import NormalButton from 'components/buttons/NormalButton';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppSelector } from 'store/hooks';
 import EditProfileModal from 'components/modals/EditProfileModal';
+// eslint-disable-next-line import/no-duplicates
 import { ISaveData } from 'components/modals/EditProfileModal';
 import { updateUser } from 'store/actions';
 import { CURRENCY_TYPES } from 'datas/currency';

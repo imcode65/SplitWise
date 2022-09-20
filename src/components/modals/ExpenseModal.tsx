@@ -2,7 +2,7 @@ import { useState, Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useParams } from 'react-router';
-import { Dialog, Portal, Transition } from '@headlessui/react';
+import { Dialog, Transition } from '@headlessui/react';
 import toast from 'react-hot-toast';
 import NormalButton from 'components/buttons/NormalButton';
 import { sendInvite } from 'store/actions';

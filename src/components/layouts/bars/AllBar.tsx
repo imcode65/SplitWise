@@ -25,7 +25,7 @@ const AllBar = () => {
       .then((res) => {
         setOrders(res.data);
       })
-      .catch((err) => {});
+      .catch(() => {});
   };
 
   const onDeleteOrder = (_id: string) => {
@@ -34,10 +34,10 @@ const AllBar = () => {
     };
     axios
       .post(`${API_SERVER_URL}api/orders/deletebyid`, data)
-      .then((res) => {
+      .then(() => {
         getOrders();
       })
-      .catch((err) => {});
+      .catch(() => {});
   };
 
   return (

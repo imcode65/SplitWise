@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useAppSelector } from 'store/hooks';
 import { registerUser } from 'store/actions';
-import { hooks } from 'components/web3/connectors/metaMask';
 import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
 import { ACTION } from '../../store/types';

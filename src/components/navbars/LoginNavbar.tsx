@@ -1,23 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import LogoIcon from 'components/icons/LogoIcon';
-// import MetaMaskIcon from 'components/icons/MetaMaskIcon';
-import { hooks, metaMask } from 'components/web3/connectors/metaMask';
-// import { isSignUp } from 'store/actions';
-// import { WalletAddressFormat } from 'methods/WalletAddressFormat';
-// import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
 
 const LoginNavbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // void metaMask.connectEagerly().catch(() => {
-    //   console.debug('Failed to connect eagerly to metamask');
-    // });
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <nav className="flex items-center justify-between px-16 py-5 mx-auto w-full">

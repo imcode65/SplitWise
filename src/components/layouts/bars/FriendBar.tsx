@@ -32,7 +32,7 @@ const FriendBar = () => {
       .then((res) => {
         setInfo(res.data);
       })
-      .catch((err) => {});
+      .catch(() => {});
     getOrders();
   }, [id]);
 
@@ -46,13 +46,13 @@ const FriendBar = () => {
       .then((res) => {
         setSendOrders(res.data);
       })
-      .catch((err) => {});
+      .catch(() => {});
     axios
       .post(`${API_SERVER_URL}api/orders/receive_from_friend`, data)
       .then((res) => {
         setReceiveOrders(res.data);
       })
-      .catch((err) => {});
+      .catch(() => {});
   };
 
   const onSave = () => {
@@ -66,10 +66,10 @@ const FriendBar = () => {
     };
     axios
       .post(`${API_SERVER_URL}api/orders/deletebyid`, data)
-      .then((res) => {
+      .then(() => {
         getOrders();
       })
-      .catch((err) => {});
+      .catch(() => {});
     getOrders();
   };
 

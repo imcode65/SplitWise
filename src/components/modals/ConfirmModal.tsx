@@ -1,5 +1,5 @@
 import { useState, Fragment, useEffect } from 'react';
-import { Dialog, Portal, Transition } from '@headlessui/react';
+import { Dialog, Transition } from '@headlessui/react';
 
 export interface IModal {
   isOpen: boolean;
