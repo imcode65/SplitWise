@@ -69,7 +69,6 @@ const RightSideBar = () => {
           </div>
         </div>
       </div>
-
       <div
         className={`transform w-48 top-0 right-0 absolute z-40 h-full px-4 py-4 bg-white flex-col sm:hidden justify-between transition duration-150 ease-in-out ${
           flag ? 'translate-x-48' : ''
