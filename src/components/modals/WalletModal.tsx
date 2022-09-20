@@ -87,6 +87,7 @@ const WalletModal: React.FC<IModal> = (props) => {
           currency: currency
         };
         getBalance(dt)(dispatch);
+        setModalStatus(false);
       })
       .catch((err) => {
         console.log(err);
