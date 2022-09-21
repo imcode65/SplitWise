@@ -1,6 +1,5 @@
 import { useState, Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
 import { Dialog, Transition } from '@headlessui/react';
 import { useAppSelector } from 'store/hooks';
 import { sendInvite } from 'store/actions';
@@ -15,7 +14,6 @@ export interface IModal {
 
 const InvitieFriendsModal: React.FC<IModal> = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { authInfo } = useAppSelector((state) => state.auth);
   const [modalStatus, setModalStatus] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');

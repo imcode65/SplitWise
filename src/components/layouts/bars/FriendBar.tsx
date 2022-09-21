@@ -11,7 +11,7 @@ import { API_SERVER_URL } from 'config';
 const FriendBar = () => {
   const [showExpenseModal, setShowExpenseModal] = useState(false);
   const { id } = useParams();
-  const { auth, friend } = useAppSelector((state) => state);
+  const { auth } = useAppSelector((state) => state);
   const [info, setInfo] = useState({
     _id: '',
     name: '',

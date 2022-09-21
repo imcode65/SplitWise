@@ -18,7 +18,6 @@ const LeftSideBar = () => {
   const location = useLocation();
   const { auth, friend } = useAppSelector((state) => state);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [open, setOpen] = useState(false);
   const [flag, setFlag] = useState(true);
 
   const onSaveModal = () => {

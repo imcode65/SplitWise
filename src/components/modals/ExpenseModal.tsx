@@ -42,7 +42,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
           setEmails([res.data.name]);
           setIDs([res.data._id]);
         })
-        .catch((err) => {});
+        .catch(() => {});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isOpen]);

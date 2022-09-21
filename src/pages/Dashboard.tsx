@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import LeftSideBar from 'components/layouts/LeftSdieBar';
+import LeftSideBar from 'components/layouts/LeftSideBar';
 
 const Dashboard = () => {
   return (
