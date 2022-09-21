@@ -30,7 +30,7 @@ function AppRoutes() {
   useEffect(() => {
     // Check for expired token
     const currentTime = Date.now() / 1000; // to get in milliseconds
-    if (store.getState().auth.authInfo.exp < currentTime) {
+    if (store.getState().auth.authInfo?.exp < currentTime) {
       // Logout signOut
       signOut(navigate)(dispatch);
 
