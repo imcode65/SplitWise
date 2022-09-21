@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import LoadingSpin from 'react-loading-spin';
 import { useAppSelector } from 'store/hooks';
 import moment from 'moment';
 import RightSideBar from 'components/layouts/RightSideBar';
@@ -8,12 +9,14 @@ import { API_SERVER_URL } from 'config';
 const ActivityBar = () => {
   const [activitys, setActivitys] = useState<any[]>([]);
   const { auth } = useAppSelector((state) => state);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     getActivitys();
   }, []);
 
   const getActivitys = () => {
+    setLoading(true);
     const data = {
       id: auth.authInfo._id
     };
@@ -21,6 +24,7 @@ const ActivityBar = () => {
       .post(`${API_SERVER_URL}api/historys/by_user_id`, data)
       .then((res) => {
         setActivitys(res.data.data);
+        setLoading(false);
       })
       .catch((err) => {});
   };
@@ -40,7 +44,7 @@ const ActivityBar = () => {
 
   return (
     <div className="grid sm:grid-cols-4">
-      <div className="col-span-3 border-l-1 border-r-1 border-gray-400 min-h-screen">
+      <div className="col-span-3 border-l-1 border-r-1 border-gray-400 min-h-screen relative">
         <div className="bg-[#eee] flex py-2 px-4 border-b-1 border-gray-400 flex-wrap">
           <span className="md:text-3xl sm:text-xl font-semibold  my-2">Recent activity</span>
         </div>
@@ -107,6 +111,13 @@ const ActivityBar = () => {
               There is no activity in your account yet. Try adding an expense!
             </p>
           </div>
+        )}
+        {loading ? (
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <LoadingSpin />
+          </div>
+        ) : (
+          ''
         )}
       </div>
       <div className="col-span-1">

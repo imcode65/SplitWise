@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import LoadingSpin from 'react-loading-spin';
 import axios from 'axios';
 import ExpenseModal from 'components/modals/ExpenseModal';
 import RightSideBar from 'components/layouts/RightSideBar';
@@ -14,6 +15,7 @@ const DashboardBar = () => {
   const [receiveOrders, setReceiveOrders] = useState<any[]>([]);
   const [showExpenseModal, setShowExpenseModal] = useState<boolean>(false);
   const [viewStatus, setViewStatus] = useState<string>('list');
+  const [loading, setLoading] = useState<boolean>(true);
 
   const calculate = (TSendOrders: any[], TReceiveOrders: any[]) => {
     const data: any[] = TSendOrders.concat(TReceiveOrders);
@@ -67,6 +69,7 @@ const DashboardBar = () => {
   };
 
   const getOrders = () => {
+    setLoading(true);
     const data = {
       id: authInfo._id
     };
@@ -79,6 +82,7 @@ const DashboardBar = () => {
             if (re.data.status !== 'fail') {
               calculate(res.data, re.data);
             }
+            setLoading(false);
           })
           .catch((err) => {
             console.log(err);
@@ -114,7 +118,7 @@ const DashboardBar = () => {
 
   return (
     <div className="grid sm:grid-cols-4 relative overflow-hidden">
-      <div className="col-span-3 border-x-1 min-h-screen border-gray-400">
+      <div className="col-span-3 border-x-1 min-h-screen border-gray-400 relative">
         <div className="bg-[#eee] flex py-2 px-4 justify-between items-center border-b-1 border-gray-400 flex-wrap">
           <span className="md:text-3xl sm:text-2xl text-xl font-semibold my-2">Dashboard</span>
           <div>
@@ -238,6 +242,13 @@ const DashboardBar = () => {
               </div>
             </div>
           </>
+        )}
+        {loading ? (
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <LoadingSpin />
+          </div>
+        ) : (
+          ''
         )}
       </div>
       <div className="col-span-1">

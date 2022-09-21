@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -21,11 +21,14 @@ import PrivateRoute from 'components/private-route/PrivateRoute';
 import setAuthToken from 'utils/setAuthToken';
 import { store } from 'store';
 import { signOut } from 'store/actions';
+import LoadingSpin from 'react-loading-spin';
 
 function AppRoutes() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     // Check for expired token
@@ -38,36 +41,43 @@ function AppRoutes() {
       window.location.href = './login';
     }
     setAuthToken(store.getState().auth.token);
+    setLoading(false);
   }, []);
 
   return (
     <div className="flex flex-col h-screen">
-      <Routes location={location}>
-        <Route path="" element={<Type2NavbarLayout />}>
-          <Route path="" element={<FirstPage />}></Route>
-          <Route path="signup" element={<SignUpPage />}></Route>
-          <Route path="login" element={<LoginPage />}></Route>
-        </Route>
-        <Route
-          path=""
-          element={
-            <PrivateRoute>
-              <Type1NavbarLayout />
-            </PrivateRoute>
-          }
-        >
-          <Route path="" element={<Dashboard />}>
-            <Route path="activity" element={<ActivityBar />} />
-            <Route path="dashboard" element={<DashboardBar />} />
-            <Route path="all" element={<AllBar />} />
-            <Route path="friends/:id" element={<FriendBar />} />
+      {loading ? (
+        <div>
+          <LoadingSpin />
+        </div>
+      ) : (
+        <Routes location={location}>
+          <Route path="" element={<Type2NavbarLayout />}>
+            <Route path="" element={<FirstPage />}></Route>
+            <Route path="signup" element={<SignUpPage />}></Route>
+            <Route path="login" element={<LoginPage />}></Route>
           </Route>
-          <Route path="profile" element={<ProfilePage />}></Route>
-          <Route path="calculators" element={<Calculators />}></Route>
-          <Route path="contact" element={<Contact />}></Route>
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route
+            path=""
+            element={
+              <PrivateRoute>
+                <Type1NavbarLayout />
+              </PrivateRoute>
+            }
+          >
+            <Route path="" element={<Dashboard />}>
+              <Route path="activity" element={<ActivityBar />} />
+              <Route path="dashboard" element={<DashboardBar />} />
+              <Route path="all" element={<AllBar />} />
+              <Route path="friends/:id" element={<FriendBar />} />
+            </Route>
+            <Route path="profile" element={<ProfilePage />}></Route>
+            <Route path="calculators" element={<Calculators />}></Route>
+            <Route path="contact" element={<Contact />}></Route>
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      )}
       <Toaster
         position="top-right"
         reverseOrder={false}
