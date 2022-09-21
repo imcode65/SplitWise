@@ -48,7 +48,6 @@ const ActivityBar = () => {
         <div className="bg-[#eee] flex py-2 px-4 border-b-1 border-gray-400 flex-wrap">
           <span className="md:text-3xl sm:text-xl font-semibold  my-2">Recent activity</span>
         </div>
-
         {activitys.length > 0 ? (
           activitys.map((val, key) => {
             return (
