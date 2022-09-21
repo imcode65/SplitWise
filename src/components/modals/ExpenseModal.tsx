@@ -42,6 +42,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
         })
         .catch((err) => {});
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.isOpen]);
 
   const onKeyDown = (e: any) => {
@@ -84,7 +85,6 @@ const ExpenseModal: React.FC<IModal> = (props) => {
   };
 
   const onSave = () => {
-    console.log(pay);
     if (!pay || pay === 0) {
       toast.error('Invalid Amount');
       return;

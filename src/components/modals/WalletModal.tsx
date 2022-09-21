@@ -25,6 +25,7 @@ const WalletModal: React.FC<IModal> = (props) => {
 
   useEffect(() => {
     setModalStatus(props.isOpen);
+    setCurrency('USDT');
     if (auth.authInfo) {
       const data = {
         id: auth.authInfo._id,
@@ -32,7 +33,8 @@ const WalletModal: React.FC<IModal> = (props) => {
       };
       getBalance(data)(dispatch);
     }
-  }, [auth.authInfo, currency, dispatch, props.isOpen]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.isOpen]);
 
   useEffect(() => {
     if (auth.authInfo) {
@@ -42,7 +44,8 @@ const WalletModal: React.FC<IModal> = (props) => {
       };
       getBalance(data)(dispatch);
     }
-  }, [auth.authInfo, currency, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onCopy = () => {
     navigator.clipboard.writeText(auth.authInfo.walletaddress);
@@ -81,13 +84,13 @@ const WalletModal: React.FC<IModal> = (props) => {
     axios
       .post(`${API_SERVER_URL}api/wallet/withdraw`, data)
       .then(() => {
-        toast.success('Withdraw Success');
         const dt = {
           id: auth.authInfo._id,
           currency: currency
         };
         getBalance(dt)(dispatch);
-        setModalStatus(false);
+        props.onSave();
+        toast.success('Withdraw Success');
       })
       .catch((err) => {
         console.log(err);
@@ -189,6 +192,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                               <img className="h-8 w-8" src={`/coin-logo/${currency}.png`} />
                               <select
                                 className="bg-gray-200 text-gray-900 rounded-sm focus:ring-blue-500 w-20 px-1 focus:outline-none"
+                                defaultValue={currency}
                                 onChange={(e) => onChangeCurrency(e)}
                               >
                                 {CURRENCY_TYPES.map((item, key) => {
@@ -205,7 +209,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                                 Balance
                               </span>
                               <span className="text-white font-bold text-center text-lg">
-                                {wallet.wallet?.amount}
+                                {wallet.wallet?.amount.toFixed(2)}
                               </span>
                             </div>
                           </div>
@@ -233,6 +237,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                               <img className="h-8 w-8" src={`/coin-logo/${currency}.png`} />
                               <select
                                 className="bg-gray-200 text-gray-900 rounded-sm focus:ring-blue-500 w-20 px-1 focus:outline-none"
+                                defaultValue={currency}
                                 onChange={(e) => onChangeCurrency(e)}
                               >
                                 {CURRENCY_TYPES.map((item, key) => {
@@ -249,7 +254,7 @@ const WalletModal: React.FC<IModal> = (props) => {
                                 Balance
                               </span>
                               <span className="text-white font-bold text-center text-lg">
-                                {wallet.wallet?.amount}
+                                {wallet.wallet?.amount.toFixed(2)}
                               </span>
                             </div>
                           </div>

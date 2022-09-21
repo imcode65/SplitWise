@@ -16,7 +16,6 @@ const SignUpForm = () => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-  console.log(errors);
   const onSignUp = (event: React.FormEvent<HTMLFormElement>) => {
     dispatch({
       type: ACTION.GET_ERRORS,

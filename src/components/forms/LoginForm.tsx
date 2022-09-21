@@ -35,7 +35,6 @@ const LoginForm = () => {
     login(data, navigate)(dispatch);
   };
 
-  console.log(errors);
   return (
     <div className="w-full">
       <div className="flex items-center justify-center bg-gray-100 px-2">
