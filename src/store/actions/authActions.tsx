@@ -3,6 +3,8 @@ import { ACTION } from '../types';
 import { AppDispatch } from 'store';
 import { IAuthInfo } from 'store/reducers/authReducer';
 import { API_SERVER_URL } from 'config';
+import setAuthToken from 'utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
 import toast from 'react-hot-toast';
 
 export interface IRegisterUser {
@@ -45,11 +47,13 @@ export const login =
     axios
       .post(`${API_SERVER_URL}api/users/login`, data)
       .then((res) => {
-        dispatch({
-          type: ACTION.SET_AUTH_USER,
-          payload: { authInfo: res.data.user, isLogged: true }
-        });
         if (res.data.status === 'success') {
+          const decoded = jwt_decode(res.data.token);
+          setAuthToken(res.data.token);
+          dispatch({
+            type: ACTION.SET_AUTH_USER,
+            payload: { authInfo: decoded, isLogged: true, token: res.data.token }
+          });
           toast.success('Login Success');
           navigate('/dashboard');
         }
@@ -78,9 +82,10 @@ export const updateUser = (userData: any, config?: any) => async (dispatch: AppD
 };
 
 export const signOut = (navigate: (path: string) => void) => async (dispatch: AppDispatch) => {
+  setAuthToken('');
   dispatch({
     type: ACTION.SET_AUTH_USER,
-    payload: { authInfo: {}, isLogged: false }
+    payload: { authInfo: {}, isLogged: false, token: '' }
   });
   navigate('/login');
 };

@@ -14,6 +14,7 @@ export interface IAuthInfo {
 export interface IAuthState {
   isLogged: boolean;
   authInfo?: IAuthInfo;
+  token: string;
 }
 
 export interface IUserAction {
@@ -23,7 +24,8 @@ export interface IUserAction {
 
 const initialAuthState: IAuthState = {
   isLogged: false,
-  authInfo: undefined
+  authInfo: undefined,
+  token: ''
 };
 
 const userReducer = (state = initialAuthState, action?: IUserAction) => {
@@ -32,7 +34,8 @@ const userReducer = (state = initialAuthState, action?: IUserAction) => {
       return {
         ...state,
         authInfo: action.payload.authInfo,
-        isLogged: action.payload.isLogged
+        isLogged: action.payload.isLogged,
+        token: action.payload.token
       };
     default:
       return state;
