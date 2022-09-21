@@ -17,7 +17,7 @@ export const sendInvite =
         }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.response.data.msg);
       });
   };
 

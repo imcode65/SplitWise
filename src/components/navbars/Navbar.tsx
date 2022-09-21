@@ -9,6 +9,7 @@ import LogoIcon from 'components/icons/LogoIcon';
 import { useAppSelector } from 'store/hooks';
 import WalletModal from 'components/modals/WalletModal';
 import { signOut } from 'store/actions';
+import PolygonIcon from 'components/icons/PolygonIcon';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ');
@@ -70,8 +71,9 @@ const Navbar = () => {
                         </NavLink>
                         <button
                           onClick={() => setIsOpen(true)}
-                          className={`items-center py-1 px-2 font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
+                          className={`flex items-center py-1 px-2 font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-white`}
                         >
+                          <PolygonIcon width={20} height={20} className="mr-1"></PolygonIcon>
                           Wallet
                         </button>
                         <Menu.Button className="max-w-xs bg-teal-color rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-white">

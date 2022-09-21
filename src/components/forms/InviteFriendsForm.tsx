@@ -8,18 +8,32 @@ import toast from 'react-hot-toast';
 const InviteFriendsForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { authInfo } = useAppSelector((state) => state.auth);
+  const { auth, friend } = useAppSelector((state) => state);
   const [email, setEmail] = useState<string>('');
 
   const onSendInvite = () => {
     if (email) {
-      if (authInfo.email === email || authInfo.name === email) {
+      if (auth.authInfo.email === email || auth.authInfo.name === email) {
         toast.error('You inputed your email or username');
         return;
       }
+      let isFriend = false;
+      friend.friends.map((value: any) => {
+        if (value.user1.email === email || value.user2.email === email) {
+          isFriend = true;
+        }
+        if (value.user1.name === email || value.user2.name === email) {
+          isFriend = true;
+        }
+        return;
+      });
+      if (isFriend) {
+        toast.error('Already added');
+        return;
+      }
       const data = {
-        id: authInfo._id,
-        email1: authInfo.email,
+        id: auth.authInfo._id,
+        email1: auth.authInfo.email,
         email2: email
       };
       sendInvite(data)(dispatch);
