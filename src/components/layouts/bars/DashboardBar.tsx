@@ -23,14 +23,16 @@ const DashboardBar = () => {
       for (let j = 0; j < result.length; j++) {
         if (
           data[i].sender_id._id.toString() === result[j].sender_id._id.toString() &&
-          data[i].receiver_id._id.toString() === result[j].receiver_id._id.toString()
+          data[i].receiver_id._id.toString() === result[j].receiver_id._id.toString() &&
+          data[i].currency === result[j].currency
         ) {
           result[j].pay += data[i].pay;
           flag = true;
         }
         if (
           data[i].sender_id._id.toString() === result[j].receiver_id._id.toString() &&
-          data[i].receiver_id._id.toString() === result[j].sender_id._id.toString()
+          data[i].receiver_id._id.toString() === result[j].sender_id._id.toString() &&
+          data[i].currency === result[j].currency
         ) {
           result[j].pay -= data[i].pay;
           flag = true;

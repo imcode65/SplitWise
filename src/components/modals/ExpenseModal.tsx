@@ -8,6 +8,7 @@ import NormalButton from 'components/buttons/NormalButton';
 import { sendInvite } from 'store/actions';
 import { useAppSelector } from 'store/hooks';
 import { API_SERVER_URL } from 'config';
+import { CURRENCY_TYPES } from 'datas/currency';
 export interface IModal {
   isOpen: boolean;
   onClose: () => void;
@@ -24,6 +25,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
   const [ids, setIDs] = useState<string[]>([]);
   const [description, setDescription] = useState<string>('');
   const [pay, setPay] = useState<number>(0);
+  const [currency, setCurrency] = useState<string>('USDT');
   const { id } = useParams();
 
   useEffect(() => {
@@ -96,7 +98,7 @@ const ExpenseModal: React.FC<IModal> = (props) => {
         description: description,
         total_pay: pay * emails.length,
         pay: pay,
-        currency: authInfo.currency,
+        currency: currency,
         repeats: ''
       };
       axios
@@ -235,14 +237,29 @@ const ExpenseModal: React.FC<IModal> = (props) => {
                           onChange={(e) => setDescription(e.target.value)}
                           placeholder="Enter a description"
                         />
-                        <div className="border-b-2 border-dashed mt-2">
+                        <div className="flex border-b-2 border-dashed mt-2">
                           <input
                             type="number"
                             className="focus:outline-none text-3xl font-bold w-52"
                             onChange={(e) => setPay(parseFloat(e.target.value))}
                             placeholder="0.00"
                           />
-                          <span className="mr-1">USDT</span>
+                          <div className="flex items-center">
+                            <img className="h-6 w-6" src={`/coin-logo/${currency}.png`} />
+                            <select
+                              className="text-gray-900 rounded-sm focus:ring-blue-500 w-20 px-1 focus:outline-none"
+                              defaultValue={currency}
+                              onChange={(e) => setCurrency(e.target.value)}
+                            >
+                              {CURRENCY_TYPES.map((item, key) => {
+                                return (
+                                  <option value={item} key={key}>
+                                    {item}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </div>
