@@ -99,7 +99,7 @@ const FriendBar = () => {
         {sendOrders.length === 0 && receiveOrders.length === 0 ? (
           <div className="grid grid-cols-12 gap-4 p-8">
             <div className="sm:col-span-5 col-span-12">
-              <img className="mx-auto" src="/1.png" />
+              <img className="mx-auto" src="/person1.png" />
             </div>
             <div className="sm:col-span-7 col-span-12">
               <p className="text-3xl font-semibold">You have not added any expenses yet.</p>
