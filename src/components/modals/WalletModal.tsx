@@ -226,7 +226,10 @@ const WalletModal: React.FC<IModal> = (props) => {
                           </label>
                           <div className="flex justify-between bg-gray-300 rounded-lg border-3 border-gray-300 py-1">
                             <div className="flex bg-gray-200 items-center px-1 rounded-md">
-                              <img className="h-8 w-8" src={`/coin-logo/${currency}.png`} />
+                              <img
+                                className="h-8 w-8"
+                                src={`/coin-logo/${currency.toLowerCase()}.png`}
+                              />
                               <select
                                 className="bg-gray-200 text-gray-900 rounded-sm focus:ring-blue-500 w-20 px-1 focus:outline-none"
                                 defaultValue={currency}
